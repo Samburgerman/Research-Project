@@ -87,10 +87,11 @@ public class GameManager : MonoBehaviour
 public struct GameState
 {
     public int turnNumber;
-    public List<PlayerData> playerDatas = new();
+    public List<PlayerData> playerDatas;
 
     public GameState(int turnNumber,List<PlayerData> playerDatas)
     {
+        this.playerDatas=new();
         this.turnNumber=turnNumber;
         foreach(PlayerData playerData in playerDatas)
             this.playerDatas.Add(playerData.Clone());
