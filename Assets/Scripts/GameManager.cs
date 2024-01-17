@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float radius = 5;
 
     private List<Piece> pieces = new();
-    private List<GameState> gameStates = new();
+    private GameStates gameStates = new GameStates();
 
     private int turnNumber = 0;
     [SerializeField] private int totalTurnsInGame = 10;
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         boardCreator.GenerateBoard(numSpaces,radius);
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
+        LogJson();
         GameLoop();
     }
 
@@ -50,9 +51,12 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(Wait(waitTimeInTransitions));
             }
             gameStates.Add(GetGameState());
-            foreach(GameState gameState in gameStates)
-                Debug.Log(gameState.ToString());
         }
+        LogJson();
+    }
+
+    private void LogJson()
+    {
         string jsonOutput = JsonUtility.ToJson(gameStates);//find how to convert correctly
         Debug.Log(jsonOutput);
         File.WriteAllText(Application.dataPath+"/data.txt",jsonOutput);
@@ -103,5 +107,18 @@ public struct GameState
         foreach(PlayerData playerData in playerDatas)
             playerDatasMessage+=playerData.ToString();
         return "Turn: "+turnNumber+" PlayerDatasMessage: "+playerDatasMessage;
+    }
+}
+[System.Serializable]//need a wrapper class for the list so it can be .json-ed
+public struct GameStates
+{
+    public List<GameState> gameStatesList;
+    
+    public GameStates(List<GameState> gameStateList)
+    { this.gameStatesList=gameStateList; }
+
+    public void Add(GameState gameState)
+    {
+        gameStatesList.Add(gameState);
     }
 }
