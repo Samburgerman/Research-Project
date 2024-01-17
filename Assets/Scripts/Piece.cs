@@ -11,7 +11,6 @@ public class Piece : MonoBehaviour
     private GameManager gameManager;
     private PlayerData playerData;
     private SpaceDefinitions spaceDefinitions;
-    ExperimentalCondition experimentalCondition;
 
     public void InitializePiece(
         GameManager gameManager,
@@ -23,9 +22,7 @@ public class Piece : MonoBehaviour
     {
         this.gameManager=gameManager;
         this.spaceDefinitions=spaceDefinitions;
-        playerData=new PlayerData(playerIndex,startMoney,startPosition,experimentalCondition);
-        playerData.SetGameManager(gameManager);
-        this.experimentalCondition=experimentalCondition;
+        playerData=new PlayerData(gameManager,playerIndex,startMoney,startPosition,experimentalCondition);
     }
 
     public PlayerData GetPlayerData() { return playerData; }
@@ -44,7 +41,8 @@ public class Piece : MonoBehaviour
     public SpaceDefinitions GetSpaceDefinitions() { return spaceDefinitions; }
 }
 
-public class PlayerData : object
+[System.Serializable]
+public struct PlayerData
 {
     GameManager gameManager;
     private int playerIndex;
@@ -60,8 +58,13 @@ public class PlayerData : object
         Fair
     }
 
-    public PlayerData(int playerIndex,int spaceNumeber,int money,ExperimentalCondition experimentalCondition)
+    public PlayerData(GameManager gameManager,
+                      int playerIndex,
+                      int spaceNumeber,
+                      int money,
+                      ExperimentalCondition experimentalCondition)
     {
+        this.gameManager = gameManager;
         this.playerIndex=playerIndex;
         this.money=money;
         this.spaceNumber=spaceNumeber;
@@ -75,8 +78,6 @@ public class PlayerData : object
     public int GetSpaceNumber() { /*Debug.Log("Im on the space #: "+spaceNumber);*/ return spaceNumber; }
 
     public void AdjustMoney(int toAdd) { money+=toAdd; }
-
-    public void SetGameManager(GameManager gameManager) { this.gameManager=gameManager; }
 
     public void AdjustSpace(int toAdd)
     {

@@ -14,13 +14,13 @@ public class PieceGenerator : MonoBehaviour
     [SerializeField] List<Material> materials = new();
     [SerializeField] Vector3 pieceDisplacement;//todo make it so that pieces can share a space
 
-    public List<Piece> GeneratePieces(int startPosition, int startMoney)
+    public List<Piece> GeneratePieces(int startPosition,int startMoney)
     {
         List<Piece> pieces = new();
         int playerIndex = 0;
         foreach(Material m in materials)
         {
-            Piece piece = InstansiatePiece(playerIndex, startPosition, startMoney).GetComponent<Piece>();
+            Piece piece = InstansiatePiece(playerIndex,startPosition,startMoney).GetComponent<Piece>();
             pieces.Add(piece);
             playerIndex++;
         }
@@ -34,7 +34,7 @@ public class PieceGenerator : MonoBehaviour
         return boardCreator.GetSpaceTransformPosition(gameManager.GetPlayerPos(playerIndex));
     }
 
-    private GameObject InstansiatePiece(int playerIndex, int startPositon, int startMoney)
+    private GameObject InstansiatePiece(int playerIndex,int startPositon,int startMoney)
     {
         Material material = materials[playerIndex];
         GameObject pieceGameObject = GameObject.Instantiate(piecePrefab);

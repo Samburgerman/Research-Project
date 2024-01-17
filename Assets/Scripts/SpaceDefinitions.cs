@@ -43,7 +43,7 @@ public class Space : Object
         this.gameObject=gameObject;
     }
 
-    public int GetMoney() {  return money; }
+    public int GetMoney() { return money; }
 
     public int GetPositionIndex() { return positionIndex; }
 

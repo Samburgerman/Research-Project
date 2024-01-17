@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -49,9 +50,12 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(Wait(waitTimeInTransitions));
             }
             gameStates.Add(GetGameState());
+            foreach(GameState gameState in gameStates)
+                Debug.Log(gameState.ToString());
         }
-        string json=JsonUtility.ToJson(gameStates);//find how to convert correctly
-        Debug.Log(json);
+        string jsonOutput = JsonUtility.ToJson(gameStates);//find how to convert correctly
+        Debug.Log(jsonOutput);
+        File.WriteAllText(Application.dataPath+"/data.txt",jsonOutput);
     }
 
     private void PlayerTurn(Piece piece)
@@ -79,15 +83,24 @@ public class GameManager : MonoBehaviour
         //print("after");
     }
 }
-
-public class GameState : System.Object
+[System.Serializable]
+public struct GameState
 {
     public int turnNumber;
-    public  List<PlayerData> playerDatas;
+    public List<PlayerData> playerDatas = new();
 
     public GameState(int turnNumber,List<PlayerData> playerDatas)
     {
         this.turnNumber=turnNumber;
-        this.playerDatas=playerDatas;
+        foreach(PlayerData playerData in playerDatas)
+            this.playerDatas.Add(playerData.Clone());
+    }
+
+    public override string ToString()
+    {
+        string playerDatasMessage = "";
+        foreach(PlayerData playerData in playerDatas)
+            playerDatasMessage+=playerData.ToString();
+        return "Turn: "+turnNumber+" PlayerDatasMessage: "+playerDatasMessage;
     }
 }
