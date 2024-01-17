@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float radius = 5;
 
     private List<Piece> pieces = new();
-    private GameStates gameStates = new GameStates();
+    private GameStates gameStates = new GameStates(new List<GameState>());
 
     private int turnNumber = 0;
     [SerializeField] private int totalTurnsInGame = 10;
@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
         List<PlayerData> playerDatas = new();//dont grammar me
         foreach(Piece piece in pieces)
             playerDatas.Add(piece.GetPlayerData());
+        Debug.Log(playerDatas[0]);
         return new GameState(turnNumber,playerDatas);
     }
 

@@ -45,10 +45,10 @@ public class Piece : MonoBehaviour
 public struct PlayerData
 {
     GameManager gameManager;
-    private int playerIndex;
-    private int money;
-    private int spaceNumber;
-    ExperimentalCondition experimentalCondition;
+    public int playerIndex;
+    public int money;
+    public int spaceNumber;
+    public ExperimentalCondition experimentalCondition;
 
     public enum ExperimentalCondition
     {
