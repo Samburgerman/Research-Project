@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     private void LogJson()
     {
         string jsonOutput = JsonUtility.ToJson(gameStates);//find how to convert correctly
-        Debug.Log(jsonOutput);
         File.WriteAllText(Application.dataPath+"/data.txt",jsonOutput);
     }
 
@@ -74,7 +73,6 @@ public class GameManager : MonoBehaviour
         List<PlayerData> playerDatas = new();//dont grammar me
         foreach(Piece piece in pieces)
             playerDatas.Add(piece.GetPlayerData());
-        Debug.Log(playerDatas[0]);
         return new GameState(turnNumber,playerDatas);
     }
 
