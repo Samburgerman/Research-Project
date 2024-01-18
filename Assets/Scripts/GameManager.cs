@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     private void LogJson()
     {
         string jsonOutput = JsonUtility.ToJson(gameStates);//find how to convert correctly
-        File.WriteAllText(Application.dataPath+"/data.txt",jsonOutput);
+        File.WriteAllText(Application.dataPath+"/JsonLogs/data.txt",jsonOutput);
     }
 
     private void PlayerTurn(Piece piece)
