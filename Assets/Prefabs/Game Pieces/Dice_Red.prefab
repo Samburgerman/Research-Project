@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
-  numOnDice: 6
+  faceOnDice: 6
   rb: {fileID: 3637562755809398527}
   waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
-  numOnDice: 3
+  faceOnDice: 3
   rb: {fileID: 3637562755809398527}
   waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
-  numOnDice: 4
+  faceOnDice: 4
   rb: {fileID: 3637562755809398527}
   waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
-  numOnDice: 1
+  faceOnDice: 1
   rb: {fileID: 3637562755809398527}
   waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
-  numOnDice: 5
+  faceOnDice: 5
   rb: {fileID: 3637562755809398527}
   waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
-  numOnDice: 2
+  faceOnDice: 2
   rb: {fileID: 3637562755809398527}
   waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
