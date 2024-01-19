@@ -1,5 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &787803641377261408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403933491758234517}
+  m_Layer: 0
+  m_Name: Ground Sensors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &403933491758234517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787803641377261408}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.22685716, z: 0}
+  m_LocalScale: {x: 0.014285715, y: 0.014285715, z: 0.014285715}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6573030377260262515}
+  - {fileID: 6034736206073086124}
+  - {fileID: 2365911759261552020}
+  - {fileID: 64591284448337369}
+  - {fileID: 3448226368487922583}
+  - {fileID: 1321001284708902633}
+  m_Father: {fileID: 6551711795972438673}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &848266930922566983
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,11 +66,11 @@ Transform:
   m_GameObject: {fileID: 848266930922566983}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 0.03}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0, y: 15.880001, z: 2.1000001}
+  m_LocalScale: {x: 0.6999999, y: 0.6999999, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6551711795972438673}
+  m_Father: {fileID: 403933491758234517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4916175341397194016
 MeshFilter:
@@ -119,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
+  numOnDice: 6
   rb: {fileID: 3637562755809398527}
   dice: {fileID: 620378545886138875}
 --- !u!1 &3706015122467812969
@@ -150,11 +188,11 @@ Transform:
   m_GameObject: {fileID: 3706015122467812969}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: 0.03, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0, y: 17.980001, z: 0}
+  m_LocalScale: {x: 0.6999999, y: 0.6999999, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6551711795972438673}
+  m_Father: {fileID: 403933491758234517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8958474970284657752
 MeshFilter:
@@ -240,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
+  numOnDice: 3
   rb: {fileID: 3637562755809398527}
   dice: {fileID: 620378545886138875}
 --- !u!1 &3770144518569501786
@@ -271,11 +310,11 @@ Transform:
   m_GameObject: {fileID: 3770144518569501786}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: -0.03, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0, y: 13.780001, z: 0}
+  m_LocalScale: {x: 0.6999999, y: 0.6999999, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6551711795972438673}
+  m_Father: {fileID: 403933491758234517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8080927253893433519
 MeshFilter:
@@ -361,6 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
+  numOnDice: 4
   rb: {fileID: 3637562755809398527}
   dice: {fileID: 620378545886138875}
 --- !u!1 &4857040531515707259
@@ -392,11 +432,11 @@ Transform:
   m_GameObject: {fileID: 4857040531515707259}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.03}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0, y: 15.880001, z: -2.1000001}
+  m_LocalScale: {x: 0.6999999, y: 0.6999999, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6551711795972438673}
+  m_Father: {fileID: 403933491758234517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &40406747045927429
 MeshFilter:
@@ -482,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
+  numOnDice: 1
   rb: {fileID: 3637562755809398527}
   dice: {fileID: 620378545886138875}
 --- !u!1 &5904269904670767609
@@ -517,12 +558,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7445365354779433871}
-  - {fileID: 6573030377260262515}
-  - {fileID: 6034736206073086124}
-  - {fileID: 2365911759261552020}
-  - {fileID: 64591284448337369}
-  - {fileID: 3448226368487922583}
-  - {fileID: 1321001284708902633}
+  - {fileID: 403933491758234517}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &620378545886138875
@@ -597,7 +633,7 @@ GameObject:
   - component: {fileID: 6251096025465499702}
   - component: {fileID: 6563606465668864256}
   m_Layer: 0
-  m_Name: Dice_Red_LOD0
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -697,11 +733,11 @@ Transform:
   m_GameObject: {fileID: 7735119183457179832}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: -0.03, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: -2.1000001, y: 15.880001, z: 0}
+  m_LocalScale: {x: 0.6999999, y: 0.6999999, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6551711795972438673}
+  m_Father: {fileID: 403933491758234517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8674618288026319731
 MeshFilter:
@@ -787,6 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
+  numOnDice: 5
   rb: {fileID: 3637562755809398527}
   dice: {fileID: 620378545886138875}
 --- !u!1 &8235074277981685409
@@ -818,11 +855,11 @@ Transform:
   m_GameObject: {fileID: 8235074277981685409}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 0.03, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 2.1000001, y: 15.880001, z: 0}
+  m_LocalScale: {x: 0.6999999, y: 0.6999999, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6551711795972438673}
+  m_Father: {fileID: 403933491758234517}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1167509796142117968
 MeshFilter:
@@ -908,5 +945,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundTag: Ground
+  numOnDice: 2
   rb: {fileID: 3637562755809398527}
   dice: {fileID: 620378545886138875}

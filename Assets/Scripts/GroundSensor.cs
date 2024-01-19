@@ -1,24 +1,7 @@
-using UnityEngine;
+using System;using System.Collections;using UnityEditor.Timeline.Actions;using UnityEngine;public class GroundSensor : MonoBehaviour{    [SerializeField] private string groundTag = "Ground";    [SerializeField] private int numOnDice = -1;    [SerializeField] private Rigidbody rb;    [SerializeField] private Dice dice;
 
-public class GroundSensor : MonoBehaviour
-{
-    [SerializeField] private string groundTag = "Ground";
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private Dice dice;
+    //discussion unity com how do i return a value from a corouitne
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(!AtRest())
-        { return; }
-        if(!other.tag.Equals(groundTag))
-        { return; }
-
-    }
-
-    private bool AtRest()
-    {
-        if(rb.velocity.magnitude<Mathf.Epsilon)
-            return true;
-        return false;
-    }
-}
+    private void OnTriggerEnter(Collider other)    {        CoroutineWithData groundedTest = new CoroutineWithData(this,Grounded());        //bool isGrounded = (bool)(groundedTest.result);
+        print("CoroutineWithData.result: "+groundedTest.result/*+" isGrounded: "+isGrounded*/);    }    private IEnumerator Wait()    {        yield return new WaitForSeconds(2.0f);    }    private IEnumerator Grounded()    {        yield return Wait();        if(rb.velocity.magnitude<0.1f)            yield return true;        else
+            yield return false;    }}public class CoroutineWithData{    public Coroutine coroutine { get; private set; }    public object result;    private IEnumerator target;    public CoroutineWithData(MonoBehaviour owner,IEnumerator target)    {        this.target=target;        this.coroutine=owner.StartCoroutine(Run());    }    private IEnumerator Run()    {        while(target.MoveNext())        {            result=target.Current;            yield return result;        }    }}

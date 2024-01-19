@@ -112,7 +112,7 @@ public struct GameState
 public struct GameStates
 {
     public List<GameState> gameStatesList;
-    
+
     public GameStates(List<GameState> gameStateList)
     { this.gameStatesList=gameStateList; }
 

@@ -64,7 +64,7 @@ public struct PlayerData
                       int money,
                       ExperimentalCondition experimentalCondition)
     {
-        this.gameManager = gameManager;
+        this.gameManager=gameManager;
         this.playerIndex=playerIndex;
         this.money=money;
         this.spaceNumber=spaceNumeber;

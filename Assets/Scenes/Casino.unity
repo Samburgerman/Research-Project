@@ -134,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 5904269904670767609, guid: 1e9efff99710a534d9867800ea320acc,
         type: 3}
       propertyPath: m_Name
-      value: Dice_Red
+      value: Dice
       objectReference: {fileID: 0}
     - target: {fileID: 6551711795972438673, guid: 1e9efff99710a534d9867800ea320acc,
         type: 3}
