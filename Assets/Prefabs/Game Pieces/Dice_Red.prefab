@@ -158,6 +158,7 @@ MonoBehaviour:
   groundTag: Ground
   numOnDice: 6
   rb: {fileID: 3637562755809398527}
+  waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
 --- !u!1 &3706015122467812969
 GameObject:
@@ -280,6 +281,7 @@ MonoBehaviour:
   groundTag: Ground
   numOnDice: 3
   rb: {fileID: 3637562755809398527}
+  waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
 --- !u!1 &3770144518569501786
 GameObject:
@@ -402,6 +404,7 @@ MonoBehaviour:
   groundTag: Ground
   numOnDice: 4
   rb: {fileID: 3637562755809398527}
+  waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
 --- !u!1 &4857040531515707259
 GameObject:
@@ -524,6 +527,7 @@ MonoBehaviour:
   groundTag: Ground
   numOnDice: 1
   rb: {fileID: 3637562755809398527}
+  waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
 --- !u!1 &5904269904670767609
 GameObject:
@@ -825,6 +829,7 @@ MonoBehaviour:
   groundTag: Ground
   numOnDice: 5
   rb: {fileID: 3637562755809398527}
+  waitSeconds: 0.1
   dice: {fileID: 620378545886138875}
 --- !u!1 &8235074277981685409
 GameObject:
@@ -947,4 +952,5 @@ MonoBehaviour:
   groundTag: Ground
   numOnDice: 2
   rb: {fileID: 3637562755809398527}
+  waitSeconds: 0.1
   dice: {fileID: 620378545886138875}

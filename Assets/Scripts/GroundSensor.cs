@@ -2,11 +2,10 @@ using System;using System.Collections;using UnityEditor.Timeline.Actions;usin
 
     private bool isGrounded = false;
 
-    private void OnTriggerEnter(Collider other)    {        StartCoroutine(Grounded());        print("collision detected");    }    private void UpdateIsGrounded(bool isGrounded)
+    private void OnTriggerEnter(Collider other)    {        StartCoroutine(Grounded());    }    private void UpdateIsGrounded(bool isGrounded)
     {
         this.isGrounded = isGrounded;
-        print(this.isGrounded);
-    }    private IEnumerator Wait(float seconds)    {        yield return new WaitForSeconds(seconds);    }    private IEnumerator Grounded()    {        print("begin");        yield return Wait(waitSeconds);        GroundedData groundedData = new GroundedData(rb.velocity.magnitude<0.1f);        UpdateIsGrounded(groundedData.GetIsGrounded());        print("end");    }}public struct GroundedData
+    }    private IEnumerator Wait(float seconds)    {        yield return new WaitForSeconds(seconds);    }    private IEnumerator Grounded()    {        yield return Wait(waitSeconds);        GroundedData groundedData = new GroundedData(rb.velocity.magnitude<0.1f);        UpdateIsGrounded(groundedData.GetIsGrounded());    }}public struct GroundedData
 {
     private bool isGrounded;
     public GroundedData(bool isGrounded)
