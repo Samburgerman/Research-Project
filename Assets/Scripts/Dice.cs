@@ -8,19 +8,22 @@ public class Dice : MonoBehaviour
     [SerializeField] private MovementData upper;
     [SerializeField] Rigidbody rb;
 
-    private List<float> lerpValues = new List<float>();
-
     public int rollNumber { get; set; }
 
     public void Roll()
     {
+        gameObject.SetActive(true);
+        //step one is to activate the gameObject
+        Range range = new(lower,upper,GenerateLerpValues());
+        UpdateGameobjectToMovementData(range.GetMovementDataForRoll());
+    }
+
+    public List<float> GenerateLerpValues()
+    {
+        List<float> lerpValues = new List<float>();
         for(int i = 0; i<4; i++)
-        {
             lerpValues.Add(UnityEngine.Random.Range(0,1));
-        }
-        Range range = new(lower,upper,lerpValues);
-        MovementData movementData = range.GetMovementDataForRoll();
-        UpdateGameobjectToMovementData(movementData);
+        return lerpValues;
     }
 
     private void UpdateGameobjectToMovementData(MovementData movementData)
@@ -30,6 +33,8 @@ public class Dice : MonoBehaviour
         rb.velocity=movementData.velocity;
         rb.angularVelocity=movementData.angularVelocity;
     }
+
+    public void DisableDice() {gameObject.SetActive(false); }
 }
 
 public class Range
@@ -80,7 +85,7 @@ public class Range
     private Vector3 LerpVelocity(float t)
     {
         if(useSmoothLerping)
-        return SmoothLerp(lower.velocity,upper.velocity,t);
+            return SmoothLerp(lower.velocity,upper.velocity,t);
 #pragma warning disable CS0162 // Unreachable code detected
         return Vector3.Lerp(lower.velocity,upper.velocity,t);
 #pragma warning restore CS0162 // Unreachable code detected
