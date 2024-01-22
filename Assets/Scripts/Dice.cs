@@ -8,7 +8,7 @@ public class Dice : MonoBehaviour
     [SerializeField] private MovementData upper;
     [SerializeField] Rigidbody rb;
 
-    public int rollNumber { get; set; }
+    private int rollNumber = -1;//if the roll number is used without being set it should generate an error
 
     public void Roll()
     {
@@ -32,6 +32,12 @@ public class Dice : MonoBehaviour
         transform.rotation=movementData.rotation;
         rb.velocity=movementData.velocity;
         rb.angularVelocity=movementData.angularVelocity;
+    }
+
+    public void ActionOnLanding(GroundedData groundedData)
+    {
+        rollNumber=groundedData.rollNumber;
+        DisableDice();
     }
 
     public void DisableDice() {gameObject.SetActive(false); }

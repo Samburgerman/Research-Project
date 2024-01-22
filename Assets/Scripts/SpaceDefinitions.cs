@@ -85,7 +85,7 @@ public class ProximityValues : Object
             int position = i+from.GetPositionIndex();
             while(position>=spaceDefinitions.GetSpaceCount())
             { position-=spaceDefinitions.GetSpaceCount(); }
-            Space to = spaceDefinitions.GetSpaceFromIndex(position);//this is the broken part
+            Space to = spaceDefinitions.GetSpaceFromIndex(position);
             int distance = CalculateProximityValue(from,to);
             proximityInts.Add(distance);
         }

@@ -11,19 +11,12 @@ public class GroundSensor : MonoBehaviour
     [SerializeField] private float waitSeconds = 0.1f;
     [SerializeField] private Dice dice;
 
-    private bool isGrounded = false;
     private const float epsilon = 0.1f;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(groundTag))
             StartCoroutine(Grounded());
-    }
-
-    private void UpdateIsGrounded(bool isGrounded)
-    {
-        this.isGrounded=isGrounded;
-        dice.rollNumber=faceOnDice;
     }
 
     private IEnumerator Wait(float seconds)
@@ -35,20 +28,22 @@ public class GroundSensor : MonoBehaviour
     {
         yield return Wait(waitSeconds);
         GroundedData groundedData = new GroundedData(rb.velocity.magnitude<epsilon
-            &&rb.angularVelocity.magnitude<epsilon);
-        UpdateIsGrounded(groundedData.GetIsGrounded());
+            &&rb.angularVelocity.magnitude<epsilon,faceOnDice);
+        dice.ActionOnLanding(groundedData);
     }
 }
 
 public struct GroundedData
 {
-    private bool isGrounded;
-    public GroundedData(bool isGrounded)
+    public bool isGrounded { get; private set; }
+    public int rollNumber { get; private set; }
+
+    public GroundedData(bool isGrounded, int rollNumber)
     {
         this.isGrounded=isGrounded;
+        this.rollNumber=rollNumber;
     }
-    public bool GetIsGrounded() { return isGrounded; }
 
     public override string ToString()
-    { return ""+GetIsGrounded(); }
+    { return "isGrounded: "+isGrounded+" rollNumber: "+rollNumber; }
 }
