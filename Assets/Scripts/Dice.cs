@@ -18,7 +18,7 @@ public class Dice : MonoBehaviour
         UpdateGameobjectToMovementData(range.GetMovementDataForRoll());
     }
 
-    public List<float> GenerateLerpValues()
+    private List<float> GenerateLerpValues()
     {
         List<float> lerpValues = new List<float>();
         for(int i = 0; i<4; i++)
