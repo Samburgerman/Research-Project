@@ -42,6 +42,7 @@ public class Range
     private MovementData lower;
     private MovementData upper;
     private const bool useSmoothLerping = true;
+    //smooth lerping makes position, velocity, and angular velocity be a more uniform distribution
 
     private List<float> lerpValues = new List<float>();
 
@@ -98,5 +99,15 @@ public class Range
     }
 
     private Vector3 SmoothLerp(Vector3 lower,Vector3 upper,float t)
-    { return Vector3.Lerp(lower,upper,t); }
+    {  
+        //the integral tanh(x) dx = ln( | cosh (x) | )
+        //this means that tanh x will produce a smooth curve
+        
+    }
+
+    private float Sinh(float x){return (Mathf.Exp(x)-Mathf.Exp(-x))/2;}
+
+    private float Cosh(float x) { return (Mathf.Exp(x)+Mathf.Exp(-x))/2; }
+
+    private float Tanh(float x) { return Sinh(x)/Cosh(x); }
 }
