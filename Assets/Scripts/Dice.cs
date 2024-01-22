@@ -60,54 +60,11 @@ public class Range
     public MovementData GetMovementDataForRoll()
     {
         //the indexes of the lerp values have no signifigance as the elements are random
-        Vector3 position = LerpPosition(lerpValues[0]);
-        Quaternion rotation = LerpRotation(lerpValues[1]);
-        Vector3 velocity = LerpVelocity(lerpValues[2]);
-        Vector3 angularVelocity = LerpAngularVelocity(lerpValues[3]);
+        Vector3 position = LerperUtility.LerpPosition(lerpValues[0]);
+        Quaternion rotation = LerperUtility.LerpRotation(lerpValues[1]);
+        Vector3 velocity = LerperUtility.LerpVelocity(lerpValues[2]);
+        Vector3 angularVelocity = LerperUtility.LerpAngularVelocity(lerpValues[3]);
         MovementData movementData = new(position,rotation,velocity,angularVelocity);
         return movementData;
     }
-
-    private Vector3 LerpPosition(float t)
-    {
-        if(useSmoothLerping)
-            return SmoothLerp(lower.position,upper.position,t);
-#pragma warning disable CS0162 // Unreachable code detected
-        return Vector3.Lerp(lower.position,upper.position,t);
-#pragma warning restore CS0162 // Unreachable code detected
-    }
-
-    private Quaternion LerpRotation(float t)
-    {
-        Quaternion rotation = Quaternion.Lerp(lower.rotation,upper.rotation,t);
-        return rotation;
-    }
-
-    private Vector3 LerpVelocity(float t)
-    {
-        if(useSmoothLerping)
-            return SmoothLerp(lower.velocity,upper.velocity,t);
-#pragma warning disable CS0162 // Unreachable code detected
-        return Vector3.Lerp(lower.velocity,upper.velocity,t);
-#pragma warning restore CS0162 // Unreachable code detected
-    }
-
-    private Vector3 LerpAngularVelocity(float t)
-    {
-        Vector3 angularVelocity = SmoothLerp(lower.angularVelocity,upper.angularVelocity,t);
-        return angularVelocity;
-    }
-
-    private Vector3 SmoothLerp(Vector3 lower,Vector3 upper,float t)
-    {  
-        //the integral tanh(x) dx = ln( | cosh (x) | )
-        //this means that tanh x will produce a smooth curve
-        
-    }
-
-    private float Sinh(float x){return (Mathf.Exp(x)-Mathf.Exp(-x))/2;}
-
-    private float Cosh(float x) { return (Mathf.Exp(x)+Mathf.Exp(-x))/2; }
-
-    private float Tanh(float x) { return Sinh(x)/Cosh(x); }
 }
