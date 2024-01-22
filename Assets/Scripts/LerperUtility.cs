@@ -6,7 +6,7 @@ public static class LerperUtility
 {
     private const bool useSmoothLerping = true;
 
-    private static Vector3 LerpPosition(MovementData lower, MovementData upper, float t)
+    public static Vector3 LerpPosition(MovementData lower, MovementData upper, float t)
     {
         if(useSmoothLerping)
             return SmoothLerp(lower.position,upper.position,t);
@@ -15,13 +15,13 @@ public static class LerperUtility
 #pragma warning restore CS0162 // Unreachable code detected
     }
 
-    private static Quaternion LerpRotation(MovementData lower,MovementData upper,float t)
+    public static Quaternion LerpRotation(MovementData lower,MovementData upper,float t)
     {
         Quaternion rotation = Quaternion.Lerp(lower.rotation,upper.rotation,t);
         return rotation;
     }
 
-    private static Vector3 LerpVelocity(MovementData lower,MovementData upper,float t)
+    public static Vector3 LerpVelocity(MovementData lower,MovementData upper,float t)
     {
         if(useSmoothLerping)
             return SmoothLerp(lower.velocity,upper.velocity,t);
@@ -30,7 +30,7 @@ public static class LerperUtility
 #pragma warning restore CS0162 // Unreachable code detected
     }
 
-    private static Vector3 LerpAngularVelocity(MovementData lower,MovementData upper,float t)
+    public static Vector3 LerpAngularVelocity(MovementData lower,MovementData upper,float t)
     {
         Vector3 angularVelocity = SmoothLerp(lower.angularVelocity,upper.angularVelocity,t);
         return angularVelocity;

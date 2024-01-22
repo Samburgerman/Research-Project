@@ -60,10 +60,10 @@ public class Range
     public MovementData GetMovementDataForRoll()
     {
         //the indexes of the lerp values have no signifigance as the elements are random
-        Vector3 position = LerperUtility.LerpPosition(lerpValues[0]);
-        Quaternion rotation = LerperUtility.LerpRotation(lerpValues[1]);
-        Vector3 velocity = LerperUtility.LerpVelocity(lerpValues[2]);
-        Vector3 angularVelocity = LerperUtility.LerpAngularVelocity(lerpValues[3]);
+        Vector3 position = LerperUtility.LerpPosition(lower, upper, lerpValues[0]);
+        Quaternion rotation = LerperUtility.LerpRotation(lower, upper, lerpValues[1]);
+        Vector3 velocity = LerperUtility.LerpVelocity(lower,upper,lerpValues[2]);
+        Vector3 angularVelocity = LerperUtility.LerpAngularVelocity(lower,upper,lerpValues[3]);
         MovementData movementData = new(position,rotation,velocity,angularVelocity);
         return movementData;
     }
