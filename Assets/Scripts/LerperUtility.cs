@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public static class LerperUtility
 {
     private const bool useSmoothLerping = true;
+    //smooth lerping makes position, velocity, and angular velocity be a more uniform distribution
 
     public static Vector3 LerpPosition(MovementData lower, MovementData upper, float t)
     {
@@ -43,6 +45,11 @@ public static class LerperUtility
         float multiplier = 0.4337808f;
         //to get the integral to be = to 1 we multiply by 1/log(cosh(1))=0.43
         float smoothT = Tanh(t)*multiplier;//this adjusts t to be more unimodal and uniform
+        if(smoothT>1||smoothT<0)
+            throw new Exception("The smoothT value of "+smoothT+
+                " makes the smooth lerp go out of bounds."+
+                " This smoothT value was generated using the float t paramater of: "+
+                t+".");
         return Vector3.Lerp(lower,upper,smoothT);
     }
 

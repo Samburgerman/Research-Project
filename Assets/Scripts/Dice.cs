@@ -15,7 +15,7 @@ public class Dice : MonoBehaviour
         gameObject.SetActive(true);
         //step one is to activate the gameObject
         Range range = new(lower,upper,GenerateLerpValues());
-        UpdateGameobjectToMovementData(range.GetMovementDataForRoll());
+        UpdateGameObjectToMovementData(range.GetMovementDataForRoll());
     }
 
     private List<float> GenerateLerpValues()
@@ -26,7 +26,7 @@ public class Dice : MonoBehaviour
         return lerpValues;
     }
 
-    private void UpdateGameobjectToMovementData(MovementData movementData)
+    private void UpdateGameObjectToMovementData(MovementData movementData)
     {
         transform.position=movementData.position;
         transform.rotation=movementData.rotation;
@@ -41,8 +41,6 @@ public class Range
 {
     private MovementData lower;
     private MovementData upper;
-    private const bool useSmoothLerping = true;
-    //smooth lerping makes position, velocity, and angular velocity be a more uniform distribution
 
     private List<float> lerpValues = new List<float>();
 
@@ -52,9 +50,7 @@ public class Range
         this.upper=upper;
         this.lerpValues=lerpValues;
         if(lerpValues.Count!=4)
-        {
-            throw new Exception("4 lerp values must be in lerpValues");
-        }
+            throw new Exception("4 floats must be contained in the list<float> lerpValues");
     }
 
     public MovementData GetMovementDataForRoll()

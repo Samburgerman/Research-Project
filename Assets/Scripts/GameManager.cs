@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int startSpace = 0;
     [SerializeField] private int startMoney = 10;
 
-    [SerializeField] private const float waitTimeInTransitions = 1.0f;
+    [SerializeField] private const float waitSecondsInTransitions = 1.0f;
 
     public int GetPlayerPos(int playerIndex)
     { return pieces[playerIndex].GetPlayerData().GetSpaceNumber(); }
@@ -33,10 +33,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        InitializeBoard();
+        JsonLogger.LogJson(gameStates);
+        GameLoop();
+    }
+
+    private void InitializeBoard()
+    {
         boardCreator.GenerateBoard(numSpaces,radius);
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
-        LogJson();
-        GameLoop();
     }
 
     private void GameLoop()
@@ -48,18 +53,14 @@ public class GameManager : MonoBehaviour
             foreach(Piece piece in pieces)
             {
                 PlayerTurn(piece);
-                StartCoroutine(Wait(waitTimeInTransitions));
+                StartCoroutine(Wait(waitSecondsInTransitions));
             }
             gameStates.Add(GetGameState());
         }
-        LogJson();
+        JsonLogger.LogJson(gameStates);
     }
 
-    private void LogJson()
-    {
-        string jsonOutput = JsonUtility.ToJson(gameStates);//find how to convert correctly
-        File.WriteAllText(Application.dataPath+"/JsonLogs/data.txt",jsonOutput);
-    }
+    
 
     private void PlayerTurn(Piece piece)
     {
@@ -86,6 +87,16 @@ public class GameManager : MonoBehaviour
         //print("after");
     }
 }
+
+public static class JsonLogger
+{
+    public static void LogJson(object o)
+    {
+        string jsonOutput = JsonUtility.ToJson(o);
+        File.WriteAllText(Application.dataPath+"/JsonLogs/data.txt",jsonOutput);
+    }
+}
+
 [System.Serializable]
 public struct GameState
 {
@@ -108,6 +119,7 @@ public struct GameState
         return "Turn: "+turnNumber+" PlayerDatasMessage: "+playerDatasMessage;
     }
 }
+
 [System.Serializable]//need a wrapper class for the list so it can be .json-ed
 public struct GameStates
 {
