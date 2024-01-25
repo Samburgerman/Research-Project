@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         JsonLogger.LogJson(gameStates);
     }
 
-    
+
 
     private void PlayerTurn(Piece piece)
     {

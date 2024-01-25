@@ -19,7 +19,7 @@ public class GroundSensor : MonoBehaviour
             StartCoroutine(Grounded());
     }
 
-    private IEnumerator Wait(float seconds){yield return new WaitForSeconds(seconds);}
+    private IEnumerator Wait(float seconds) { yield return new WaitForSeconds(seconds); }
 
     private IEnumerator Grounded()
     {
@@ -35,7 +35,7 @@ public struct GroundedData
     public bool IsGrounded { get; private set; }
     public int RollNumber { get; private set; }
 
-    public GroundedData(bool isGrounded, int rollNumber)
+    public GroundedData(bool isGrounded,int rollNumber)
     {
         this.IsGrounded=isGrounded;
         this.RollNumber=rollNumber;

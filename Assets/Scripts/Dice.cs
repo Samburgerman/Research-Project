@@ -33,7 +33,12 @@ public class Dice : MonoBehaviour
     {
         List<float> lerpValues = new();
         for(int i = 0; i<4; i++)
-            lerpValues.Add(UnityEngine.Random.Range(0,1));
+            lerpValues.Add(UnityEngine.Random.Range(0.0f,1.0f));//we need f so it returns a float
+        string msg = "";
+        foreach(float f in lerpValues)
+            msg+=f+" ";
+        Debug.Log(msg);
+        Debug.Log("Result of generating lerp values: "+msg);
         return lerpValues;
     }
 
@@ -50,7 +55,7 @@ public class Dice : MonoBehaviour
         StartCoroutine(DisableDice());
     }
 
-    public IEnumerator DisableDice() 
+    public IEnumerator DisableDice()
     {
         yield return new WaitForSeconds(diceFaceDisplayTime);
         print("rollNumber: "+rollNumber);
@@ -78,16 +83,26 @@ public class Range
     public MovementData GetMovementDataForRoll()
     {
         //the indexes of the lerp values have no signifigance as the elements are random
-        Vector3 position = LerperUtility.LerpPosition(lower, upper, lerpValues[0]);
+        string msg = "";
+        foreach(float f in lerpValues)
+            msg+=f+" ";
+        Debug.Log(msg);
+        Vector3 position = LerperUtility.LerpPosition(lower,upper,lerpValues[0]);
         Vector3 eulerAngles = LerperUtility.LerpRotation(lower,upper,lerpValues[1]);
         Vector3 velocity = LerperUtility.LerpVelocity(lower,upper,lerpValues[2]);
         Vector3 angularVelocity = LerperUtility.LerpAngularVelocity(lower,upper,lerpValues[3]);
+        MovementData middle = CreateMovementData(position,eulerAngles,velocity,angularVelocity);
+        return middle;
+    }
+
+    private static MovementData CreateMovementData(Vector3 position,Vector3 eulerAngles,Vector3 velocity,Vector3 angularVelocity)
+    {
         MovementData middle = ScriptableObject.CreateInstance<MovementData>();
         //constructor params for movementData: position,rotation,velocity,angularVelocity
-        middle.position = position;
+        middle.position=position;
         middle.rotation=Quaternion.Euler(eulerAngles);
-        middle.velocity = velocity;
-        middle.angularVelocity = angularVelocity;
+        middle.velocity=velocity;
+        middle.angularVelocity=angularVelocity;
         return middle;
     }
 

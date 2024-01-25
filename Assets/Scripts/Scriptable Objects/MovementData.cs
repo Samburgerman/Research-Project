@@ -8,8 +8,7 @@ public class MovementData : ScriptableObject
     public Vector3 velocity;
     public Vector3 angularVelocity;
 
-    //the reson for the overloading is its convienent for the designer to work withg euler angles
-    //in the editor but be able to call a constructor using transform.rotation
+    /*
     public MovementData(Vector3 position,Quaternion rotation,Vector3 velocity,Vector3 angularVelocity)
     {
         this.position=position;
@@ -25,6 +24,7 @@ public class MovementData : ScriptableObject
         this.velocity=velocity;
         this.angularVelocity=angularVelocity;
     }
+    */
 
     public override string ToString()
     {
