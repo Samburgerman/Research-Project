@@ -34,7 +34,7 @@ public class MovementData : ScriptableObject
         string msg1 = " eulerAngles: "+eulerAngles;
         string msg2 = " Rotation: "+Rotation;
         string msg3 = " velocity: "+velocity;
-        string msg4 = " angularVelocity: "+angularVelocity;
+        string msg4 = " angularVelocity: "+velocity;
         return msg0+msg1+msg2+msg3+msg4;
     }
 }
