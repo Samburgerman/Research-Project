@@ -20,7 +20,7 @@ public static class LerperUtility
 
     public static Vector3 LerpRotation(MovementData lower, MovementData upper,float t)
     {
-        return Vector3.Lerp(lower.Rotation.eulerAngles,upper.Rotation.eulerAngles,t);
+        return Vector3.Lerp(lower.rotation.eulerAngles,upper.rotation.eulerAngles,t);
     }
 
     public static Vector3 LerpVelocity(MovementData lower,MovementData upper,float t)

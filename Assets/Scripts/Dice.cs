@@ -39,8 +39,7 @@ public class Dice : MonoBehaviour
 
     private void UpdateGameObjectToMovementData(MovementData movementData)
     {
-        print("movementData: "+movementData);
-        transform.SetLocalPositionAndRotation(movementData.position,movementData.Rotation);
+        transform.SetLocalPositionAndRotation(movementData.position,movementData.rotation);
         rb.velocity=movementData.velocity;
         rb.angularVelocity=movementData.angularVelocity;
     }
@@ -80,13 +79,13 @@ public class Range
     {
         //the indexes of the lerp values have no signifigance as the elements are random
         Vector3 position = LerperUtility.LerpPosition(lower, upper, lerpValues[0]);
-        Vector3 rotation = LerperUtility.LerpRotation(lower,upper,lerpValues[1]);
+        Vector3 eulerAngles = LerperUtility.LerpRotation(lower,upper,lerpValues[1]);
         Vector3 velocity = LerperUtility.LerpVelocity(lower,upper,lerpValues[2]);
         Vector3 angularVelocity = LerperUtility.LerpAngularVelocity(lower,upper,lerpValues[3]);
         MovementData middle = ScriptableObject.CreateInstance<MovementData>();
         //constructor params for movementData: position,rotation,velocity,angularVelocity
         middle.position = position;
-        middle.rotation=rotation;
+        middle.rotation=Quaternion.Euler(eulerAngles);
         middle.velocity = velocity;
         middle.angularVelocity = angularVelocity;
         return middle;
