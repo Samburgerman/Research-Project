@@ -20,7 +20,7 @@ public class Dice : MonoBehaviour
 
     private List<float> GenerateLerpValues()
     {
-        List<float> lerpValues = new List<float>();
+        List<float> lerpValues = new();
         for(int i = 0; i<4; i++)
             lerpValues.Add(UnityEngine.Random.Range(0,1));
         return lerpValues;
@@ -28,15 +28,14 @@ public class Dice : MonoBehaviour
 
     private void UpdateGameObjectToMovementData(MovementData movementData)
     {
-        transform.position=movementData.position;
-        transform.rotation=movementData.rotation;
+        transform.SetPositionAndRotation(movementData.position, movementData.Rotation);
         rb.velocity=movementData.velocity;
         rb.angularVelocity=movementData.angularVelocity;
     }
 
     public void ActionOnLanding(GroundedData groundedData)
     {
-        rollNumber=groundedData.rollNumber;
+        rollNumber=groundedData.RollNumber;
         DisableDice();
     }
 
@@ -48,7 +47,7 @@ public class Range
     private MovementData lower;
     private MovementData upper;
 
-    private List<float> lerpValues = new List<float>();
+    private List<float> lerpValues = new();
 
     public Range(MovementData lower,MovementData upper,List<float> lerpValues)
     {
@@ -56,7 +55,7 @@ public class Range
         this.upper=upper;
         this.lerpValues=lerpValues;
         if(lerpValues.Count!=4)
-            throw new Exception("4 floats must be contained in the list<float> lerpValues");
+            throw new Exception("4 floats must be contained in the list<float> lerpValues.");
     }
 
     public MovementData GetMovementDataForRoll()

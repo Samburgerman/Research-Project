@@ -19,7 +19,7 @@ public static class LerperUtility
 
     public static Quaternion LerpRotation(MovementData lower,MovementData upper,float t)
     {
-        Quaternion rotation = Quaternion.Lerp(lower.rotation,upper.rotation,t);
+        Quaternion rotation = Quaternion.Lerp(lower.Rotation,upper.Rotation,t);
         return rotation;
     }
 

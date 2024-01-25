@@ -27,7 +27,7 @@ public class GroundSensor : MonoBehaviour
     private IEnumerator Grounded()
     {
         yield return Wait(waitSeconds);
-        GroundedData groundedData = new GroundedData(rb.velocity.magnitude<epsilon
+        GroundedData groundedData = new(rb.velocity.magnitude<epsilon
             &&rb.angularVelocity.magnitude<epsilon,faceOnDice);
         dice.ActionOnLanding(groundedData);
     }
@@ -35,15 +35,15 @@ public class GroundSensor : MonoBehaviour
 
 public struct GroundedData
 {
-    public bool isGrounded { get; private set; }
-    public int rollNumber { get; private set; }
+    public bool IsGrounded { get; private set; }
+    public int RollNumber { get; private set; }
 
     public GroundedData(bool isGrounded, int rollNumber)
     {
-        this.isGrounded=isGrounded;
-        this.rollNumber=rollNumber;
+        this.IsGrounded=isGrounded;
+        this.RollNumber=rollNumber;
     }
 
     public override string ToString()
-    { return "isGrounded: "+isGrounded+" rollNumber: "+rollNumber; }
+    { return "isGrounded: "+IsGrounded+" RollNumber: "+RollNumber; }
 }

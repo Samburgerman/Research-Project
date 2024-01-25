@@ -94,11 +94,8 @@ public struct PlayerData
 
     public PlayerData Clone()
     {
-        PlayerData playerData = new PlayerData(gameManager,
-                                               playerIndex,
-                                               spaceNumber,
-                                               money,
-                                               experimentalCondition);
+        PlayerData playerData = new(
+            gameManager,playerIndex,spaceNumber,money,experimentalCondition);
         return playerData;
     }
 

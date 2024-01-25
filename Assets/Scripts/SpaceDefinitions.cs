@@ -40,7 +40,7 @@ public class Space : Object
         this.positionIndex=positionIndex;
         this.money=money;
         this.material=material;
-        this.gameObject=gameObject;
+        this.SpaceGameObject=gameObject;
     }
 
     public int GetMoney() { return money; }
@@ -49,13 +49,13 @@ public class Space : Object
 
     public Material GetMaterial() { return material; }
 
-    private GameObject gameObject { get; set; }
+    private GameObject SpaceGameObject { get; set; }
 
     public override string ToString()
     {
         string s0 = "money:"+money;
         string s1 = " material:"+material.name;
-        string s2 = " gameObject:"+gameObject.name;
+        string s2 = " SpaceGameObject:"+SpaceGameObject.name;
         return s0+s1+s2;
     }
 }

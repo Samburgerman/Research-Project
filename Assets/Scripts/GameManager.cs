@@ -13,14 +13,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float radius = 5;
 
     private List<Piece> pieces = new();
-    private GameStates gameStates = new GameStates(new List<GameState>());
+    private GameStates gameStates = new(new());
 
     private int turnNumber = 0;
     [SerializeField] private int totalTurnsInGame = 10;
     [SerializeField] private int startSpace = 0;
     [SerializeField] private int startMoney = 10;
 
-    [SerializeField] private const float waitSecondsInTransitions = 1.0f;
+    [SerializeField] private float waitSecondsInTransitions = 1.0f;
 
     public int GetPlayerPos(int playerIndex)
     { return pieces[playerIndex].GetPlayerData().GetSpaceNumber(); }
