@@ -27,4 +27,14 @@ public class MovementData : ScriptableObject
         this.velocity=velocity;
         this.angularVelocity=angularVelocity;
     }
+
+    public override string ToString()
+    {
+        string msg0 = "position: "+position;
+        string msg1 = " eulerAngles: "+eulerAngles;
+        string msg2 = " Rotation: "+Rotation;
+        string msg3 = " velocity: "+velocity;
+        string msg4 = " angularVelocity: "+angularVelocity;
+        return msg0+msg1+msg2+msg3+msg4;
+    }
 }

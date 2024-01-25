@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public static class LerperUtility
@@ -17,10 +18,9 @@ public static class LerperUtility
 #pragma warning restore CS0162 // Unreachable code detected
     }
 
-    public static Quaternion LerpRotation(MovementData lower,MovementData upper,float t)
+    public static Vector3 LerpRotation(MovementData lower, MovementData upper,float t)
     {
-        Quaternion rotation = Quaternion.Lerp(lower.Rotation,upper.Rotation,t);
-        return rotation;
+        return Vector3.Lerp(lower.Rotation.eulerAngles,upper.Rotation.eulerAngles,t);
     }
 
     public static Vector3 LerpVelocity(MovementData lower,MovementData upper,float t)

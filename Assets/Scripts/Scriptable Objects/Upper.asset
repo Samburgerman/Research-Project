@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Upper
   m_EditorClassIdentifier: Assembly-CSharp::MovementData
-  position: {x: 4, y: 0, z: 4}
+  position: {x: 4, y: 5, z: 4}
   eulerAngles: {x: 359.9, y: 359.9, z: 360}
   velocity: {x: 5, y: 0, z: 5}
   angularVelocity: {x: 5, y: 5, z: 5}

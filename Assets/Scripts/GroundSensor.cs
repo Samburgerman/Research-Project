@@ -19,10 +19,7 @@ public class GroundSensor : MonoBehaviour
             StartCoroutine(Grounded());
     }
 
-    private IEnumerator Wait(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-    }
+    private IEnumerator Wait(float seconds){yield return new WaitForSeconds(seconds);}
 
     private IEnumerator Grounded()
     {

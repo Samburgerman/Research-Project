@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Dice : MonoBehaviour
@@ -8,13 +10,21 @@ public class Dice : MonoBehaviour
     [SerializeField] private MovementData upper;
     [SerializeField] Rigidbody rb;
 
+    [SerializeField] private float diceFaceDisplayTime = 1.5f;
+
     private int rollNumber = -1;//if the roll number is used without being set it should generate an error
+
+    private void Start()
+    {
+        Roll();
+    }
 
     public void Roll()
     {
         gameObject.SetActive(true);
         //step one is to activate the gameObject
         Range range = new(lower,upper,GenerateLerpValues());
+        print("range: "+range);
         UpdateGameObjectToMovementData(range.GetMovementDataForRoll());
     }
 
@@ -28,7 +38,8 @@ public class Dice : MonoBehaviour
 
     private void UpdateGameObjectToMovementData(MovementData movementData)
     {
-        transform.SetPositionAndRotation(movementData.position, movementData.Rotation);
+        print("movementData: "+movementData);
+        transform.SetLocalPositionAndRotation(movementData.position,movementData.Rotation);
         rb.velocity=movementData.velocity;
         rb.angularVelocity=movementData.angularVelocity;
     }
@@ -36,10 +47,15 @@ public class Dice : MonoBehaviour
     public void ActionOnLanding(GroundedData groundedData)
     {
         rollNumber=groundedData.RollNumber;
-        DisableDice();
+        StartCoroutine(DisableDice());
     }
 
-    public void DisableDice() {gameObject.SetActive(false); }
+    public IEnumerator DisableDice() 
+    {
+        yield return new WaitForSeconds(diceFaceDisplayTime);
+        print("rollNumber: "+rollNumber);
+        gameObject.SetActive(false);
+    }
 }
 
 public class Range
@@ -62,10 +78,17 @@ public class Range
     {
         //the indexes of the lerp values have no signifigance as the elements are random
         Vector3 position = LerperUtility.LerpPosition(lower, upper, lerpValues[0]);
-        Quaternion rotation = LerperUtility.LerpRotation(lower, upper, lerpValues[1]);
+        Vector3 rotation = LerperUtility.LerpRotation(lower,upper,lerpValues[1]);
         Vector3 velocity = LerperUtility.LerpVelocity(lower,upper,lerpValues[2]);
         Vector3 angularVelocity = LerperUtility.LerpAngularVelocity(lower,upper,lerpValues[3]);
         MovementData movementData = new(position,rotation,velocity,angularVelocity);
         return movementData;
+    }
+
+    public override string ToString()
+    {
+        string msg0 = "Lower: "+lower;
+        string msg1 = "Upper: "+upper;
+        return msg0+msg1;
     }
 }
