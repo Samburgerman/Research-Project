@@ -47,7 +47,7 @@ public class Dice : MonoBehaviour
 
     public void ActionOnLanding(GroundedData groundedData)
     {
-        rollNumber=groundedData.RollNumber;
+        rollNumber=ConvertBottomSideToTop(groundedData.FaceNumOnBottom);
         StartCoroutine(DisableDice());
     }
 
@@ -56,6 +56,11 @@ public class Dice : MonoBehaviour
         yield return new WaitForSeconds(diceFaceDisplayTime);
         print("rollNumber: "+rollNumber);
         gameObject.SetActive(false);
+    }
+
+    public static int ConvertBottomSideToTop(int bottom)
+    {
+        return 6+1-bottom;//6 is the number of faces on the dice
     }
 }
 
