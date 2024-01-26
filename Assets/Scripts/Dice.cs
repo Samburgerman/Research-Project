@@ -33,12 +33,8 @@ public class Dice : MonoBehaviour
     {
         List<float> lerpValues = new();
         for(int i = 0; i<4; i++)
-            lerpValues.Add(UnityEngine.Random.Range(0.0f,1.0f));//we need f so it returns a float
-        string msg = "";
-        foreach(float f in lerpValues)
-            msg+=f+" ";
-        Debug.Log(msg);
-        Debug.Log("Result of generating lerp values: "+msg);
+            lerpValues.Add(UnityEngine.Random.Range(0.0f,1.0f));
+        //we need f so it returns a float
         return lerpValues;
     }
 
@@ -83,10 +79,6 @@ public class Range
     public MovementData GetMovementDataForRoll()
     {
         //the indexes of the lerp values have no signifigance as the elements are random
-        string msg = "";
-        foreach(float f in lerpValues)
-            msg+=f+" ";
-        Debug.Log(msg);
         Vector3 position = LerperUtility.LerpPosition(lower,upper,lerpValues[0]);
         Vector3 eulerAngles = LerperUtility.LerpRotation(lower,upper,lerpValues[1]);
         Vector3 velocity = LerperUtility.LerpVelocity(lower,upper,lerpValues[2]);
@@ -108,7 +100,6 @@ public class Range
 
     public override string ToString()
     {
-        Debug.Log("lerpValues.Count: "+lerpValues.Count);
         string msg0 = "Lower: "+lower;
         string msg1 = " Upper: "+upper;
         string msg2 = " ";
