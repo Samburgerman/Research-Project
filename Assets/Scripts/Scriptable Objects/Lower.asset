@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Lower
   m_EditorClassIdentifier: Assembly-CSharp::MovementData
   position: {x: -4, y: 5, z: -4}
-  eulerAngles: {x: 0, y: 0, z: 0}
-  velocity: {x: -5, y: 0, z: -5}
-  angularVelocity: {x: -5, y: -5, z: -5}
+  rotation: {x: 0, y: 0, z: 0, w: 0}
+  velocity: {x: -100, y: 0, z: -100}
+  angularVelocity: {x: -100, y: -100, z: -100}

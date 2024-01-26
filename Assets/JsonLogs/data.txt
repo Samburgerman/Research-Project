@@ -1,1 +1,1 @@
-{"gameStatesList":[{"turnNumber":1,"playerDatas":[{"playerIndex":0,"money":-6,"spaceNumber":1,"experimentalCondition":3}]}]}
+{"gameStatesList":[{"turnNumber":1,"playerDatas":[{"playerIndex":0,"money":-3,"spaceNumber":11,"experimentalCondition":3}]}]}

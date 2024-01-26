@@ -8,7 +8,7 @@ public static class LerperUtility
     private const bool useSmoothLerping = true;
     //smooth lerping makes position, velocity, and angular velocity be a more uniform distribution
 
-    public static float multiplier { get; private set; } = 0.4337808f;
+    public static float multiplier { get; private set; } = 1.313f;
 
     //the param t in all of these functions is being passed as 0.
     public static Vector3 LerpPosition(MovementData lower,MovementData upper,float t)
@@ -54,7 +54,6 @@ public static class LerperUtility
 
     private static float GetSmoothT(float t)
     {
-        //to get the integral to be equal to 1 we multiply by 1/log(cosh(1))=0.43
         float smoothT = Tanh(t)*multiplier;//this adjusts t to be more unimodal and uniform
         if(smoothT>1||smoothT<0)
             throw new Exception("The smoothT value of "+smoothT+
@@ -62,6 +61,14 @@ public static class LerperUtility
                 " This smoothT value was generated using the float t paramater of: "+
                 t+".");
         return smoothT;
+    }
+
+    public static void LogDiagnostics()
+    {
+        Vector3 lower = new(-1,0,-1);
+        Vector3 upper = new(1,0,1);
+        for(float t=0.0f;t<=1.0;t+=0.02f)
+            Debug.Log(ToString(lower,upper,t));
     }
 
     public static string ToString(Vector3 lower,Vector3 upper,float t)
