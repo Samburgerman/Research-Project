@@ -7,7 +7,8 @@ public static class SmoothLerperUtility
 {
     //smooth lerping makes position, velocity, and angular velocity be a more uniform distribution
 
-    public static Vector3 IndependentComponentSmoothLerp(Vector3 lower, Vector3 upper)
+    public static Vector3 CISmoothLerp(Vector3 lower, Vector3 upper)
+        //vector component independent smooth liner extrapolation
     {
         LerpValues3D lerpValues = new();
         Vector3 vector3 = lerpValues.GetSmoothXYZ();

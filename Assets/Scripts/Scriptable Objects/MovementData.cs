@@ -33,10 +33,10 @@ public class Range
     public MovementData GetMovementDataForRoll()
     {
         //the indexes of the lerp values have no signifigance as the elements are random
-        Vector3 position = SmoothLerperUtility.IndependentComponentSmoothLerp(lower.position,upper.position);
-        Vector3 eulerAngles = SmoothLerperUtility.IndependentComponentSmoothLerp(lower.rotation.eulerAngles,upper.rotation.eulerAngles);
-        Vector3 velocity = SmoothLerperUtility.IndependentComponentSmoothLerp(lower.velocity,upper.velocity);
-        Vector3 angularVelocity = SmoothLerperUtility.IndependentComponentSmoothLerp(lower.angularVelocity,upper.angularVelocity);
+        Vector3 position = SmoothLerperUtility.CISmoothLerp(lower.position,upper.position);
+        Vector3 eulerAngles = SmoothLerperUtility.CISmoothLerp(lower.rotation.eulerAngles,upper.rotation.eulerAngles);
+        Vector3 velocity = SmoothLerperUtility.CISmoothLerp(lower.velocity,upper.velocity);
+        Vector3 angularVelocity = SmoothLerperUtility.CISmoothLerp(lower.angularVelocity,upper.angularVelocity);
         MovementData middle = CreateMovementData(position,eulerAngles,velocity,angularVelocity);
         return middle;
     }
