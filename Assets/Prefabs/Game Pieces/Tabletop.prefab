@@ -276,10 +276,12 @@ MonoBehaviour:
   pieceMover: {fileID: 4393486913719706393}
   numSpaces: 12
   radius: 8
+  dice: {fileID: 1590546295586838667}
   totalTurnsInGame: 1
   startSpace: 0
   startMoney: 10
-  waitSecondsInTransitions: 1
+  timeScale: 1
+  waitBetweenTurns: 1
 --- !u!114 &1290712712295377582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,6 +1108,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e9efff99710a534d9867800ea320acc, type: 3}
+--- !u!114 &1590546295586838667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2201915443153029488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec334532cdb9c3f47848dd3f0d76a9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4927673873169200097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6551711795972438673, guid: 1e9efff99710a534d9867800ea320acc,

@@ -9,8 +9,6 @@ public class Dice : MonoBehaviour
     [SerializeField] private MovementData upper;
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] private float diceFaceDisplayTime = 1.5f;
-    [SerializeField] private float timeScale = 1.0f;
 
     [SerializeField] private List<Vector3> eulerRotationMatrices;
     //the rotation required on each face to return to (0, 0, 0) rotation
@@ -20,7 +18,6 @@ public class Dice : MonoBehaviour
     //the rolls are not statistically independent
     private void Start()
     {
-        UnityEngine.Time.timeScale=timeScale;
         Roll();//we will eventually want a game script to call the roll function.
     }
 
@@ -74,7 +71,7 @@ public class Dice : MonoBehaviour
 
     public IEnumerator DisableDice()
     {
-        yield return new WaitForSeconds(diceFaceDisplayTime);
+        yield return new WaitForSeconds(GameManager.waitAfterDiceDisplay);
         gameObject.SetActive(false);
         Roll();
     }

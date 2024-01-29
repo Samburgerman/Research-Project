@@ -15,12 +15,17 @@ public class GameManager : MonoBehaviour
     private List<Piece> pieces = new();
     private GameStates gameStates = new(new());
 
+    [SerializeField] Dice dice;
+
     private int turnNumber = 0;
     [SerializeField] private int totalTurnsInGame = 10;
     [SerializeField] private int startSpace = 0;
     [SerializeField] private int startMoney = 10;
 
-    [SerializeField] private float waitSecondsInTransitions = 1.0f;
+    [SerializeField] private float timeScale = 1.0f;
+    [SerializeField] private float waitBetweenTurns = 1.0f;
+    public static readonly float waitAfterDiceDisplay = 1.5f;
+
 
     public int GetPlayerPos(int playerIndex)
     { return pieces[playerIndex].GetPlayerData().GetSpaceNumber(); }
@@ -36,6 +41,9 @@ public class GameManager : MonoBehaviour
         InitializeBoard();
         JsonLogger.LogJson(gameStates);
         GameLoop();
+        Time.timeScale = timeScale;
+        //eventually this method will go inside the game loop in a sensical way
+        dice.Roll();
     }
 
     private void InitializeBoard()
@@ -53,7 +61,7 @@ public class GameManager : MonoBehaviour
             foreach(Piece piece in pieces)
             {
                 PlayerTurn(piece);
-                StartCoroutine(Wait(waitSecondsInTransitions));
+                StartCoroutine(Wait(waitBetweenTurns));
             }
             gameStates.Add(GetGameState());
         }

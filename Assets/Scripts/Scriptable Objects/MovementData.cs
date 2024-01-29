@@ -41,7 +41,8 @@ public class Range
         return middle;
     }
 
-    private static MovementData CreateMovementData(Vector3 position,Vector3 eulerAngles,Vector3 velocity,Vector3 angularVelocity)
+    private static MovementData CreateMovementData(
+        Vector3 position,Vector3 eulerAngles,Vector3 velocity,Vector3 angularVelocity)
     {
         MovementData middle = ScriptableObject.CreateInstance<MovementData>();
         //constructor params for movementData: position,rotation,velocity,angularVelocity

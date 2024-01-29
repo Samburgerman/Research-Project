@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MovementData
   position: {x: 4, y: 5, z: 4}
   rotation: {x: 0, y: 0, z: 0, w: 0}
-  velocity: {x: 100, y: 0, z: 100}
+  velocity: {x: 100, y: 15, z: 100}
   angularVelocity: {x: 100, y: 100, z: 100}
