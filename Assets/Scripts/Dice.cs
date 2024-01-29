@@ -35,8 +35,8 @@ public class Dice : MonoBehaviour
         }
         Physics.simulationMode=SimulationMode.FixedUpdate;
         */
-        
-        
+
+
 
         /*  if(rollNumber!=-1)
           {
@@ -47,22 +47,13 @@ public class Dice : MonoBehaviour
               transform,transform.rotation,eulerRotationMatrices,rollNumber+1);
           }*/
         //step one is to activate the gameObject
-        Range range = new(lower,upper,GenerateLerpValues());
+        Range range = new(lower,upper);
         UpdateGameObjectToMovementData(range.GetMovementDataForRoll());
     }
 
     private void ActivateDice(bool willBeActive)
     {
         gameObject.SetActive(willBeActive);
-    }
-
-    private List<float> GenerateLerpValues()
-    {
-        List<float> lerpValues = new();
-        for(int i = 0; i<4; i++)
-            lerpValues.Add(UnityEngine.Random.Range(0.0f,1.0f));
-        //we need f so it returns a float
-        return lerpValues;
     }
 
     private void UpdateGameObjectToMovementData(MovementData movementData)
@@ -96,7 +87,7 @@ public class Dice : MonoBehaviour
 
 public static class DiceRotatorUtility
 {
-    private static void ResetRotationToOrigin(Transform transform, Quaternion initialRotation)
+    private static void ResetRotationToOrigin(Transform transform,Quaternion initialRotation)
     {
         transform.rotation=initialRotation;
     }
@@ -104,61 +95,11 @@ public static class DiceRotatorUtility
     public static void RotateToFace(
         Transform transform,Quaternion initialRotation,List<Vector3> rotationMatrices,int faceNumOnTop)
     {
-        ResetRotationToOrigin(transform, initialRotation);
+        ResetRotationToOrigin(transform,initialRotation);
         Vector3 initalRotationVector = transform.rotation.eulerAngles;
         int indexOfFaceNumber = faceNumOnTop-1;
         initalRotationVector+=rotationMatrices[indexOfFaceNumber];
         Debug.Log("faceNumOnTop: "+faceNumOnTop+" indexOfFaceNumber: "+indexOfFaceNumber);
         transform.rotation=Quaternion.Euler(initalRotationVector);
-    }
-}
-
-public class Range
-{
-    private MovementData lower;//the values of lower are correct
-    private MovementData upper;//the values of upper are correct
-
-    private List<float> lerpValues = new();
-    //how the lerping is done is incorrect
-
-    public Range(MovementData lower,MovementData upper,List<float> lerpValues)
-    {
-        this.lower=lower;
-        this.upper=upper;
-        this.lerpValues=lerpValues;
-        if(lerpValues.Count!=4)
-            throw new Exception("4 floats must be contained in the list<float> lerpValues.");
-    }
-
-    public MovementData GetMovementDataForRoll()
-    {
-        //the indexes of the lerp values have no signifigance as the elements are random
-        Vector3 position = LerperUtility.LerpPosition(lower,upper,lerpValues[0]);
-        Vector3 eulerAngles = LerperUtility.LerpRotation(lower,upper,lerpValues[1]);
-        Vector3 velocity = LerperUtility.LerpVelocity(lower,upper,lerpValues[2]);
-        Vector3 angularVelocity = LerperUtility.LerpAngularVelocity(lower,upper,lerpValues[3]);
-        MovementData middle = CreateMovementData(position,eulerAngles,velocity,angularVelocity);
-        return middle;
-    }
-
-    private static MovementData CreateMovementData(Vector3 position,Vector3 eulerAngles,Vector3 velocity,Vector3 angularVelocity)
-    {
-        MovementData middle = ScriptableObject.CreateInstance<MovementData>();
-        //constructor params for movementData: position,rotation,velocity,angularVelocity
-        middle.position=position;
-        middle.rotation=Quaternion.Euler(eulerAngles);
-        middle.velocity=velocity;
-        middle.angularVelocity=angularVelocity;
-        return middle;
-    }
-
-    public override string ToString()
-    {
-        string msg0 = "Lower: "+lower;
-        string msg1 = " Upper: "+upper;
-        string msg2 = " ";
-        foreach(float lerpValue in lerpValues)
-            msg2+=lerpValue+" ";
-        return msg0+msg1+msg2;
     }
 }

@@ -1008,6 +1008,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
         type: 3}
+      propertyPath: timeScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
+        type: 3}
       propertyPath: diceFaceDisplayTime
       value: 1
       objectReference: {fileID: 0}

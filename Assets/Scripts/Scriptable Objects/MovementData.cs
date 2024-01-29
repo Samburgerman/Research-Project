@@ -8,24 +8,6 @@ public class MovementData : ScriptableObject
     public Vector3 velocity;
     public Vector3 angularVelocity;
 
-    /*
-    public MovementData(Vector3 position,Quaternion rotation,Vector3 velocity,Vector3 angularVelocity)
-    {
-        this.position=position;
-        this.rotation=rotation;
-        this.velocity=velocity;
-        this.angularVelocity=angularVelocity;
-    }
-
-    public MovementData(Vector3 position, Vector3 eulerAngles, Vector3 velocity,Vector3 angularVelocity)
-    {
-        this.position=position;
-        rotation=Quaternion.Euler(eulerAngles);
-        this.velocity=velocity;
-        this.angularVelocity=angularVelocity;
-    }
-    */
-
     public override string ToString()
     {
         string msg0 = "position: "+position;
@@ -34,5 +16,46 @@ public class MovementData : ScriptableObject
         string msg3 = " velocity: "+velocity;
         string msg4 = " angularVelocity: "+velocity;
         return msg0+msg1+msg2+msg3+msg4;
+    }
+}
+
+public class Range
+{
+    private MovementData lower;//the values of lower are correct
+    private MovementData upper;//the values of upper are correct
+
+    public Range(MovementData lower,MovementData upper)
+    {
+        this.lower=lower;
+        this.upper=upper;
+    }
+
+    public MovementData GetMovementDataForRoll()
+    {
+        //the indexes of the lerp values have no signifigance as the elements are random
+        Vector3 position = SmoothLerperUtility.IndependentComponentSmoothLerp(lower.position,upper.position);
+        Vector3 eulerAngles = SmoothLerperUtility.IndependentComponentSmoothLerp(lower.rotation.eulerAngles,upper.rotation.eulerAngles);
+        Vector3 velocity = SmoothLerperUtility.IndependentComponentSmoothLerp(lower.velocity,upper.velocity);
+        Vector3 angularVelocity = SmoothLerperUtility.IndependentComponentSmoothLerp(lower.angularVelocity,upper.angularVelocity);
+        MovementData middle = CreateMovementData(position,eulerAngles,velocity,angularVelocity);
+        return middle;
+    }
+
+    private static MovementData CreateMovementData(Vector3 position,Vector3 eulerAngles,Vector3 velocity,Vector3 angularVelocity)
+    {
+        MovementData middle = ScriptableObject.CreateInstance<MovementData>();
+        //constructor params for movementData: position,rotation,velocity,angularVelocity
+        middle.position=position;
+        middle.rotation=Quaternion.Euler(eulerAngles);
+        middle.velocity=velocity;
+        middle.angularVelocity=angularVelocity;
+        return middle;
+    }
+
+    public override string ToString()
+    {
+        string msg0 = "Lower: "+lower;
+        string msg1 = " Upper: "+upper;
+        return msg0+msg1;
     }
 }
