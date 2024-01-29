@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class Dice : MonoBehaviour
@@ -15,8 +13,6 @@ public class Dice : MonoBehaviour
     [SerializeField] private float timeScale = 1.0f;
 
     [SerializeField] private List<Vector3> eulerRotationMatrices;
-
-    [SerializeField] List<int> monteCarloRollCounts = new();
     //the rotation required on each face to return to (0, 0, 0) rotation
     //do not use rotation in the y-axis
 
@@ -24,37 +20,13 @@ public class Dice : MonoBehaviour
     //the rolls are not statistically independent
     private void Start()
     {
-        LerperUtility.LogDiagnostics();
         UnityEngine.Time.timeScale=timeScale;
-        InitializeMonteCarloRollCounts();
         Roll();//we will eventually want a game script to call the roll function.
-    }
-
-    private void LogChiSquareTestResults()
-    {
-        int sum = 0;
-        foreach (int count in monteCarloRollCounts)
-        { sum+= count; }
-        float exp = sum/6;
-        List<float> differences = new();
-        foreach(int count in monteCarloRollCounts)
-            differences.Add(Mathf.Pow(count-exp,2.0f)/exp);
-        float x2 = 0.0f;
-        foreach(int x in differences)
-            x2+=x;
-        LogMonteCarloResults();
-        Debug.Log("x^2 test result: "+x2);
-    }
-
-    private void InitializeMonteCarloRollCounts()
-    {
-        for(int i = 0; i<6; i++)
-            monteCarloRollCounts.Add(0);
     }
 
     public void Roll()
     {
-        ActivateDice();
+        ActivateDice(true);
         /*
         Physics.simulationMode=SimulationMode.Script;
         for(int i = 0; i<500; i++)
@@ -76,22 +48,12 @@ public class Dice : MonoBehaviour
           }*/
         //step one is to activate the gameObject
         Range range = new(lower,upper,GenerateLerpValues());
-        //Debug.Log("range: "+range);
         UpdateGameObjectToMovementData(range.GetMovementDataForRoll());
-        //LogChiSquareTestResults();
     }
 
-    private void LogMonteCarloResults()
+    private void ActivateDice(bool willBeActive)
     {
-        string str = "";
-        foreach(int count in monteCarloRollCounts)
-            str+=count+", ";
-        Debug.Log(str);
-    }
-
-    private void ActivateDice()
-    {
-        gameObject.SetActive(true);
+        gameObject.SetActive(willBeActive);
     }
 
     private List<float> GenerateLerpValues()
@@ -114,15 +76,7 @@ public class Dice : MonoBehaviour
     {
         rollNumber=GetOppositeSideFaceNumber(groundedData.FaceNumOnBottom);
         int indexOfRollNumber = rollNumber-1;
-        if(indexOfRollNumber!=-1)
-        {
-            //String msg = "";
-            //foreach(int count in monteCarloRollCounts)
-            //    msg+= count;
-            //Debug.Log("Contents of monteCarloRollCounts["+indexOfRollNumber+"]: "+msg);
-            monteCarloRollCounts[indexOfRollNumber]+=1;
-        }
-        else
+        if(indexOfRollNumber==-1)
             throw new Exception("indexOfRollNumber is out of bounds: "+indexOfRollNumber);
         StartCoroutine(DisableDice());
     }
