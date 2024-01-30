@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class BoardCreator : MonoBehaviour
 {
-    [SerializeField] private SpaceDefinitions spaceDefinitions;
-    private float startingAngularPosition = 0;
+    [SerializeField] private readonly SpaceDefinitions spaceDefinitions;
+    private readonly float startingAngularPosition = 0;
     public List<GameObject> SpaceGameObjects { get; private set; } = new();
 
     private Vector3 GetPositionOfSpace(int spaceNumber,int spacesTotal,float radius)
@@ -32,7 +32,7 @@ public class BoardCreator : MonoBehaviour
     }
 
     private static float GetDistanceBetweenSpaces(int spacesTotal)
-    {return 2*Mathf.PI/spacesTotal;}
+    { return 2*Mathf.PI/spacesTotal; }
 
     public void GenerateBoard(int numSpaces,float radius)
     {
@@ -72,7 +72,7 @@ public class BoardCreator : MonoBehaviour
     private static void SetSpaceMaterial(Space space,GameObject spaceGameObject)
     {
         Material material = space.GetMaterial();
-        List<Material> materials = new(){material};
+        List<Material> materials = new() { material };
         spaceGameObject.GetComponent<MeshRenderer>().SetMaterials(materials);
     }
 

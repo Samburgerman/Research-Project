@@ -6,7 +6,7 @@ public class Piece : MonoBehaviour
     private PlayerData playerData;
     private SpaceDefinitions spaceDefinitions;
 
-    public void InitializePieceFields(PlayerData playerData, PieceComponentRefrences refrences)
+    public void InitializePieceFields(PlayerData playerData,PieceComponentRefrences refrences)
     {
         this.playerData=playerData;
         spaceDefinitions=refrences.spaceDefinitions;
@@ -55,7 +55,7 @@ public struct PlayerData
         this.experimentalCondition=experimentalCondition;
     }
 
-    public void AdjustSpace(int toAdd, int totalSpaces)
+    public void AdjustSpace(int toAdd,int totalSpaces)
     {
         spaceNumber+=toAdd;
         //we need to handle when a space number is too high
@@ -66,9 +66,9 @@ public struct PlayerData
 
     public void AdjustMoney(int toAdd) { money+=toAdd; }
 
-    public ExperimentalCondition GetExperimentalCondition() { return experimentalCondition; }
+    public readonly ExperimentalCondition GetExperimentalCondition() { return experimentalCondition; }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         string s1 = "Player Index: "+playerIndex;
         string s2 = " Money: "+money;

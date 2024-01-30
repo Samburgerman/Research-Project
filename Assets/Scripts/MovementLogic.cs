@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public static class MovementLogic
 {
     private static List<List<float>> probabilities;
-    private static float probabilityForBoosted = 0.5f;
+    private static readonly float probabilityForBoosted = 0.5f;
     public static float probabilityForDeboosted = (1.0f-probabilityForBoosted)/2;
 
     private static void InitializeProbabilities()

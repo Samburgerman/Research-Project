@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
-    [SerializeField] private MovementData lower;
-    [SerializeField] private MovementData upper;
-    [SerializeField] Rigidbody rb;
+    [SerializeField] private readonly MovementData lower;
+    [SerializeField] private readonly MovementData upper;
+    [SerializeField] readonly Rigidbody rb;
 
-    [SerializeField] private List<Vector3> eulerRotationMatrices;
+    [SerializeField] private readonly List<Vector3> eulerRotationMatrices;
     //the rotation required on each face to return to (0, 0, 0) rotation
     //do not use rotation in the y-axis
 

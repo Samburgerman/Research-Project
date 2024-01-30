@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PieceMover : MonoBehaviour
 {
-    [SerializeField] private BoardCreator boardCreator;
-    [SerializeField] private SpaceDefinitions spaceDefinitions;
-    [SerializeField] private float moveUpBy = 0.5f;//we will need to shift pawn up to avoid clipping thru spaces
+    [SerializeField] private readonly BoardCreator boardCreator;
+    [SerializeField] private readonly SpaceDefinitions spaceDefinitions;
+    [SerializeField] private readonly float moveUpBy = 0.5f;//we will need to shift pawn up to avoid clipping thru spaces
 
     public void TranslateToSpace(Piece piece,int currentPlayerSpaceNum)
     {

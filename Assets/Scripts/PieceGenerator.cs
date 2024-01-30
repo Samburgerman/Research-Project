@@ -4,18 +4,18 @@ using static PlayerData;
 
 public class PieceGenerator : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
-    [SerializeField] BoardCreator boardCreator;
-    [SerializeField] SpaceDefinitions spaceDefinitions;
-    [SerializeField] PieceMover pieceMover;
-    [SerializeField] GameObject piecePrefab;
-    [SerializeField] List<Material> materials = new();
+    [SerializeField] readonly GameManager gameManager;
+    [SerializeField] readonly BoardCreator boardCreator;
+    [SerializeField] readonly SpaceDefinitions spaceDefinitions;
+    [SerializeField] readonly PieceMover pieceMover;
+    [SerializeField] readonly GameObject piecePrefab;
+    [SerializeField] readonly List<Material> materials = new();
     [SerializeField] Vector3 pieceDisplacement;//todo make it so that pieces can share a space
 
     public List<Piece> GeneratePieces(int startPosition,int startMoney)
     {
         List<Piece> pieces = new();
-        for(int i=0;i<materials.Count;i++)
+        for(int i = 0; i<materials.Count; i++)
         {
             Piece piece = InstansiatePiece(i,startPosition,startMoney).GetComponent<Piece>();
             pieces.Add(piece);

@@ -5,26 +5,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private BoardCreator boardCreator;
-    [SerializeField] private PieceGenerator pieceGenerator;
-    [SerializeField] private PieceMover pieceMover;
+    [SerializeField] private readonly BoardCreator boardCreator;
+    [SerializeField] private readonly PieceGenerator pieceGenerator;
+    [SerializeField] private readonly PieceMover pieceMover;
     public static int TotalSpaces { get; private set; } = 12;
-    [SerializeField] private float radius = 5;
+    [SerializeField] private readonly float radius = 5;
 
     private List<Piece> pieces = new();
     private GameStates gameStates = new(new());
 
-    [SerializeField] Dice dice;
+    [SerializeField] readonly Dice dice;
 
     public int TurnNumber { private set; get; } = 0;
-    [SerializeField] private int totalTurnsInGame = 10;
-    [SerializeField] private int startSpace = 0;
-    [SerializeField] private int startMoney = 10;
+    [SerializeField] private readonly int totalTurnsInGame = 10;
+    [SerializeField] private readonly int startSpace = 0;
+    [SerializeField] private readonly int startMoney = 10;
 
     public static int numStepsInSimulation = 500;
 
-    [SerializeField] private float timeScale = 1.0f;
-    [SerializeField] private float waitBetweenTurns = 1.0f;
+    [SerializeField] private readonly float timeScale = 1.0f;
+    [SerializeField] private readonly float waitBetweenTurns = 1.0f;
     public static readonly float waitAfterDiceDisplay = 1.5f;
 
     public int GetPlayerPos(int playerIndex)
@@ -111,7 +111,7 @@ public struct GameState
             this.playerDatas.Add(playerData);
     }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         string playerDatasMessage = "";
         foreach(PlayerData playerData in playerDatas)
@@ -128,8 +128,5 @@ public struct GameStates
     public GameStates(List<GameState> gameStateList)
     { gameStatesList=gameStateList; }
 
-    public void Add(GameState gameState)
-    {
-        gameStatesList.Add(gameState);
-    }
+    public readonly void Add(GameState gameState) { gameStatesList.Add(gameState); }
 }
