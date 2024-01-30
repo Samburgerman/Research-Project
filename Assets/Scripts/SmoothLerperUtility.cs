@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class SmoothLerperUtility
 {
     //smooth lerping makes position, velocity, and angular velocity be a more uniform distribution
 
-    public static Vector3 CISmoothLerp(Vector3 lower, Vector3 upper)
-        //vector component independent smooth liner extrapolation
+    public static Vector3 CISmoothLerp(Vector3 lower,Vector3 upper)
+    //vector component independent smooth liner extrapolation
     {
         LerpValues3D lerpValues = new();
         Vector3 vector3 = lerpValues.GetSmoothXYZ();
@@ -36,9 +34,9 @@ public class LerpValues2D
     public float x;
     public float z;
 
-    public LerpValues2D() { x=GenerateRandomLerpValue();z=GenerateRandomLerpValue();}
+    public LerpValues2D() { x=GenerateRandomLerpValue(); z=GenerateRandomLerpValue(); }
 
-    public LerpValues2D(float x, float z){this.x = x; this.z = z;}
+    public LerpValues2D(float x,float z) { this.x=x; this.z=z; }
     //this constructor can be used if you dont want random lerp values
 
     protected static float multiplier = 1.313f;
@@ -83,8 +81,8 @@ public class LerpValues3D : LerpValues2D
         return GetSmoothValue(y);
     }
 
-    public LerpValues3D(float x, float y, float z)
-    { this.x = x; this.y = y; this.z = z; }
+    public LerpValues3D(float x,float y,float z)
+    { this.x=x; this.y=y; this.z=z; }
 
     public LerpValues3D()
     { x=GenerateRandomLerpValue(); y=GenerateRandomLerpValue(); z=GenerateRandomLerpValue(); }

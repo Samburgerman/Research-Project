@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BoardCreator boardCreator;
     [SerializeField] private PieceGenerator pieceGenerator;
     [SerializeField] private PieceMover pieceMover;
-    public int totalSpaces { get; private set;} = 12;
+    public static int TotalSpaces { get; private set; } = 12;
     [SerializeField] private float radius = 5;
 
     private List<Piece> pieces = new();
@@ -17,33 +16,33 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Dice dice;
 
-    public int turnNumber { private set; get; } = 0;
+    public int TurnNumber { private set; get; } = 0;
     [SerializeField] private int totalTurnsInGame = 10;
     [SerializeField] private int startSpace = 0;
     [SerializeField] private int startMoney = 10;
 
-    public static int numStepsInSimulation=500;
+    public static int numStepsInSimulation = 500;
 
     [SerializeField] private float timeScale = 1.0f;
     [SerializeField] private float waitBetweenTurns = 1.0f;
     public static readonly float waitAfterDiceDisplay = 1.5f;
 
     public int GetPlayerPos(int playerIndex)
-    { return pieces[playerIndex].GetPlayerData().GetSpaceNumber(); }
+    { return pieces[playerIndex].GetPlayerData().spaceNumber; }
 
     private void Start()
     {
         InitializeBoard();
         JsonLogger.LogJson(gameStates);
         GameLoop();
-        Time.timeScale = timeScale;
+        Time.timeScale=timeScale;
         //eventually this method will go inside the game loop in a sensical way
         dice.Roll();
     }
 
     private void InitializeBoard()
     {
-        boardCreator.GenerateBoard(totalSpaces,radius);
+        boardCreator.GenerateBoard(TotalSpaces,radius);
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
     }
 
@@ -51,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         while(!IsGameOver())
         {
-            turnNumber++;
+            TurnNumber++;
             //each player takes a turn moving around the board
             foreach(Piece piece in pieces)
             {
@@ -75,11 +74,11 @@ public class GameManager : MonoBehaviour
         List<PlayerData> playerDatas = new();//dont grammar me
         foreach(Piece piece in pieces)
             playerDatas.Add(piece.GetPlayerData());
-        return new GameState(turnNumber,playerDatas);
+        return new GameState(TurnNumber,playerDatas);
     }
 
     private bool IsGameOver()
-    { return turnNumber>=totalTurnsInGame; }
+    { return TurnNumber>=totalTurnsInGame; }
 
     private IEnumerator Wait(float waitTime)
     {
@@ -109,7 +108,7 @@ public struct GameState
         this.playerDatas=new();
         this.turnNumber=turnNumber;
         foreach(PlayerData playerData in playerDatas)
-            this.playerDatas.Add(playerData.Clone());
+            this.playerDatas.Add(playerData);
     }
 
     public override string ToString()
@@ -127,7 +126,7 @@ public struct GameStates
     public List<GameState> gameStatesList;
 
     public GameStates(List<GameState> gameStateList)
-    { this.gameStatesList=gameStateList; }
+    { gameStatesList=gameStateList; }
 
     public void Add(GameState gameState)
     {

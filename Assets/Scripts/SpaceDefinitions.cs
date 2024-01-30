@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +39,7 @@ public class Space : Object
         this.positionIndex=positionIndex;
         this.money=money;
         this.material=material;
-        this.SpaceGameObject=gameObject;
+        SpaceGameObject=gameObject;
     }
 
     public int GetMoney() { return money; }
@@ -62,14 +61,12 @@ public class Space : Object
 
 public class ProximityValues : Object
 {
-    private Piece piece;
     private Space from;
     private SpaceDefinitions spaceDefinitions;
     private List<int> proximityValues;
 
     public ProximityValues(SpaceDefinitions spaceDefinitions,Piece piece)
     {
-        this.piece=piece;
         from=piece.GetSpaceOn();
         this.spaceDefinitions=spaceDefinitions;
         proximityValues=CalculateProximityValues();

@@ -34,15 +34,13 @@ public class Dice : MonoBehaviour
           }*/
         //step one is to activate the gameObject
         Range range = new(lower,upper);
-        UpdateGameObjectToMovementData(range.GetMovementDataForRoll());
+        SetGameObjectToMovementData(range.GetMovementDataForRoll());
     }
 
     private void ActivateDice(bool willBeActive)
-    {
-        gameObject.SetActive(willBeActive);
-    }
+    { gameObject.SetActive(willBeActive); }
 
-    private void UpdateGameObjectToMovementData(MovementData movementData)
+    private void SetGameObjectToMovementData(MovementData movementData)
     {
         transform.SetLocalPositionAndRotation(movementData.position,movementData.rotation);
         rb.velocity=movementData.velocity;
@@ -60,15 +58,15 @@ public class Dice : MonoBehaviour
 
     public IEnumerator DisableDice()
     {
+        if(Physics.simulationMode!=SimulationMode.FixedUpdate)
+            Physics.simulationMode=SimulationMode.FixedUpdate;
         yield return new WaitForSeconds(GameManager.waitAfterDiceDisplay);
         gameObject.SetActive(false);
         Roll();
     }
 
     public static int GetOppositeSideFaceNumber(int bottom)
-    {
-        return 6+1-bottom;//6 is the number of faces on the dice
-    }
+    { return 6+1-bottom;/*6 is the number of faces on the dice*/}
 }
 
 public static class DiceRotatorUtility

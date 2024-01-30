@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class GroundSensor : MonoBehaviour
@@ -36,11 +34,8 @@ public struct GroundedData
     public bool IsGrounded { get; private set; }
     public int FaceNumOnBottom { get; private set; }
 
-    public GroundedData(bool isGrounded,int rollNumber)
-    {
-        this.IsGrounded=isGrounded;
-        this.FaceNumOnBottom=rollNumber;
-    }
+    public GroundedData(bool isGrounded,int faceNumOnBottom)
+    { IsGrounded=isGrounded; FaceNumOnBottom=faceNumOnBottom; }
 
     public override string ToString()
     { return "isGrounded: "+IsGrounded+" RollNumber: "+FaceNumOnBottom; }

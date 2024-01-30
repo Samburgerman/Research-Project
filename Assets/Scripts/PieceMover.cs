@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PieceMover : MonoBehaviour
@@ -26,13 +23,13 @@ public class PieceMover : MonoBehaviour
     public void Move(Piece piece,int spaces)
     {
         piece.AdjustSpaces(spaces);//the player data will store the space number
-        TranslateToSpace(piece,piece.GetPlayerData().GetSpaceNumber());//the piece will physically move
+        TranslateToSpace(piece,piece.GetPlayerData().spaceNumber);//the piece will physically move
         TriggerSpaceEffects(piece);//the player data will now gain or lose money
     }
 
     private void TriggerSpaceEffects(Piece piece)
     {
-        Space spaceLandedOn = spaceDefinitions.GetSpaceFromIndex(piece.GetPlayerData().GetSpaceNumber());
+        Space spaceLandedOn = spaceDefinitions.GetSpaceFromIndex(piece.GetPlayerData().spaceNumber);
         int money = spaceLandedOn.GetMoney();
         piece.AdjustMoney(money);
     }

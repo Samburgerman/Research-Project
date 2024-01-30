@@ -25,10 +25,7 @@ public class Range
     private MovementData upper;//the values of upper are correct
 
     public Range(MovementData lower,MovementData upper)
-    {
-        this.lower=lower;
-        this.upper=upper;
-    }
+    { this.lower=lower; this.upper=upper; }
 
     public MovementData GetMovementDataForRoll()
     {

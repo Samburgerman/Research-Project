@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using static PlayerData;
 
 public class PieceGenerator : MonoBehaviour
 {
@@ -17,36 +15,35 @@ public class PieceGenerator : MonoBehaviour
     public List<Piece> GeneratePieces(int startPosition,int startMoney)
     {
         List<Piece> pieces = new();
-        int playerIndex = 0;
-        foreach(Material m in materials)
+        for(int i=0;i<materials.Count;i++)
         {
-            Piece piece = InstansiatePiece(playerIndex,startPosition,startMoney).GetComponent<Piece>();
+            Piece piece = InstansiatePiece(i,startPosition,startMoney).GetComponent<Piece>();
             pieces.Add(piece);
-            playerIndex++;
         }
         return pieces;
     }
 
-    private Vector3 GetPiecePosition(int playerIndex)
-    {
-        if(gameManager.turnNumber==0)
-            return boardCreator.GetSpaceTransformPosition(0);
-        return boardCreator.GetSpaceTransformPosition(gameManager.GetPlayerPos(playerIndex));
-    }
-
-    private GameObject InstansiatePiece(int playerIndex,int startPositon,int startMoney)
+    private GameObject InstansiatePiece(int playerIndex,int startSpaceNumber,int startMoney)
     {
         Material material = materials[playerIndex];
-        GameObject pieceGameObject = GameObject.Instantiate(piecePrefab);
-        pieceGameObject.GetComponent<Renderer>().material=material;
-        Piece piece = pieceGameObject.GetComponent<Piece>();
-        piece.InitializePiece(gameManager,
-                              spaceDefinitions,
-                              playerIndex,
-                              PlayerData.ExperimentalCondition.Fair,
-                              startPositon,
-                              startMoney);
+        GameObject pieceGameObject = Instantiate(piecePrefab);
+        Piece piece = InitializePiece(playerIndex,startSpaceNumber,startMoney,material,pieceGameObject);
         pieceMover.Move(piece,0);//this initializes the piece to the correct starting position
         return pieceGameObject;
+    }
+
+    private Piece InitializePiece(int playerIndex,
+                                  int startSpaceNumber,
+                                  int startMoney,
+                                  Material material,
+                                  GameObject pieceGameObject)
+    {
+        pieceGameObject.GetComponent<Renderer>().material=material;
+        Piece piece = pieceGameObject.GetComponent<Piece>();
+        PieceComponentRefrences references = new() { spaceDefinitions=spaceDefinitions };
+        PlayerData playerData = new(playerIndex,startSpaceNumber,startMoney,ExperimentalCondition.Fair);
+        //todo will need to overide .fair once the rigged works
+        piece.InitializePieceFields(playerData,references);
+        return piece;
     }
 }
