@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class GroundSensor : MonoBehaviour
 {
-    [SerializeField] private readonly string groundTag = "Ground";
-    [SerializeField] private readonly int faceOnDice = -1;
-    [SerializeField] private readonly Rigidbody rb;
-    [SerializeField] private readonly float waitSeconds = 0.1f;
-    [SerializeField] private readonly Dice dice;
+    [SerializeField] private string groundTag = "Ground";
+    [SerializeField] private int faceOnDice = -1;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float waitSeconds = 0.1f;
+    [SerializeField] private Dice dice;
 
     private const float epsilon = 0.1f;
 
@@ -37,6 +37,6 @@ public struct GroundedData
     public GroundedData(bool isGrounded,int faceNumOnBottom)
     { IsGrounded=isGrounded; FaceNumOnBottom=faceNumOnBottom; }
 
-    public override readonly string ToString()
+    public override string ToString()
     { return "isGrounded: "+IsGrounded+" RollNumber: "+FaceNumOnBottom; }
 }

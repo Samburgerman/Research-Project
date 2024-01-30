@@ -21,8 +21,8 @@ public class MovementData : ScriptableObject
 
 public class Range
 {
-    private readonly MovementData lower;//the values of lower are correct
-    private readonly MovementData upper;//the values of upper are correct
+    private MovementData lower;//the values of lower are correct
+    private MovementData upper;//the values of upper are correct
 
     public Range(MovementData lower,MovementData upper)
     { this.lower=lower; this.upper=upper; }

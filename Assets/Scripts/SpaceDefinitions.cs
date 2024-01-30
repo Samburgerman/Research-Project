@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpaceDefinitions : MonoBehaviour
 {
-    private readonly List<Space> spaces = new();
+    private List<Space> spaces = new();
     [SerializeField] private GameObject spacePrefab;
     [SerializeField] private List<Material> materials;//good, bad, then netural
     [SerializeField] private List<int> moneys;//good, bad, then netural
@@ -30,9 +30,9 @@ public class SpaceDefinitions : MonoBehaviour
 }
 public class Space : Object
 {
-    private readonly int positionIndex;
-    private readonly int money;
-    private readonly Material material;
+    private int positionIndex;
+    private int money;
+    private Material material;
 
     public Space(int positionIndex,int money,GameObject gameObject,Material material)
     {
@@ -61,9 +61,9 @@ public class Space : Object
 
 public class ProximityValues : Object
 {
-    private readonly Space from;
-    private readonly SpaceDefinitions spaceDefinitions;
-    private readonly List<int> proximityValues;
+    private Space from;
+    private SpaceDefinitions spaceDefinitions;
+    private List<int> proximityValues;
 
     public ProximityValues(SpaceDefinitions spaceDefinitions,Piece piece)
     {

@@ -66,9 +66,9 @@ public struct PlayerData
 
     public void AdjustMoney(int toAdd) { money+=toAdd; }
 
-    public readonly ExperimentalCondition GetExperimentalCondition() { return experimentalCondition; }
+    public ExperimentalCondition GetExperimentalCondition() { return experimentalCondition; }
 
-    public override readonly string ToString()
+    public override string ToString()
     {
         string s1 = "Player Index: "+playerIndex;
         string s2 = " Money: "+money;
