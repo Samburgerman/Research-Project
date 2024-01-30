@@ -29,7 +29,7 @@ public class PieceGenerator : MonoBehaviour
 
     private Vector3 GetPiecePosition(int playerIndex)
     {
-        if(gameManager.GetTurnNumber()==0)
+        if(gameManager.turnNumber==0)
             return boardCreator.GetSpaceTransformPosition(0);
         return boardCreator.GetSpaceTransformPosition(gameManager.GetPlayerPos(playerIndex));
     }

@@ -84,9 +84,9 @@ public struct PlayerData
         spaceNumber+=toAdd;
         //we need to handle when a space number is too high
         //ex 15 should be written as 3 if there are 12 spaces
-        while(spaceNumber>=gameManager.GetTotalSpaces())
+        while(spaceNumber>=gameManager.totalSpaces)
         {
-            spaceNumber-=gameManager.GetTotalSpaces();
+            spaceNumber-=gameManager.totalSpaces;
         }
     }
 

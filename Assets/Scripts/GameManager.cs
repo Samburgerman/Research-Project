@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BoardCreator boardCreator;
     [SerializeField] private PieceGenerator pieceGenerator;
     [SerializeField] private PieceMover pieceMover;
-    [SerializeField] private int numSpaces = 12;
+    public int totalSpaces { get; private set;} = 12;
     [SerializeField] private float radius = 5;
 
     private List<Piece> pieces = new();
@@ -17,24 +17,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Dice dice;
 
-    private int turnNumber = 0;
+    public int turnNumber { private set; get; } = 0;
     [SerializeField] private int totalTurnsInGame = 10;
     [SerializeField] private int startSpace = 0;
     [SerializeField] private int startMoney = 10;
+
+    public static int numStepsInSimulation=500;
 
     [SerializeField] private float timeScale = 1.0f;
     [SerializeField] private float waitBetweenTurns = 1.0f;
     public static readonly float waitAfterDiceDisplay = 1.5f;
 
-
     public int GetPlayerPos(int playerIndex)
     { return pieces[playerIndex].GetPlayerData().GetSpaceNumber(); }
-
-    public int GetTurnNumber()
-    { return turnNumber; }
-
-    public int GetTotalSpaces()
-    { return numSpaces; }
 
     private void Start()
     {
@@ -48,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void InitializeBoard()
     {
-        boardCreator.GenerateBoard(numSpaces,radius);
+        boardCreator.GenerateBoard(totalSpaces,radius);
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
     }
 
@@ -67,8 +62,6 @@ public class GameManager : MonoBehaviour
         }
         JsonLogger.LogJson(gameStates);
     }
-
-
 
     private void PlayerTurn(Piece piece)
     {

@@ -833,11 +833,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2067935318776388084}
+  - {fileID: 4927673873169200097}
   - {fileID: 4184944187296379747}
   - {fileID: 942466921788180493}
-  - {fileID: 2067935318776388084}
   - {fileID: 7654139328794494473}
-  - {fileID: 4927673873169200097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &497405706492824171
@@ -1008,46 +1008,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8136192379624320504}
     m_Modifications:
-    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
-        type: 3}
-      propertyPath: timeScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
-        type: 3}
-      propertyPath: diceFaceDisplayTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
-        type: 3}
-      propertyPath: eulerRotationMatrices.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
-        type: 3}
-      propertyPath: eulerRotationMatrices.Array.data[0].x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
-        type: 3}
-      propertyPath: eulerRotationMatrices.Array.data[1].z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
-        type: 3}
-      propertyPath: eulerRotationMatrices.Array.data[3].x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
-        type: 3}
-      propertyPath: eulerRotationMatrices.Array.data[4].x
-      value: 270
-      objectReference: {fileID: 0}
-    - target: {fileID: 620378545886138875, guid: 1e9efff99710a534d9867800ea320acc,
-        type: 3}
-      propertyPath: eulerRotationMatrices.Array.data[5].x
-      value: 270
-      objectReference: {fileID: 0}
     - target: {fileID: 5904269904670767609, guid: 1e9efff99710a534d9867800ea320acc,
         type: 3}
       propertyPath: m_Name
@@ -1066,7 +1026,7 @@ PrefabInstance:
     - target: {fileID: 6551711795972438673, guid: 1e9efff99710a534d9867800ea320acc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.000003
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 6551711795972438673, guid: 1e9efff99710a534d9867800ea320acc,
         type: 3}

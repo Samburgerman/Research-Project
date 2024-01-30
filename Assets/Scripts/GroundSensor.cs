@@ -15,6 +15,7 @@ public class GroundSensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(Physics.simulationMode.ToString());
         if(other.CompareTag(groundTag))
             StartCoroutine(Grounded());
     }

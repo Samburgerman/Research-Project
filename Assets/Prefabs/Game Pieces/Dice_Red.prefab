@@ -580,6 +580,13 @@ MonoBehaviour:
   lower: {fileID: 11400000, guid: 7b72e4606641ec143bc22e3270f28d16, type: 2}
   upper: {fileID: 11400000, guid: ba626935c4cf3ac41b444eaf31b087e1, type: 2}
   rb: {fileID: 3637562755809398527}
+  eulerRotationMatrices:
+  - {x: 90, y: 0, z: 0}
+  - {x: 0, y: 0, z: 90}
+  - {x: 0, y: 0, z: 0}
+  - {x: 180, y: 0, z: 0}
+  - {x: 270, y: 0, z: 0}
+  - {x: 270, y: 0, z: 0}
 --- !u!54 &3637562755809398527
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -9,32 +9,21 @@ public class Dice : MonoBehaviour
     [SerializeField] private MovementData upper;
     [SerializeField] Rigidbody rb;
 
-
     [SerializeField] private List<Vector3> eulerRotationMatrices;
     //the rotation required on each face to return to (0, 0, 0) rotation
     //do not use rotation in the y-axis
 
     private int rollNumber = -1;//if the roll number is used without being set it should generate an error
     //the rolls are not statistically independent
-    private void Start()
-    {
-        Roll();//we will eventually want a game script to call the roll function.
-    }
 
     public void Roll()
     {
         ActivateDice(true);
-        /*
         Physics.simulationMode=SimulationMode.Script;
-        for(int i = 0; i<500; i++)
-        {
+        for(int i = 0; i<GameManager.numStepsInSimulation; i++)
             Physics.Simulate(Time.fixedDeltaTime);
-        }
         Physics.simulationMode=SimulationMode.FixedUpdate;
-        */
-
-
-
+        Debug.Log("rollNumber: "+rollNumber);
         /*  if(rollNumber!=-1)
           {
               rollNumber++;
