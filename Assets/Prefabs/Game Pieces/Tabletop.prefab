@@ -274,12 +274,11 @@ MonoBehaviour:
   boardCreator: {fileID: 2934944433372932956}
   pieceGenerator: {fileID: 7872869370033908750}
   pieceMover: {fileID: 4393486913719706393}
-  numSpaces: 12
   radius: 8
   dice: {fileID: 1590546295586838667}
   totalTurnsInGame: 1
   startSpace: 0
-  startMoney: 10
+  startMoney: 15
   timeScale: 1
   waitBetweenTurns: 1
 --- !u!114 &1290712712295377582

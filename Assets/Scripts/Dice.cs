@@ -35,6 +35,7 @@ public class Dice : MonoBehaviour
         //step one is to activate the gameObject
         Range range = new(lower,upper);
         SetGameObjectToMovementData(range.GetMovementDataForRoll());
+        transform.rotation= Quaternion.identity;
     }
 
     private void ActivateDice(bool willBeActive)
@@ -77,12 +78,12 @@ public static class DiceRotatorUtility
     }
 
     public static void RotateToFace(
-        Transform transform,Quaternion initialRotation,List<Vector3> rotationMatrices,int faceNumOnTop)
+        Transform transform,Quaternion initialRotation,List<Vector3> eulerRotationMatrices,int faceNumOnTop)
     {
         ResetRotationToOrigin(transform,initialRotation);
         Vector3 initalRotationVector = transform.rotation.eulerAngles;
         int indexOfFaceNumber = faceNumOnTop-1;
-        initalRotationVector+=rotationMatrices[indexOfFaceNumber];
+        initalRotationVector+=eulerRotationMatrices[indexOfFaceNumber];
         Debug.Log("faceNumOnTop: "+faceNumOnTop+" indexOfFaceNumber: "+indexOfFaceNumber);
         transform.rotation=Quaternion.Euler(initalRotationVector);
     }

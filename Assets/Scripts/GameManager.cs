@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         JsonLogger.LogJson(gameStates);
         GameLoop();
         Time.timeScale=timeScale;
-        //eventually this method will go inside the game loop in a sensical way
+        //eventually the dice.Roll method will go inside the game loop in a sensical way
         dice.Roll();
     }
 
@@ -81,11 +81,7 @@ public class GameManager : MonoBehaviour
     { return TurnNumber>=totalTurnsInGame; }
 
     private IEnumerator Wait(float waitTime)
-    {
-        //print("before");
-        yield return new WaitForSecondsRealtime(waitTime);
-        //print("after");
-    }
+    { yield return new WaitForSecondsRealtime(waitTime); }
 }
 
 public static class JsonLogger
