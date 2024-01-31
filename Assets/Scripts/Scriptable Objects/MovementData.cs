@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [CreateAssetMenu()]
@@ -7,6 +8,24 @@ public class MovementData : ScriptableObject
     public Quaternion rotation;
     public Vector3 velocity;
     public Vector3 angularVelocity;
+
+    private static Vector3 slightlyAboveZero = new Vector3(0,5.0f,0);
+
+    private static MovementData zeroMovementData = new(slightlyAboveZero,Quaternion.identity,Vector3.zero,Vector3.zero);
+
+    public MovementData(Vector3 position,Quaternion rotation,Vector3 velocity,Vector3 angularVelocity)
+    {
+        this.position=position;
+        this.rotation=rotation;
+        this.velocity=velocity;
+        this.angularVelocity=angularVelocity;
+    }
+
+    public static MovementData zero
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => zeroMovementData;
+    }
 
     public override string ToString()
     {
@@ -21,8 +40,8 @@ public class MovementData : ScriptableObject
 
 public class Range
 {
-    private MovementData lower;//the values of lower are correct
-    private MovementData upper;//the values of upper are correct
+    private readonly MovementData lower;//the values of lower are correct
+    private readonly MovementData upper;//the values of upper are correct
 
     public Range(MovementData lower,MovementData upper)
     { this.lower=lower; this.upper=upper; }

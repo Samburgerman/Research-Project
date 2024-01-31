@@ -4,7 +4,7 @@ using UnityEngine;
 public class BoardCreator : MonoBehaviour
 {
     [SerializeField] private SpaceDefinitions spaceDefinitions;
-    private float startingAngularPosition = 0;
+    private static readonly float startingAngularPosition = 0;
     public List<GameObject> SpaceGameObjects { get; private set; } = new();
 
     private Vector3 GetPositionOfSpace(int spaceNumber,int spacesTotal,float radius)

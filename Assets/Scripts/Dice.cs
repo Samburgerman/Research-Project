@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class Dice : MonoBehaviour
 {
@@ -32,16 +33,21 @@ public class Dice : MonoBehaviour
               DiceRotatorUtility.RotateToFace(
               transform,transform.rotation,eulerRotationMatrices,rollNumber+1);
           }*/
-        //step one is to activate the gameObject
+
+        //SetGameObjectPhysicsToRandom();
+        SetGameObjectPhysicsToMovementData(MovementData.zero);
+    }
+
+    private void SetGameObjectPhysicsToRandom()
+    {
         Range range = new(lower,upper);
-        SetGameObjectToMovementData(range.GetMovementDataForRoll());
-        transform.rotation= Quaternion.identity;
+        SetGameObjectPhysicsToMovementData(range.GetMovementDataForRoll());
     }
 
     private void ActivateDice(bool willBeActive)
     { gameObject.SetActive(willBeActive); }
 
-    private void SetGameObjectToMovementData(MovementData movementData)
+    private void SetGameObjectPhysicsToMovementData(MovementData movementData)
     {
         transform.SetLocalPositionAndRotation(movementData.position,movementData.rotation);
         rb.velocity=movementData.velocity;
@@ -81,10 +87,16 @@ public static class DiceRotatorUtility
         Transform transform,Quaternion initialRotation,List<Vector3> eulerRotationMatrices,int faceNumOnTop)
     {
         ResetRotationToOrigin(transform,initialRotation);
+        Vector3 eulerRotation = CalculateNewRotation(transform,eulerRotationMatrices,faceNumOnTop);
+        transform.rotation=Quaternion.Euler(eulerRotation);
+    }
+
+    private static Vector3 CalculateNewRotation(Transform transform,List<Vector3> eulerRotationMatrices,int faceNumOnTop)
+    {
         Vector3 initalRotationVector = transform.rotation.eulerAngles;
         int indexOfFaceNumber = faceNumOnTop-1;
         initalRotationVector+=eulerRotationMatrices[indexOfFaceNumber];
         Debug.Log("faceNumOnTop: "+faceNumOnTop+" indexOfFaceNumber: "+indexOfFaceNumber);
-        transform.rotation=Quaternion.Euler(initalRotationVector);
+        return initalRotationVector;
     }
 }
