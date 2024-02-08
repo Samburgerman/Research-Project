@@ -9,9 +9,12 @@ public class MovementData : ScriptableObject
     public Vector3 velocity;
     public Vector3 angularVelocity;
 
-    private static Vector3 slightlyAboveZero = new Vector3(0,5.0f,0);
+    private static Vector3 slightlyAboveZero = new(0,5.0f,0);
 
-    private static MovementData zeroMovementData = new(slightlyAboveZero,Quaternion.identity,Vector3.zero,Vector3.zero);
+    private static readonly MovementData zeroMovementData = new(slightlyAboveZero,
+                                                                             Quaternion.identity,
+                                                                             Vector3.zero,
+                                                                             Vector3.zero);
 
     public MovementData(Vector3 position,Quaternion rotation,Vector3 velocity,Vector3 angularVelocity)
     {
@@ -21,7 +24,7 @@ public class MovementData : ScriptableObject
         this.angularVelocity=angularVelocity;
     }
 
-    public static MovementData zero
+    public static MovementData Zero
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => zeroMovementData;

@@ -15,10 +15,16 @@ public class Dice : MonoBehaviour
     //do not use rotation in the y-axis
 
     private int rollNumber = -1;//if the roll number is used without being set it should generate an error
-    //the rolls are not statistically independent
 
-    public void Roll()
+    public void Roll(int toRoll)
     {
+        //pseudocode:
+        //simulate the result of a random dice thrown
+        //using the inputted parameter of roll, rotate the dice such that the top comes out
+
+
+
+
         ActivateDice(true);
         Physics.simulationMode=SimulationMode.Script;
         for(int i = 0; i<GameManager.numStepsInSimulation; i++)
@@ -35,7 +41,9 @@ public class Dice : MonoBehaviour
           }*/
 
         //SetGameObjectPhysicsToRandom();
-        SetGameObjectPhysicsToMovementData(MovementData.zero);
+        SetGameObjectPhysicsToMovementData(MovementData.Zero);
+        DiceRotatorUtility.RotateToFace(
+            gameObject.transform,gameObject.transform.rotation,eulerRotationMatrices,toRoll);
     }
 
     private void SetGameObjectPhysicsToRandom()
@@ -69,7 +77,7 @@ public class Dice : MonoBehaviour
             Physics.simulationMode=SimulationMode.FixedUpdate;
         yield return new WaitForSeconds(GameManager.waitAfterDiceDisplay);
         gameObject.SetActive(false);
-        Roll();
+        Roll(1);
     }
 
     public static int GetOppositeSideFaceNumber(int bottom)

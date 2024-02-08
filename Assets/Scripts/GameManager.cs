@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
         GameLoop();
         Time.timeScale=timeScale;
         //eventually the dice.Roll method will go inside the game loop in a sensical way
-        dice.Roll();
+        dice.Roll(1);
+        //forces a 1 to be rolled
     }
 
     private void InitializeBoard()
