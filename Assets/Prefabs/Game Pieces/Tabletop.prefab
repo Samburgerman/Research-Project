@@ -275,7 +275,6 @@ MonoBehaviour:
   pieceGenerator: {fileID: 7872869370033908750}
   pieceMover: {fileID: 4393486913719706393}
   radius: 8
-  dice: {fileID: 0}
   totalTurnsInGame: 1
   startSpace: 0
   startMoney: 15
