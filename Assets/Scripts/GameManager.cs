@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     private List<Piece> pieces = new();
     private GameStates gameStates = new(new());
 
-    [SerializeField] Dice dice;
-
     public int TurnNumber { private set; get; } = 0;
     [SerializeField] private int totalTurnsInGame = 10;
     [SerializeField] private int startSpace = 0;
@@ -37,7 +35,7 @@ public class GameManager : MonoBehaviour
         GameLoop();
         Time.timeScale=timeScale;
         //eventually the dice.Roll method will go inside the game loop in a sensical way
-        dice.Roll(1);
+        //dice.Roll(1);
         //forces a 1 to be rolled
     }
 
