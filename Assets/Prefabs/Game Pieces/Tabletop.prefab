@@ -400,11 +400,12 @@ MonoBehaviour:
   pieceGenerator: {fileID: 7872869370033908750}
   pieceMover: {fileID: 4393486913719706393}
   radius: 8
-  totalTurnsInGame: 1
+  totalTurnsInGame: 10
   startSpace: 0
   startMoney: 15
   timeScale: 1
   waitBetweenTurns: 1
+  waitBetweenRounds: 0
 --- !u!114 &1290712712295377582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +746,9 @@ MonoBehaviour:
     type: 3}
   materials:
   - {fileID: 2100000, guid: 8a0107672982b684cb6dac6c98cdf01e, type: 2}
+  - {fileID: 2100000, guid: de37a230a5405a548a6d6731aaf64223, type: 2}
+  - {fileID: 2100000, guid: 3e45231549587444387223c5c6dd1ac1, type: 2}
+  - {fileID: 2100000, guid: 376f229066b629043a2081d39e24c6bc, type: 2}
   pieceDisplacement: {x: 0, y: 0, z: 0}
 --- !u!114 &4393486913719706393
 MonoBehaviour:
