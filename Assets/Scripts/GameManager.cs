@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private BoardCreator boardCreator;
+    [SerializeField] private DiceFaceLogic diceFaceLogic;
     [SerializeField] private PieceGenerator pieceGenerator;
     [SerializeField] private PieceMover pieceMover;
     public static int TotalSpaces { get; private set; } = 12;
@@ -34,9 +35,6 @@ public class GameManager : MonoBehaviour
         JsonLogger.LogJson(gameStates);
         GameLoop();
         Time.timeScale=timeScale;
-        //eventually the dice.Roll method will go inside the game loop in a sensical way
-        //dice.Roll(1);
-        //forces a 1 to be rolled
     }
 
     private void InitializeBoard()
@@ -63,8 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void PlayerTurn(Piece piece)
     {
-        int roll = MovementLogic.DecideMovement(piece);
-        //Debug.Log("roll: "+roll);
+        int roll = diceFaceLogic.RollDice(piece);
         pieceMover.Move(piece,roll);
     }
 
