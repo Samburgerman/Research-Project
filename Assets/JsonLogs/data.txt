@@ -5,26 +5,26 @@
             "playerDatas": [
                 {
                     "playerIndex": 0,
-                    "money": 15,
-                    "spaceNumber": 1,
+                    "money": 21,
+                    "spaceNumber": 3,
                     "experimentalCondition": 3
                 },
                 {
                     "playerIndex": 1,
-                    "money": 18,
-                    "spaceNumber": 2,
+                    "money": 21,
+                    "spaceNumber": 6,
                     "experimentalCondition": 3
                 },
                 {
                     "playerIndex": 2,
-                    "money": 18,
-                    "spaceNumber": 2,
+                    "money": 21,
+                    "spaceNumber": 6,
                     "experimentalCondition": 3
                 },
                 {
                     "playerIndex": 3,
-                    "money": 15,
-                    "spaceNumber": 1,
+                    "money": 18,
+                    "spaceNumber": 5,
                     "experimentalCondition": 3
                 }
             ]
@@ -34,26 +34,26 @@
             "playerDatas": [
                 {
                     "playerIndex": 0,
-                    "money": 12,
-                    "spaceNumber": 4,
+                    "money": 18,
+                    "spaceNumber": 7,
                     "experimentalCondition": 3
                 },
                 {
                     "playerIndex": 1,
                     "money": 21,
-                    "spaceNumber": 3,
+                    "spaceNumber": 8,
                     "experimentalCondition": 3
                 },
                 {
                     "playerIndex": 2,
-                    "money": 21,
-                    "spaceNumber": 3,
+                    "money": 24,
+                    "spaceNumber": 9,
                     "experimentalCondition": 3
                 },
                 {
                     "playerIndex": 3,
-                    "money": 12,
-                    "spaceNumber": 4,
+                    "money": 15,
+                    "spaceNumber": 10,
                     "experimentalCondition": 3
                 }
             ]
@@ -63,84 +63,26 @@
             "playerDatas": [
                 {
                     "playerIndex": 0,
-                    "money": 9,
-                    "spaceNumber": 7,
-                    "experimentalCondition": 3
-                },
-                {
-                    "playerIndex": 1,
-                    "money": 24,
-                    "spaceNumber": 6,
-                    "experimentalCondition": 3
-                },
-                {
-                    "playerIndex": 2,
-                    "money": 24,
-                    "spaceNumber": 6,
-                    "experimentalCondition": 3
-                },
-                {
-                    "playerIndex": 3,
-                    "money": 9,
-                    "spaceNumber": 7,
-                    "experimentalCondition": 3
-                }
-            ]
-        },
-        {
-            "turnNumber": 4,
-            "playerDatas": [
-                {
-                    "playerIndex": 0,
-                    "money": 9,
-                    "spaceNumber": 8,
-                    "experimentalCondition": 3
-                },
-                {
-                    "playerIndex": 1,
-                    "money": 24,
-                    "spaceNumber": 8,
-                    "experimentalCondition": 3
-                },
-                {
-                    "playerIndex": 2,
-                    "money": 27,
-                    "spaceNumber": 9,
-                    "experimentalCondition": 3
-                },
-                {
-                    "playerIndex": 3,
-                    "money": 12,
-                    "spaceNumber": 9,
-                    "experimentalCondition": 3
-                }
-            ]
-        },
-        {
-            "turnNumber": 5,
-            "playerDatas": [
-                {
-                    "playerIndex": 0,
-                    "money": 12,
-                    "spaceNumber": 9,
-                    "experimentalCondition": 3
-                },
-                {
-                    "playerIndex": 1,
-                    "money": 24,
+                    "money": 18,
                     "spaceNumber": 11,
                     "experimentalCondition": 3
                 },
                 {
+                    "playerIndex": 1,
+                    "money": 18,
+                    "spaceNumber": 10,
+                    "experimentalCondition": 3
+                },
+                {
                     "playerIndex": 2,
-                    "money": 30,
-                    "spaceNumber": 0,
+                    "money": 21,
+                    "spaceNumber": 10,
                     "experimentalCondition": 3
                 },
                 {
                     "playerIndex": 3,
-                    "money": 9,
-                    "spaceNumber": 10,
+                    "money": 18,
+                    "spaceNumber": 0,
                     "experimentalCondition": 3
                 }
             ]

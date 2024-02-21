@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class MovementLogic
 {
@@ -54,9 +55,7 @@ public static class MovementLogic
     private static List<float> GetProbabilitiesForFair()
     {
         return new()
-        {
-            1.0f/3,1.0f/3,1.0f/3//these need to stay in decimals not percents
-        };
+        {1.0f/3,1.0f/3,1.0f/3/*these need to stay in decimals not percents*/};
     }
 
     public static List<float> GetProbabilitiesForCondition(PlayerData.ExperimentalCondition experimentalCondition)
@@ -98,16 +97,25 @@ public static class MovementLogic
         {
             culminativeOdds+=odds[i];
             if(randomValue<culminativeOdds)
-            {
                 indexOfTypeOfSpace=i;
-                //Debug.Log("At this point, the loop should terminate. i="+i);
-            }
         }
-        /*Debug.Log("Culminative odds: "+culminativeOdds+
-            " randomValue: "+randomValue+
-            " indexOfTypeOfSpace: "+indexOfTypeOfSpace+
-            " proximityValues: "+proximityValues.ToString());*/
-        int roll = proximityValues.GetProximityValues()[indexOfTypeOfSpace];
-        return roll;
+        int rollNumber = DecideRollFromProximityValues(proximityValues,indexOfTypeOfSpace);
+        return rollNumber;
+    }
+
+    private static int DecideRollFromProximityValues(ProximityValues proximityValues,int indexOfTypeOfSpace)
+    {
+        int lowRoll = proximityValues.GetProximityValues()[indexOfTypeOfSpace];
+        //there are 2 same ty[e of spaces within the roll 1-6
+        int newRoll = lowRoll;
+        if(DecideToAdd3())
+            newRoll+=3;
+        return newRoll;
+    }
+
+    private static bool DecideToAdd3()
+    {
+        //50-50 chance
+        return UnityEngine.Random.Range(0.0f,1.0f)>=0.5f;
     }
 }

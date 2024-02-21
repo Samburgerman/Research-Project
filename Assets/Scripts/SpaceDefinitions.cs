@@ -93,8 +93,7 @@ public class ProximityValues : Object
     {
         int distance = to.GetPositionIndex()-from.GetPositionIndex();
         while(distance<=0)
-        { distance+=spaceDefinitions.GetSpaceCount(); }
-        //Debug.Log("from: "+from+" to: "+to+" distance: "+distance);
+            distance+=spaceDefinitions.GetSpaceCount();
         return distance;
     }
 
