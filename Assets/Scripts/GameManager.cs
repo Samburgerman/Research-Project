@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeBoard();
-        JsonLogger.LogJson(gameStates);
+        JsonLogger.OverwriteJson(gameStates);
         GameRecursiveSequence();
         Time.timeScale=timeScale;
     }
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(RecursiveTurns(0));
         }
         else
-            JsonLogger.LogJson(gameStates);
+            JsonLogger.OverwriteJson(gameStates);
     }
 
     private IEnumerator RecursiveTurns(int i)
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         if(i>=pieces.Count)
         {
             gameStates.Add(GetGameState());
+            JsonLogger.OverwriteJson(gameStates);
             StartCoroutine(CallGameSequenceFunctionAfterWait());
         }
         else
@@ -105,10 +106,17 @@ public class GameManager : MonoBehaviour
 
 public static class JsonLogger
 {
-    public static void LogJson(object o)
+    private static string dataPath = Application.dataPath+"/JsonLogs/data.txt";
+    public static void OverwriteJson(object o)
     {
+        ClearJson();
         string jsonOutput = JsonUtility.ToJson(o,true);
-        File.WriteAllText(Application.dataPath+"/JsonLogs/data.txt",jsonOutput);
+        File.WriteAllText(dataPath,jsonOutput);
+    }
+
+    private static void ClearJson()
+    {
+        File.Delete(dataPath);
     }
 }
 
