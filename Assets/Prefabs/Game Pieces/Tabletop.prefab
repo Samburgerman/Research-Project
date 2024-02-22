@@ -399,7 +399,6 @@ MonoBehaviour:
   diceFaceLogic: {fileID: 3528621837396707983}
   pieceGenerator: {fileID: 7872869370033908750}
   pieceMover: {fileID: 4393486913719706393}
-  radius: 8
   totalTurnsInGame: 10
   startSpace: 0
   startMoney: 15
@@ -693,6 +692,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceDefinitions: {fileID: 1290712712295377582}
+  spaceRadius: 7.4
+  spaceScale: {x: 1.85, y: 1, z: 1.85}
 --- !u!1 &7666116038626932621
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +766,7 @@ MonoBehaviour:
   boardCreator: {fileID: 2934944433372932956}
   spaceDefinitions: {fileID: 1290712712295377582}
   moveUpBy: 1.78
+  shareSpaceOffset: {x: 1, y: 0, z: 1}
 --- !u!1 &7806376048034714971
 GameObject:
   m_ObjectHideFlags: 0

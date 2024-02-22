@@ -4,6 +4,8 @@ using UnityEngine;
 public class BoardCreator : MonoBehaviour
 {
     [SerializeField] private SpaceDefinitions spaceDefinitions;
+    [SerializeField] private float spaceRadius = 5;
+    [SerializeField] Vector3 spaceScale = Vector3.one;
     private static readonly float startingAngularPosition = 0;
     public List<GameObject> SpaceGameObjects { get; private set; } = new();
 
@@ -34,16 +36,26 @@ public class BoardCreator : MonoBehaviour
     private static float GetDistanceBetweenSpaces(int spacesTotal)
     { return 2*Mathf.PI/spacesTotal; }
 
-    public void GenerateBoard(int numSpaces,float radius)
+    public void GenerateBoard(int numSpaces)
     {
         spaceDefinitions.GenerateSpacesList();
         for(int spaceNumber = 0; spaceNumber<numSpaces; spaceNumber++)
         {
             int typesOfSpaces = spaceDefinitions.GetSpaceCount();
             int spaceIndex = spaceNumber%typesOfSpaces;
-            GameObject gameObject = InstansiateSpace(GetPositionOfSpace(spaceNumber,numSpaces,radius),spaceIndex);
+            GameObject gameObject = InstansiateSpace(GetPositionOfSpace(spaceNumber,numSpaces,spaceRadius),spaceIndex);
+            Resize(gameObject,spaceScale);
             SpaceGameObjects.Add(gameObject);
         }
+    }
+
+    private static void Resize(GameObject gameObject,Vector3 scale)
+    {
+        Vector3 localScale = gameObject.transform.localScale;
+        localScale.x*=scale.x;
+        localScale.y*=scale.y;
+        localScale.z*=scale.z;
+        gameObject.transform.localScale=localScale;
     }
 
     private GameObject InstansiateSpace(Vector3 position,int spaceIndex)

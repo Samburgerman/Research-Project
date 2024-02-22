@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DiceFaceLogic diceFaceLogic;
     [SerializeField] private PieceGenerator pieceGenerator;
     [SerializeField] private PieceMover pieceMover;
-    [SerializeField] private float radius = 5;
 
     [Header("GameRules")]
     [SerializeField] private int totalTurnsInGame = 10;
@@ -45,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void InitializeBoard()
     {
-        boardCreator.GenerateBoard(TotalSpaces,radius);
+        boardCreator.GenerateBoard(TotalSpaces);
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
     }
 
