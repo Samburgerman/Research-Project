@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public static class MovementLogic
 {
     private static List<List<float>> probabilities;
-    private static float probabilityForBoosted = 0.5f;
+    private static float probabilityForBoosted = 1.0f;
     public static float probabilityForDeboosted = (1.0f-probabilityForBoosted)/2;
 
     private static void InitializeProbabilities()
@@ -86,11 +87,12 @@ public static class MovementLogic
     {
         SpaceDefinitions spaceDefinitions = piece.GetSpaceDefinitions();
         ProximityValues proximityValues = new(spaceDefinitions,piece);
-        //ProximityValues are being returned as -1,0,0 no matter what; this is where the problem is
         List<float> odds = GetProbabilitiesForCondition(piece.GetPlayerData().GetExperimentalCondition());
-        //odds are being returned correctly
+        string oddsString = "";
+        foreach(float odd in odds)
+            oddsString+=odd+" ";
+        Debug.Log("odds: "+oddsString);
         float randomValue = UnityEngine.Random.Range(0f,1f);
-        //random value is correct
         int indexOfTypeOfSpace = -1;
         float culminativeOdds = 0.0f;
         for(int i = 0; i<probabilities[i].Count&&indexOfTypeOfSpace==-1; i++)
@@ -99,7 +101,9 @@ public static class MovementLogic
             if(randomValue<culminativeOdds)
                 indexOfTypeOfSpace=i;
         }
+        Debug.Log("Index of type of space: "+indexOfTypeOfSpace);
         int rollNumber = DecideRollFromProximityValues(proximityValues,indexOfTypeOfSpace);
+        Debug.Log("rollNumber: "+rollNumber+"proximityValues: "+proximityValues);
         return rollNumber;
     }
 

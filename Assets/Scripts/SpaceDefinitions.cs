@@ -102,7 +102,7 @@ public class ProximityValues : Object
         string proximityValuesInts = "";
         foreach(int i in proximityValues)
             proximityValuesInts+=i.ToString()+" ";
-        string msg = "Proximity values:"+proximityValuesInts+" Space from: "+from;
+        string msg = "Proximity values: "+proximityValuesInts+" Space from: "+from;
         return msg;
     }
 }

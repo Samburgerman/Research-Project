@@ -41,7 +41,10 @@ public class PieceGenerator : MonoBehaviour
         pieceGameObject.GetComponent<Renderer>().material=material;
         Piece piece = pieceGameObject.GetComponent<Piece>();
         PieceComponentRefrences references = new() { spaceDefinitions=spaceDefinitions };
-        PlayerData playerData = new(playerIndex,startSpaceNumber,startMoney,ExperimentalCondition.Fair);
+        PlayerData playerData = new(playerIndex,
+                                    startSpaceNumber,
+                                    startMoney,
+                                    PlayerData.GetExperimentalConditionFromIndex(playerIndex));
         //todo will need to overide .fair once the rigged works
         piece.InitializePieceFields(playerData,references);
         return piece;

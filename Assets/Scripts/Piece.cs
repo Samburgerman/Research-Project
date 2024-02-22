@@ -1,5 +1,5 @@
 using UnityEngine;
-using static PlayerData;
+using System;
 
 public class Piece : MonoBehaviour
 {
@@ -42,6 +42,23 @@ public struct PlayerData
         Negative,
         Neutralized,
         Fair
+    }
+
+    public static ExperimentalCondition GetExperimentalConditionFromIndex(int i)
+    {
+        switch(i)
+        {
+            case 0:
+                return ExperimentalCondition.Positive;
+            case 1:
+                return ExperimentalCondition.Positive;
+            case 2:
+                return ExperimentalCondition.Positive;
+            case 3:
+                return ExperimentalCondition.Positive;
+            default:
+                throw new Exception("Out of bounds: "+i);
+        }
     }
 
     public PlayerData(int playerIndex,
