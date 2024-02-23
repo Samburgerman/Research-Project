@@ -17,8 +17,5 @@ public class DiceFaceLogic : MonoBehaviour
         return decidedMove;
     }
 
-    public DiceFace GetDiceFaceFromFaceNumber(int i)
-    {
-        return diceFaces[i-1];
-    }
+    public DiceFace GetDiceFaceFromFaceNumber(int i) => diceFaces[i-1];
 }

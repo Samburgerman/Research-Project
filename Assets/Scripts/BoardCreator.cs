@@ -33,8 +33,7 @@ public class BoardCreator : MonoBehaviour
         return result;
     }
 
-    private static float GetDistanceBetweenSpaces(int spacesTotal)
-    { return 2*Mathf.PI/spacesTotal; }
+    private static float GetDistanceBetweenSpaces(int spacesTotal) => 2*Mathf.PI/spacesTotal;
 
     public void GenerateBoard(int numSpaces)
     {
@@ -88,9 +87,7 @@ public class BoardCreator : MonoBehaviour
         spaceGameObject.GetComponent<MeshRenderer>().SetMaterials(materials);
     }
 
-    public List<GameObject> GetSpaceGameObjects()
-    { return SpaceGameObjects; }
+    public List<GameObject> GetSpaceGameObjects() => SpaceGameObjects;
 
-    public Vector3 GetSpaceTransformPosition(int spaceNumber)
-    { return SpaceGameObjects[spaceNumber].transform.position; }
+    public Vector3 GetSpaceTransformPosition(int spaceNumber) => SpaceGameObjects[spaceNumber].transform.position;
 }

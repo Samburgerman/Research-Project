@@ -44,8 +44,9 @@ public class PieceGenerator : MonoBehaviour
         PlayerData playerData = new(playerIndex,
                                     startSpaceNumber,
                                     startMoney,
-                                    PlayerData.GetExperimentalConditionFromIndex(playerIndex));
-        //todo will need to overide .fair once the rigged works
+                                    0);
+        //eventually will use PlayerData.GetExperimentalConditionFromIndex(playerIndex) as the last argument
+        //once deguggind is complete
         piece.InitializePieceFields(playerData,references);
         return piece;
     }

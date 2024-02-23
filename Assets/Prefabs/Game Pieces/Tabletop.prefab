@@ -404,7 +404,7 @@ MonoBehaviour:
   startMoney: 15
   timeScale: 1
   waitBetweenTurns: 1
-  waitBetweenRounds: 0
+  waitBetweenRounds: 2
 --- !u!114 &1290712712295377582
 MonoBehaviour:
   m_ObjectHideFlags: 0

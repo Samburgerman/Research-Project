@@ -31,15 +31,20 @@ public class GameManager : MonoBehaviour
     private List<Piece> pieces = new();
     private GameStates gameStates = new(new());
 
-    public int GetPlayerPos(int playerIndex)
-    { return pieces[playerIndex].GetPlayerData().spaceNumber; }
+    public int GetPlayerPos(int playerIndex) => pieces[playerIndex].GetPlayerData().spaceNumber;
 
     private void Start()
     {
         InitializeBoard();
-        JsonLogger.OverwriteJson(gameStates);
-        GameRecursiveSequence();
+        InitializeJsonLog();
         Time.timeScale=timeScale;
+        GameRecursiveSequence();
+    }
+
+    private void InitializeJsonLog()
+    {
+        JsonLogger.ClearJson();
+        JsonLogger.WriteJson(gameStates);
     }
 
     private void InitializeBoard()
@@ -57,23 +62,28 @@ public class GameManager : MonoBehaviour
             StartCoroutine(RecursiveTurns(0));
         }
         else
-            JsonLogger.OverwriteJson(gameStates);
+            CompleteGame();
     }
+
+    private void CompleteGame() => JsonLogger.WriteJson(gameStates);
 
     private IEnumerator RecursiveTurns(int i)
     {
-        if(i>=pieces.Count)
-        {
-            gameStates.Add(GetGameState());
-            JsonLogger.OverwriteJson(gameStates);
-            StartCoroutine(CallGameSequenceFunctionAfterWait());
-        }
-        else
+        if(i<pieces.Count)
         {
             yield return new WaitForSeconds(waitBetweenTurns);
             PlayerTurn(pieces[i]);
             StartCoroutine(RecursiveTurns(i+1));
         }
+        else
+            EndRound();
+    }
+
+    private void EndRound()
+    {
+        gameStates.Add(GetGameState());
+        JsonLogger.WriteJson(gameStates);
+        StartCoroutine(CallGameSequenceFunctionAfterWait());
     }
 
     private IEnumerator CallGameSequenceFunctionAfterWait()
@@ -96,8 +106,7 @@ public class GameManager : MonoBehaviour
         return new GameState(TurnNumber,playerDatas);
     }
 
-    private bool IsGameOver()
-    { return TurnNumber>=totalTurnsInGame; }
+    private bool IsGameOver() => TurnNumber>=totalTurnsInGame;
 
     private IEnumerator Wait(float waitTime)
     { yield return new WaitForSecondsRealtime(waitTime); }
@@ -106,17 +115,13 @@ public class GameManager : MonoBehaviour
 public static class JsonLogger
 {
     private static string dataPath = Application.dataPath+"/JsonLogs/data.txt";
-    public static void OverwriteJson(object o)
+    public static void WriteJson(object o)
     {
-        ClearJson();
         string jsonOutput = JsonUtility.ToJson(o,true);
         File.WriteAllText(dataPath,jsonOutput);
     }
 
-    private static void ClearJson()
-    {
-        File.Delete(dataPath);
-    }
+    public static void ClearJson() => File.Delete(dataPath);
 }
 
 [System.Serializable]
@@ -142,7 +147,7 @@ public struct GameState
     }
 }
 
-[System.Serializable]//need a wrapper class for the list so it can be .json-ed
+[System.Serializable]//need a wrapper class for the List<GameState> so it can be .json-ed
 public struct GameStates
 {
     public List<GameState> gameStatesList;
@@ -150,5 +155,5 @@ public struct GameStates
     public GameStates(List<GameState> gameStateList)
     { gameStatesList=gameStateList; }
 
-    public void Add(GameState gameState) { gameStatesList.Add(gameState); }
+    public void Add(GameState gameState) => gameStatesList.Add(gameState);
 }

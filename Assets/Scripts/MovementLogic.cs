@@ -11,8 +11,7 @@ public static class MovementLogic
 
     private static void InitializeProbabilities()
     {
-        float probabilityForDeboosted = (1-probabilityForBoosted)/2;
-        //order is good, bad, then neutral
+        //order is good, bad, neutral, then fair
         List<float> probabilitiesForPositive = GetProbabilitiesForPositive();
         List<float> probabilitiesForNegative = GetProbabilitiesForNegative();
         List<float> probabilitiesForNeutralized = GetProbabilitiesForNeutralized();
@@ -21,65 +20,56 @@ public static class MovementLogic
         {
             probabilitiesForPositive, probabilitiesForNegative, probabilitiesForNeutralized, probabilitiesForFair
         };
+        CleanProbabilities(probabilities);
     }
 
-    private static List<float> GetProbabilitiesForPositive()
+    private static void CleanProbabilities(List<List<float>> probs)
     {
-        return new()
+        foreach(List<float> probList in probs)
+        {
+            float sum = 0.0f;
+            foreach(float prob in probList)
+                sum+=prob;
+            if(sum!=1.0f)
+                throw new Exception("the probabilities for this list: "+probList+" is too big/small: "+sum);
+        }
+    }
+
+    private static List<float> GetProbabilitiesForPositive() => new()
         {
             probabilityForBoosted,
             probabilityForDeboosted,
             probabilityForDeboosted
         };
-    }
 
-    private static List<float> GetProbabilitiesForNegative()
-    {
-        return new()
+    private static List<float> GetProbabilitiesForNegative() => new()
         {
             probabilityForDeboosted,
             probabilityForBoosted,
             probabilityForDeboosted
         };
-    }
 
-    private static List<float> GetProbabilitiesForNeutralized()
-    {
-        return new()
+    private static List<float> GetProbabilitiesForNeutralized() => new()
         {
             probabilityForDeboosted,
             probabilityForDeboosted,
             probabilityForBoosted
         };
-    }
 
-    private static List<float> GetProbabilitiesForFair()
-    {
-        return new()
+    private static List<float> GetProbabilitiesForFair() => new()
         {1.0f/3,1.0f/3,1.0f/3/*these need to stay in decimals not percents*/};
-    }
 
     public static List<float> GetProbabilitiesForCondition(PlayerData.ExperimentalCondition experimentalCondition)
     {
         InitializeProbabilities();
-        List<float> odds;
-        switch(experimentalCondition)
+        List<float> odds = experimentalCondition switch
         {
-            case PlayerData.ExperimentalCondition.Positive:
-                odds=probabilities[0];
-                break;
-            case PlayerData.ExperimentalCondition.Negative:
-                odds=probabilities[1];
-                break;
-            case PlayerData.ExperimentalCondition.Neutralized:
-                odds=probabilities[2];
-                break;
-            case PlayerData.ExperimentalCondition.Fair:
-                odds=probabilities[3];
-                break;
-            default:
-                throw new Exception("Expeimental condition is undefined: "+experimentalCondition);
-        }
+            PlayerData.ExperimentalCondition.Positive => probabilities[0],
+            PlayerData.ExperimentalCondition.Negative => probabilities[1],
+            PlayerData.ExperimentalCondition.Neutralized => probabilities[2],
+            PlayerData.ExperimentalCondition.Fair => probabilities[3],
+            _ => throw new Exception("Expeimental condition is undefined: "+experimentalCondition),
+        };
         return odds;
     }
 
@@ -91,7 +81,7 @@ public static class MovementLogic
         string oddsString = "";
         foreach(float odd in odds)
             oddsString+=odd+" ";
-        Debug.Log("odds: "+oddsString);
+        //odds are correct for positive
         float randomValue = UnityEngine.Random.Range(0f,1f);
         int indexOfTypeOfSpace = -1;
         float culminativeOdds = 0.0f;
@@ -101,9 +91,9 @@ public static class MovementLogic
             if(randomValue<culminativeOdds)
                 indexOfTypeOfSpace=i;
         }
-        Debug.Log("Index of type of space: "+indexOfTypeOfSpace);
+        //the indexOfTypeOfSpace is being decided correctly
         int rollNumber = DecideRollFromProximityValues(proximityValues,indexOfTypeOfSpace);
-        Debug.Log("rollNumber: "+rollNumber+"proximityValues: "+proximityValues);
+        Debug.Log("rollNumber: "+rollNumber+" proximityValues: "+proximityValues);
         return rollNumber;
     }
 
@@ -117,9 +107,7 @@ public static class MovementLogic
         return newRoll;
     }
 
-    private static bool DecideToAdd3()
-    {
+    private static bool DecideToAdd3() =>
         //50-50 chance
-        return UnityEngine.Random.Range(0.0f,1.0f)>=0.5f;
-    }
+        UnityEngine.Random.Range(0.0f,1.0f)>=0.5f;
 }

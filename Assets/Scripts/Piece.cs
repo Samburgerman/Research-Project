@@ -12,7 +12,7 @@ public class Piece : MonoBehaviour
         spaceDefinitions=refrences.spaceDefinitions;
     }
 
-    public PlayerData GetPlayerData() { return playerData; }
+    public PlayerData GetPlayerData() => playerData;
 
     public Space GetSpaceOn()
     {
@@ -21,11 +21,11 @@ public class Piece : MonoBehaviour
         return space;
     }
 
-    public void AdjustSpaces(int toAdd) { playerData.AdjustSpace(toAdd,GameManager.TotalSpaces); }
+    public void AdjustSpaces(int toAdd) => playerData.AdjustSpace(toAdd,GameManager.TotalSpaces);
 
-    public void AdjustMoney(int toAdd) { playerData.AdjustMoney(toAdd); }
+    public void AdjustMoney(int toAdd) => playerData.AdjustMoney(toAdd);
 
-    public SpaceDefinitions GetSpaceDefinitions() { return spaceDefinitions; }
+    public SpaceDefinitions GetSpaceDefinitions() => spaceDefinitions;
 }
 
 [System.Serializable]
@@ -44,22 +44,14 @@ public struct PlayerData
         Fair
     }
 
-    public static ExperimentalCondition GetExperimentalConditionFromIndex(int i)
+    public static ExperimentalCondition GetExperimentalConditionFromIndex(int i) => i switch
     {
-        switch(i)
-        {
-            case 0:
-                return ExperimentalCondition.Positive;
-            case 1:
-                return ExperimentalCondition.Positive;
-            case 2:
-                return ExperimentalCondition.Positive;
-            case 3:
-                return ExperimentalCondition.Positive;
-            default:
-                throw new Exception("Out of bounds: "+i);
-        }
-    }
+        0 => ExperimentalCondition.Positive,
+        1 => ExperimentalCondition.Positive,
+        2 => ExperimentalCondition.Positive,
+        3 => ExperimentalCondition.Positive,
+        _ => throw new Exception("Out of bounds: "+i),
+    };
 
     public PlayerData(int playerIndex,
                       int spaceNumeber,
@@ -81,9 +73,9 @@ public struct PlayerData
             spaceNumber-=totalSpaces;
     }
 
-    public void AdjustMoney(int toAdd) { money+=toAdd; }
+    public void AdjustMoney(int toAdd) => money+=toAdd;
 
-    public ExperimentalCondition GetExperimentalCondition() { return experimentalCondition; }
+    public ExperimentalCondition GetExperimentalCondition() => experimentalCondition;
 
     public override string ToString()
     {

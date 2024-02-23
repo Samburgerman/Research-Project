@@ -24,9 +24,9 @@ public class SpaceDefinitions : MonoBehaviour
         return space;
     }
 
-    public GameObject GetSpacePrefab() { return spacePrefab; }
+    public GameObject GetSpacePrefab() => spacePrefab;
 
-    public int GetSpaceCount() { return spaces.Count; }
+    public int GetSpaceCount() => spaces.Count;
 }
 public class Space : Object
 {
@@ -42,19 +42,19 @@ public class Space : Object
         SpaceGameObject=gameObject;
     }
 
-    public int GetMoney() { return money; }
+    public int GetMoney() => money;
 
-    public int GetPositionIndex() { return positionIndex; }
+    public int GetPositionIndex() => positionIndex;
 
-    public Material GetMaterial() { return material; }
+    public Material GetMaterial() => material;
 
     private GameObject SpaceGameObject { get; set; }
 
     public override string ToString()
     {
-        string s0 = "money:"+money;
-        string s1 = " material:"+material.name;
-        string s2 = " SpaceGameObject:"+SpaceGameObject.name;
+        string s0 = "money: "+money;
+        string s1 = " material: "+material.name;
+        string s2 = " SpaceGameObject: "+SpaceGameObject.name;
         return s0+s1+s2;
     }
 }
@@ -72,7 +72,7 @@ public class ProximityValues : Object
         proximityValues=CalculateProximityValues();
     }
 
-    public List<int> GetProximityValues() { return proximityValues; }
+    public List<int> GetProximityValues() => proximityValues;
 
     private List<int> CalculateProximityValues()
     {
@@ -81,7 +81,7 @@ public class ProximityValues : Object
         {
             int position = i+from.GetPositionIndex();
             while(position>=spaceDefinitions.GetSpaceCount())
-            { position-=spaceDefinitions.GetSpaceCount(); }
+                position-=spaceDefinitions.GetSpaceCount();
             Space to = spaceDefinitions.GetSpaceFromIndex(position);
             int distance = CalculateProximityValue(from,to);
             proximityInts.Add(distance);
