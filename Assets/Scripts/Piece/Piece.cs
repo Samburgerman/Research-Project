@@ -18,7 +18,6 @@ public class Piece : MonoBehaviour
     {
         int spaceNumber = GetPlayerData().spaceNumber;
         Space space = spaceDefinitions.GetSpaceFromIndex(spaceNumber);
-        Debug.Log("spaceNumber: "+spaceNumber+" space: "+space);
         return space;
     }
 

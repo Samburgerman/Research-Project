@@ -21,8 +21,6 @@ public class ProximityValues : object
     {
         List<int> proximityInts = new() { -1,-1,-1 };
         int fromIndex = SpaceDefinitions.ConvertSpaceTypeToIndex(from.SpaceType);
-        //fromIndex is wrong
-        UnityEngine.Debug.Log("From index = "+fromIndex);
         for(int i=0;i<3;i++)
         {
             int toIndex = i;
