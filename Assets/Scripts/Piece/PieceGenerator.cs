@@ -44,7 +44,7 @@ public class PieceGenerator : MonoBehaviour
         PlayerData playerData = new(playerIndex,
                                     startSpaceNumber,
                                     startMoney,
-                                    0);
+                                    ExperimentalCondition.Negative);
         //eventually will use PlayerData.GetExperimentalConditionFromIndex(playerIndex) as the last argument
         //once deguggind is complete
         piece.InitializePieceFields(playerData,references);

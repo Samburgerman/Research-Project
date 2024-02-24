@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PieceGenerator pieceGenerator;
     [SerializeField] private PieceMover pieceMover;
 
+    [Space]
     [Header("GameRules")]
     [SerializeField] private int totalTurnsInGame = 10;
     [SerializeField] private int startSpace = 0;
     [SerializeField] private int startMoney = 10;
-
+    
+    [Space]
     [Header("Time")]
     [SerializeField] private float timeScale = 1.0f;
     [SerializeField] private float waitBetweenTurns = 1.0f;
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        InitializeBoard();
+        InitializeGame();
         InitializeJsonLog();
         Time.timeScale=timeScale;
         GameRecursiveSequence();
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
         JsonLogger.WriteJson(gameStates);
     }
 
-    private void InitializeBoard()
+    private void InitializeGame()
     {
         boardCreator.GenerateBoard(TotalSpaces);
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
@@ -107,9 +109,6 @@ public class GameManager : MonoBehaviour
     }
 
     private bool IsGameOver() => TurnNumber>=totalTurnsInGame;
-
-    private IEnumerator Wait(float waitTime)
-    { yield return new WaitForSecondsRealtime(waitTime); }
 }
 
 public static class JsonLogger

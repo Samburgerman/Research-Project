@@ -402,7 +402,7 @@ MonoBehaviour:
   totalTurnsInGame: 10
   startSpace: 0
   startMoney: 15
-  timeScale: 1
+  timeScale: 100
   waitBetweenTurns: 1
   waitBetweenRounds: 2
 --- !u!114 &1290712712295377582

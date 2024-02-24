@@ -73,15 +73,11 @@ public static class MovementLogic
         return odds;
     }
 
-    public static int DecideMovement(Piece piece)
+    public static int DecideRollNumber(Piece piece)
     {
         SpaceDefinitions spaceDefinitions = piece.GetSpaceDefinitions();
         ProximityValues proximityValues = new(spaceDefinitions,piece);
         List<float> odds = GetProbabilitiesForCondition(piece.GetPlayerData().GetExperimentalCondition());
-        string oddsString = "";
-        foreach(float odd in odds)
-            oddsString+=odd+" ";
-        //odds are correct for positive
         float randomValue = UnityEngine.Random.Range(0f,1f);
         int indexOfTypeOfSpace = -1;
         float culminativeOdds = 0.0f;
@@ -91,7 +87,6 @@ public static class MovementLogic
             if(randomValue<culminativeOdds)
                 indexOfTypeOfSpace=i;
         }
-        //the indexOfTypeOfSpace is being decided correctly
         int rollNumber = DecideRollFromProximityValues(proximityValues,indexOfTypeOfSpace);
         Debug.Log("rollNumber: "+rollNumber+" proximityValues: "+proximityValues);
         return rollNumber;

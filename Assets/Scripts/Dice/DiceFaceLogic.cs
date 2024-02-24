@@ -11,7 +11,7 @@ public class DiceFaceLogic : MonoBehaviour
 
     public int RollDice(Piece piece)//returns the roll number
     {
-        int decidedMove = MovementLogic.DecideMovement(piece);
+        int decidedMove = MovementLogic.DecideRollNumber(piece);
         DiceFace toDisplay = GetDiceFaceFromFaceNumber(decidedMove);
         diceFaceDisplayer.DisplayDiceFace(toDisplay);
         return decidedMove;
