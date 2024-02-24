@@ -32,8 +32,6 @@ public class GameManager : MonoBehaviour
     private List<Piece> pieces = new();
     private GameStates gameStates = new(new());
 
-    public int GetPlayerPos(int playerIndex) => pieces[playerIndex].GetPlayerData().spaceNumber;
-
     private void Start()
     {
         InitializeGame();
