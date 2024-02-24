@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ProximityValues : object
 {
@@ -21,7 +22,7 @@ public class ProximityValues : object
         int fromIndex = from.GetPositionIndex();
         int spaceIndex = fromIndex;
         for(int i = 0; i<3; i++)
-        { AddProximityValue(spaceIndex,proximityInts,spaceDefinitions); }
+            AddProximityValue(spaceIndex+i,proximityInts,spaceDefinitions);
         CleanProximityInts(proximityInts);
         return proximityInts;
     }
