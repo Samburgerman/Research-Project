@@ -31,7 +31,7 @@ public static class MovementLogic
     private static int DecideRollFromProximityValues(ProximityValues proximityValues,int indexOfTypeOfSpace)
     {
         int lowRoll = proximityValues.GetProximityValues()[indexOfTypeOfSpace];
-        //there are 2 same ty[e of spaces within the roll 1-6
+        //there are 2 same type of spaces within the roll 1-6
         int newRoll = lowRoll;
         if(DecideToAdd3())
             newRoll+=3;

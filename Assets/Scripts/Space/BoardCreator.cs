@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static SpaceDefinitions;
 
 public class BoardCreator : MonoBehaviour
 {
@@ -7,7 +8,22 @@ public class BoardCreator : MonoBehaviour
     [SerializeField] private float spaceRadius = 5;
     [SerializeField] Vector3 spaceScale = Vector3.one;
     private static readonly float startingAngularPosition = 0;
+    private static float GetDistanceBetweenSpaces(int spacesTotal) => 2*Mathf.PI/spacesTotal;
+
     public List<GameObject> SpaceGameObjects { get; private set; } = new();
+
+    public void GenerateBoard(int numSpaces)
+    {
+        spaceDefinitions.GenerateSpacesList();
+        for(int i = 0; i<numSpaces; i++)
+        {
+            int typesOfSpaces = spaceDefinitions.GetBaseSpaceCount();
+            int spaceIndex = i%typesOfSpaces;
+            GameObject spaceGameObject = InstansiateSpace(GetPositionOfSpace(i,numSpaces,spaceRadius),spaceIndex);
+            Resize(spaceGameObject,spaceScale);
+            SpaceGameObjects.Add(spaceGameObject);
+        }
+    }
 
     private Vector3 GetPositionOfSpace(int spaceNumber,int spacesTotal,float radius)
     {
@@ -31,21 +47,6 @@ public class BoardCreator : MonoBehaviour
         z*=radius;
         Vector3 result = new(x,0,z);
         return result;
-    }
-
-    private static float GetDistanceBetweenSpaces(int spacesTotal) => 2*Mathf.PI/spacesTotal;
-
-    public void GenerateBoard(int numSpaces)
-    {
-        spaceDefinitions.GenerateSpacesList();
-        for(int spaceNumber = 0; spaceNumber<numSpaces; spaceNumber++)
-        {
-            int typesOfSpaces = spaceDefinitions.GetSpaceCount();
-            int spaceIndex = spaceNumber%typesOfSpaces;
-            GameObject gameObject = InstansiateSpace(GetPositionOfSpace(spaceNumber,numSpaces,spaceRadius),spaceIndex);
-            Resize(gameObject,spaceScale);
-            SpaceGameObjects.Add(gameObject);
-        }
     }
 
     private static void Resize(GameObject gameObject,Vector3 scale)
@@ -87,7 +88,11 @@ public class BoardCreator : MonoBehaviour
         spaceGameObject.GetComponent<MeshRenderer>().SetMaterials(materials);
     }
 
-    public List<GameObject> GetSpaceGameObjects() => SpaceGameObjects;
-
     public Vector3 GetSpaceTransformPosition(int spaceNumber) => SpaceGameObjects[spaceNumber].transform.position;
+
+    //public SpaceType GetSpaceTypeFromPositionIndex(int i)
+    //{
+    //    int indexOfTypeOfSpace = i%spaceDefinitions.GetBaseSpaceCount();
+    //    return ConvertIndexToSpaceType(indexOfTypeOfSpace);
+    //}
 }

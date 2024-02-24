@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using static SpaceDefinitions;
 
 public class ProximityValues : object
 {
@@ -18,51 +21,19 @@ public class ProximityValues : object
 
     private List<int> CalculateProximityValues()
     {
+        int n = spaceDefinitions.GetBaseSpaceCount();
         List<int> proximityInts = new() { -1,-1,-1 };
-        int fromIndex = from.GetPositionIndex();
-        int spaceIndex = fromIndex;
-        for(int i = 0; i<3; i++)
-            AddProximityValue(spaceIndex+i,proximityInts,spaceDefinitions);
+        int fromIndex = from.GetSpaceTypeIndex();
+        for(int i=0; i<3;i++)
+        {
+            int toIndex = n+i;
+            int diff = (toIndex-fromIndex)%n;
+            if(diff==0)
+                diff+=n;
+            proximityInts[toIndex-n]=diff;
+        }
         CleanProximityInts(proximityInts);
         return proximityInts;
-    }
-
-    private static void AddProximityValue(int spaceIndex, List<int> proximityInts,SpaceDefinitions spaceDefinitions)
-    {
-        spaceIndex=IncrementSpaceNum(spaceIndex);
-        Space examining = spaceDefinitions.GetSpaceFromIndex(spaceIndex);
-        int indexOfSpaceType = SpaceDefinitions.ConvertSpaceTypeToInt(examining.SpaceType);
-        spaceIndex=AdjustSpaceIndexTo13Range(spaceIndex);
-        proximityInts[indexOfSpaceType]=spaceIndex;
-    }
-
-    private static int AdjustSpaceIndexTo13Range(int spaceIndex)
-    {
-        spaceIndex=ReduceToThreshold(spaceIndex,3);
-        if(spaceIndex==0)
-            spaceIndex+=3;
-        return spaceIndex;
-    }
-
-    private static int IncrementSpaceNum(int fromSpaceIndex)
-    {
-        fromSpaceIndex++;
-        fromSpaceIndex=ReduceSpaceIndex(fromSpaceIndex);
-        return fromSpaceIndex;
-    }
-
-    private static int ReduceSpaceIndex(int spaceIndex)
-    {
-        return ReduceToThreshold(spaceIndex,GameManager.NumSpaces);
-    }
-
-    private static int ReduceToThreshold(int current,int count)
-    {
-        while(current>=count)
-        {
-            current-=count;
-        }
-        return current;
     }
 
     private static void CleanProximityInts(List<int> proximityInts)

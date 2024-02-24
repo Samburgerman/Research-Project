@@ -6,7 +6,7 @@ using static Space;
 
 public class SpaceDefinitions : MonoBehaviour
 {
-    private List<Space> spaces = new();
+    private List<Space> baseSpaces = new();
     [SerializeField] private GameObject spacePrefab;
     [SerializeField] private List<Material> materials;//good, bad, then netural
     [SerializeField] private List<int> moneys;//good, bad, then netural
@@ -20,23 +20,23 @@ public class SpaceDefinitions : MonoBehaviour
     {
         for(int i = 0; i<moneys.Count; i++)
         {
-            Space toAdd = new(i,moneys[i],spacePrefab,materials[i]);
-            spaces.Add(toAdd);
+            Space toAdd = new(moneys[i],spacePrefab,materials[i]);
+            baseSpaces.Add(toAdd);
         }
     }
 
     public Space GetSpaceFromIndex(int spaceNumber)
     {
-        int spaceTypeIndex = spaceNumber%spaces.Count;
-        Space space = spaces[spaceTypeIndex];
+        int spaceTypeIndex = spaceNumber%baseSpaces.Count;
+        Space space = baseSpaces[spaceTypeIndex];
         return space;
     }
 
     public GameObject GetSpacePrefab() => spacePrefab;
 
-    public int GetSpaceCount() => spaces.Count;
+    public int GetBaseSpaceCount() => baseSpaces.Count;
 
-    public static SpaceType ConvertIntToSpaceType(int i)
+    public static SpaceType ConvertIndexToSpaceType(int i)
     {
         return i switch
         {
@@ -47,7 +47,7 @@ public class SpaceDefinitions : MonoBehaviour
         };
     }
 
-    public static int ConvertSpaceTypeToInt(SpaceType spaceType)
+    public static int ConvertSpaceTypeToIndex(SpaceType spaceType)
     {
         return spaceType switch
         {

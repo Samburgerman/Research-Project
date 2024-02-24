@@ -32,7 +32,7 @@ internal static class MovementProbabilities
             {
                 string probListString = "";
                 foreach(float prob in probList)
-                    probListString += prob+" ";
+                    probListString+=prob+" ";
                 Debug.Log("probabilityForBoosted: "+probabilityForBoosted);
                 Debug.Log("probabilityForDeBoosted: "+probabilityForDeboosted);
                 throw new System.Exception("The probabilities for this list: "+probListString+" are too big/small: "+sum);
