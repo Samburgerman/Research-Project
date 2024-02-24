@@ -23,12 +23,6 @@ public class SpaceDefinitions : MonoBehaviour
         }
     }
 
-    public void Test()
-    {
-        for(int i = 0; i<12; i++)
-            Debug.Log("At space pos "+i+" the space is: "+GetSpaceFromIndex(i));
-    }
-
     public Space GetSpaceFromIndex(int spaceNumber)
     {
         int spaceTypeIndex = spaceNumber%baseSpaces.Count;

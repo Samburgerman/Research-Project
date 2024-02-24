@@ -22,7 +22,6 @@ public class BoardCreator : MonoBehaviour
             Resize(spaceGameObject,spaceScale);
             SpaceGameObjects.Add(spaceGameObject);
         }
-        spaceDefinitions.Test();
     }
 
     private Vector3 GetPositionOfSpace(int spaceNumber,int spacesTotal,float radius)
