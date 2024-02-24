@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.ProBuilder.MeshOperations;
 
@@ -109,50 +108,4 @@ public class GameManager : MonoBehaviour
     }
 
     private bool IsGameOver() => TurnNumber>=totalTurnsInGame;
-}
-
-public static class JsonLogger
-{
-    private static string dataPath = Application.dataPath+"/JsonLogs/data.txt";
-    public static void WriteJson(object o)
-    {
-        string jsonOutput = JsonUtility.ToJson(o,true);
-        File.WriteAllText(dataPath,jsonOutput);
-    }
-
-    public static void ClearJson() => File.Delete(dataPath);
-}
-
-[System.Serializable]
-public struct GameState
-{
-    public int turnNumber;
-    public List<PlayerData> playerDatas;
-
-    public GameState(int turnNumber,List<PlayerData> playerDatas)
-    {
-        this.playerDatas=new();
-        this.turnNumber=turnNumber;
-        foreach(PlayerData playerData in playerDatas)
-            this.playerDatas.Add(playerData);
-    }
-
-    public override string ToString()
-    {
-        string playerDatasMessage = "";
-        foreach(PlayerData playerData in playerDatas)
-            playerDatasMessage+=playerData.ToString();
-        return "Turn: "+turnNumber+" PlayerDatasMessage: "+playerDatasMessage;
-    }
-}
-
-[System.Serializable]//need a wrapper class for the List<GameState> so it can be .json-ed
-public struct GameStates
-{
-    public List<GameState> gameStatesList;
-
-    public GameStates(List<GameState> gameStateList)
-    { gameStatesList=gameStateList; }
-
-    public void Add(GameState gameState) => gameStatesList.Add(gameState);
 }
