@@ -20,6 +20,7 @@ public class PieceGenerator : MonoBehaviour
             Piece piece = InstansiatePiece(i,startPosition,startMoney).GetComponent<Piece>();
             pieces.Add(piece);
         }
+        Test();
         return pieces;
     }
 
@@ -30,6 +31,12 @@ public class PieceGenerator : MonoBehaviour
         Piece piece = InitializePiece(playerIndex,startSpaceNumber,startMoney,material,pieceGameObject);
         pieceMover.Move(piece,0);//this initializes the piece to the correct starting position
         return pieceGameObject;
+    }
+
+    public void Test()
+    {
+        for(int i = 0; i<4; i++) 
+        Debug.Log("playerIndex of i="+i+" yields condition of: "+GetExperimentalConditionFromIndex(i));
     }
 
     private Piece InitializePiece(int playerIndex,
@@ -44,7 +51,7 @@ public class PieceGenerator : MonoBehaviour
         PlayerData playerData = new(playerIndex,
                                     startSpaceNumber,
                                     startMoney,
-                                    ExperimentalCondition.Neutralized);
+                                    GetExperimentalConditionFromIndex(playerIndex));
         //eventually will use PlayerData.GetExperimentalConditionFromIndex(playerIndex) as the last argument
         //once deguggind is complete
         piece.InitializePieceFields(playerData,references);

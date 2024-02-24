@@ -48,9 +48,9 @@ public struct PlayerData
     public static ExperimentalCondition GetExperimentalConditionFromIndex(int i) => i switch
     {
         0 => ExperimentalCondition.Positive,
-        1 => ExperimentalCondition.Positive,
-        2 => ExperimentalCondition.Positive,
-        3 => ExperimentalCondition.Positive,
+        1 => ExperimentalCondition.Negative,
+        2 => ExperimentalCondition.Neutralized,
+        3 => ExperimentalCondition.Fair,
         _ => throw new Exception("Out of bounds: "+i),
     };
 
