@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 2067935318776388084}
   - component: {fileID: 7377672674143844894}
   - component: {fileID: 1290712712295377582}
+  - component: {fileID: 5355556269115770187}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -402,7 +403,7 @@ MonoBehaviour:
   totalTurnsInGame: 10
   startSpace: 0
   startMoney: 40
-  timeScale: 100
+  timeScale: 1
   waitBetweenTurns: 1
   waitBetweenRounds: 2
 --- !u!114 &1290712712295377582
@@ -424,6 +425,19 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 80acba52035d15e4a973ad3327b26aa6, type: 2}
   - {fileID: 2100000, guid: f3bf9c38c24f0e049bfbad620f92b224, type: 2}
   moneys: 03000000fdffffff00000000
+--- !u!114 &5355556269115770187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5389459492208189844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d62488ac329ee94eaf220aa55c7e5e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roll: 32
 --- !u!1 &5600205967193475876
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public static class MovementLogic
                 indexOfTypeOfSpaceToLandOn=i;
         }
         int rollNumber = DecideRollFromProximityValuesAndSpaceIndex(proximityValues,indexOfTypeOfSpaceToLandOn);
-        Debug.Log("rollNumber: "+rollNumber+" proximityValues: "+proximityValues);
+        //Debug.Log("rollNumber: "+rollNumber+" proximityValues: "+proximityValues);
         return rollNumber;
     }
 
