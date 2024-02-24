@@ -21,7 +21,7 @@ public class Piece : MonoBehaviour
         return space;
     }
 
-    public void AdjustSpaces(int toAdd) => playerData.AdjustSpace(toAdd,GameManager.TotalSpaces);
+    public void AdjustSpaces(int toAdd) => playerData.AdjustSpace(toAdd,GameManager.NumSpaces);
 
     public void AdjustMoney(int toAdd) => playerData.AdjustMoney(toAdd);
 

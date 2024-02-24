@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int totalTurnsInGame = 10;
     [SerializeField] private int startSpace = 0;
     [SerializeField] private int startMoney = 10;
-    
+
     [Space]
     [Header("Time")]
     [SerializeField] private float timeScale = 1.0f;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
 
     public int TurnNumber { private set; get; } = 0;
-    public static int TotalSpaces { get; private set; } = 12;
+    public static int NumSpaces { get; private set; } = 12;
     public static int numStepsInSimulation = 500;
     public static float waitAfterDiceDisplay = 1.5f;
 
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void InitializeGame()
     {
-        boardCreator.GenerateBoard(TotalSpaces);
+        boardCreator.GenerateBoard(NumSpaces);
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
     }
 

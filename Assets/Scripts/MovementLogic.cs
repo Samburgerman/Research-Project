@@ -6,7 +6,7 @@ using UnityEngine;
 public static class MovementLogic
 {
     private static List<List<float>> probabilities;
-    private static float probabilityForBoosted = 1.0f;
+    private static float probabilityForBoosted = 1.0f;//todo change to 0.5-0.7 when prox value are correct
     public static float probabilityForDeboosted = (1.0f-probabilityForBoosted)/2;
 
     private static void InitializeProbabilities()
