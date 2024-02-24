@@ -401,7 +401,7 @@ MonoBehaviour:
   pieceMover: {fileID: 4393486913719706393}
   totalTurnsInGame: 10
   startSpace: 0
-  startMoney: 15
+  startMoney: 40
   timeScale: 100
   waitBetweenTurns: 1
   waitBetweenRounds: 2
