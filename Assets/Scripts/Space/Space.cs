@@ -3,27 +3,22 @@ using static SpaceDefinitions;
 
 public class Space : object
 {
-    private int positionIndex;
+    private int baseSpaceIndex;
     private int money;
     private Material material;
     public SpaceType SpaceType { get; private set; }
 
-    public Space(int money,GameObject gameObject,Material material)
+    public Space(int baseSpaceIndex, int money,GameObject gameObject,Material material)
     {
+        this.baseSpaceIndex= baseSpaceIndex;
         this.money=money;
         this.material=material;
         SpaceGameObject=gameObject;
-    }
+        SpaceType=ConvertIndexToSpaceType(baseSpaceIndex%3);
 
-    public void InitializeSpaceIndex(int positionIndex)
-    {
-        this.positionIndex=positionIndex;
-        SpaceType=ConvertIndexToSpaceType(positionIndex%3);
     }
 
     public int GetMoney() => money;
-
-    public int GetSpaceTypeIndex() => positionIndex;
 
     public Material GetMaterial() => material;
 

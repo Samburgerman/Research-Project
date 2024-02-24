@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static SpaceDefinitions;
 
 public class BoardCreator : MonoBehaviour
 {
@@ -23,6 +22,7 @@ public class BoardCreator : MonoBehaviour
             Resize(spaceGameObject,spaceScale);
             SpaceGameObjects.Add(spaceGameObject);
         }
+        spaceDefinitions.Test();
     }
 
     private Vector3 GetPositionOfSpace(int spaceNumber,int spacesTotal,float radius)

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.XR;
-using static SpaceDefinitions;
 
 public class ProximityValues : object
 {
@@ -21,16 +19,16 @@ public class ProximityValues : object
 
     private List<int> CalculateProximityValues()
     {
-        int n = spaceDefinitions.GetBaseSpaceCount();
         List<int> proximityInts = new() { -1,-1,-1 };
-        int fromIndex = from.GetSpaceTypeIndex();
-        for(int i=0; i<3;i++)
+        int fromIndex = SpaceDefinitions.ConvertSpaceTypeToIndex(from.SpaceType);
+        //fromIndex is wrong
+        UnityEngine.Debug.Log("From index = "+fromIndex);
+        for(int i=0;i<3;i++)
         {
-            int toIndex = n+i;
-            int diff = (toIndex-fromIndex)%n;
-            if(diff==0)
-                diff+=n;
-            proximityInts[toIndex-n]=diff;
+            int toIndex = i;
+            if(toIndex<=fromIndex)
+                toIndex+=3;
+            proximityInts[i] = toIndex-fromIndex;
         }
         CleanProximityInts(proximityInts);
         return proximityInts;

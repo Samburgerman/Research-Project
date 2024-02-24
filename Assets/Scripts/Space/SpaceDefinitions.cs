@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static Space;
 
 public class SpaceDefinitions : MonoBehaviour
 {
@@ -20,9 +17,16 @@ public class SpaceDefinitions : MonoBehaviour
     {
         for(int i = 0; i<moneys.Count; i++)
         {
-            Space toAdd = new(moneys[i],spacePrefab,materials[i]);
+            Space toAdd = new(i,moneys[i],spacePrefab,materials[i]);
             baseSpaces.Add(toAdd);
+            //spaces are being added correctly
         }
+    }
+
+    public void Test()
+    {
+        for(int i = 0; i<12; i++)
+            Debug.Log("At space pos "+i+" the space is: "+GetSpaceFromIndex(i));
     }
 
     public Space GetSpaceFromIndex(int spaceNumber)
