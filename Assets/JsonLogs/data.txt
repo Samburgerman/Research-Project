@@ -18,13 +18,13 @@
                 {
                     "playerIndex": 2,
                     "money": 43,
-                    "spaceNumber": 2,
+                    "spaceNumber": 5,
                     "experimentalCondition": 2
                 },
                 {
                     "playerIndex": 3,
-                    "money": 43,
-                    "spaceNumber": 5,
+                    "money": 40,
+                    "spaceNumber": 1,
                     "experimentalCondition": 3
                 }
             ]

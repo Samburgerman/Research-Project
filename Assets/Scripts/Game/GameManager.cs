@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextController gameTextController;
     [SerializeField] private List<TextController> playerTextControllers;
     [SerializeField] private ParticleSystemController spaceLandParticleSystemController;
+    [SerializeField] private SFXController sfxController;
 
     [Space]
     [Header("GameRules")]
@@ -30,11 +31,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float particleSystemRunLength = 0.5f;
 
     [Space]
-    [Header("Misc")]
+    [Header("FX")]
     [SerializeField] private string turnMessage = "Player #, press spacebar to make your move";
     [SerializeField] private char escapeCharacterForTurnMessage = '#';
     [SerializeField] private string gameEndMessage = "Game over. Please call experimenter";
     [SerializeField] private Color gameTextColor = Color.black;
+    [SerializeField] private List<AudioClip> spaceSounds;
+    [SerializeField] private AudioClip gameOverSound;
 
     public int TurnNumber { private set; get; } = 0;
     public static int NumSpaces { get; private set; } = 12;
@@ -152,6 +155,7 @@ public class GameManager : MonoBehaviour
         playerTextControllers[pieceNum].SetGameText(money+"",GetPieceColor(piece));
         Vector3 pos = piece.transform.position;
         spaceLandParticleSystemController.RunParticles(pos,particleSystemRunLength,GetSpaceColor(piece.GetSpaceOn()));
+        sfxController.PlaySound(spaceSounds[SpaceDefinitions.ConvertSpaceTypeToIndex(piece.GetSpaceOn().SpaceType)]);
     }
 
     private GameState GetGameState()
