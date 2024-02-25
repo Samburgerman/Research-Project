@@ -63,12 +63,12 @@ public class GameManager : MonoBehaviour
     {
         canInputToStartTurn=true;
         pieceTakingTurn=pieces[0];
-        textController.SetText(GetTurnText());
+        textController.SetGameText(GetTurnText());
     }
 
     private void CompleteGame()
     {
-        textController.SetText(gameEndMessage);
+        textController.SetGameText(gameEndMessage);
         JsonLogger.WriteJson(gameStates); 
     }
 
@@ -115,12 +115,12 @@ public class GameManager : MonoBehaviour
         canInputToStartTurn=false;
         yield return new WaitForSeconds(waitTime);
         canInputToStartTurn=true;
-        textController.SetText(GetTurnText());
+        textController.SetGameText(GetTurnText());
     }
 
     private void PlayerTurn(Piece piece)
     {
-        textController.SetText(string.Empty);
+        textController.SetGameText(string.Empty);
         int roll = diceFaceLogic.RollDice(piece);
         pieceMover.Move(piece,roll);
     }
