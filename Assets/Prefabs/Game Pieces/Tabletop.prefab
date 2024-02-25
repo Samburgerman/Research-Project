@@ -6262,7 +6262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardCreator: {fileID: 2934944433372932956}
   spaceDefinitions: {fileID: 1290712712295377582}
-  moveUpBy: 1.78
+  moveUpByToSitOnSpace: 0.9
   shareSpaceOffset: {x: 0.9, y: 0, z: 0.9}
 --- !u!1 &7806376048034714971
 GameObject:

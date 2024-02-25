@@ -397,7 +397,8 @@ PrefabInstance:
       value: Tabletop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4792249114660236005, guid: 68f302b145048c04bacc147cc7fd3b4a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68f302b145048c04bacc147cc7fd3b4a, type: 3}

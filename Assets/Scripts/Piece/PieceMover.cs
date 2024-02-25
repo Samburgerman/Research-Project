@@ -4,21 +4,21 @@ public class PieceMover : MonoBehaviour
 {
     [SerializeField] private BoardCreator boardCreator;
     [SerializeField] private SpaceDefinitions spaceDefinitions;
-    [SerializeField] private float moveUpBy = 0.5f;//we will need to shift pawn up to avoid clipping thru spaces
-    [SerializeField] private Vector3 shareSpaceOffset = Vector3.zero;//shift pieces in x and z to avoid clipping
+    [SerializeField] private float moveUpByToSitOnSpace = 0.5f;
+    [SerializeField] private Vector3 shareSpaceOffset = Vector3.zero;
 
     public void Move(Piece piece,int spaces)
     {
         piece.AdjustSpaces(spaces);//the player data will store the space number
-        TranslateToSpace(piece,piece.GetPlayerData().spaceNumber);//the piece will physically move
+        LerpToSpace(piece,piece.GetPlayerData().spaceNumber,1);//the piece will physically move
         TriggerSpaceEffects(piece);//the player data will now gain or lose money
     }
 
-    private void TranslateToSpace(Piece piece,int currentPlayerSpaceNum)
+    private void LerpToSpace(Piece piece,int currentPlayerSpaceNum, float t)
     {
-        Vector3 spacePosition = boardCreator.GetSpaceTransformPosition(currentPlayerSpaceNum);
+        Vector3 spacePosition = ShiftUpwardsToStandOnSpacesOnBoard(boardCreator.GetSpaceTransformPosition(currentPlayerSpaceNum));
         Vector3 piecePosition = ShiftUpwardsToStandOnSpacesOnBoard(spacePosition);
-        piece.gameObject.transform.position=piecePosition;
+        piece.gameObject.transform.position=Vector3.Lerp(spacePosition,piecePosition,t);
         piece.gameObject.transform.SetParent(transform,true);
         OffsetPiecePositionForSharing(piece);
     }
@@ -46,7 +46,7 @@ public class PieceMover : MonoBehaviour
 
     private Vector3 ShiftUpwardsToStandOnSpacesOnBoard(Vector3 old)
     {
-        old.y+=moveUpBy;
+        old.y+=moveUpByToSitOnSpace;
         return old;
     }
 
