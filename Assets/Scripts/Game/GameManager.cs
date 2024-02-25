@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PieceMover pieceMover;
     [SerializeField] private TextController gameTextController;
     [SerializeField] private List<TextController> playerTextControllers;
+    [SerializeField] private ParticleSystem spaceLandParticleSystem;
 
     [Space]
     [Header("GameRules")]
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         InitializeGame();
         InitializeTexts();
+        InitializeParticleSystem();
         InitializeJsonLog();
         Time.timeScale=timeScale;
         BeginGame();
@@ -67,6 +69,10 @@ public class GameManager : MonoBehaviour
             textController.SetGameText(pieces[i].GetPlayerData().money+"",GetPieceColor(i));
             i++;
         }
+    }
+    private void InitializeParticleSystem()
+    {
+        spaceLandParticleSystem.Stop();
     }
 
     private void InitializeJsonLog()
