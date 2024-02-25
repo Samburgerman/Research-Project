@@ -28,7 +28,7 @@ public class Piece : MonoBehaviour
     public SpaceDefinitions GetSpaceDefinitions() => spaceDefinitions;
 }
 
-[System.Serializable]
+[Serializable]
 public struct PlayerData
 {
     public int playerIndex;

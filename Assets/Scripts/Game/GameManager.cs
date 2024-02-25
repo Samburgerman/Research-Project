@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -10,7 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DiceFaceLogic diceFaceLogic;
     [SerializeField] private PieceGenerator pieceGenerator;
     [SerializeField] private PieceMover pieceMover;
-    [SerializeField] private TextController textController;
+    [SerializeField] private TextController gameTextController;
+    [SerializeField] private List<TextController> playerTextControllers;
 
     [Space]
     [Header("GameRules")]
@@ -43,9 +46,27 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeGame();
+        InitializeTexts();
         InitializeJsonLog();
         Time.timeScale=timeScale;
         BeginGame();
+    }
+
+
+    private void InitializeGame()
+    {
+        boardCreator.GenerateBoard(NumSpaces);
+        pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
+    }
+
+    private void InitializeTexts()
+    {
+        int i = 0;
+        foreach(TextController textController in playerTextControllers)
+        {
+            textController.SetGameText(pieces[i].GetPlayerData().money+"",GetPieceColor(i));
+            i++;
+        }
     }
 
     private void InitializeJsonLog()
@@ -54,22 +75,16 @@ public class GameManager : MonoBehaviour
         JsonLogger.WriteJson(gameStates);
     }
 
-    private void InitializeGame()
-    {
-        boardCreator.GenerateBoard(NumSpaces);
-        pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
-    }
-
     private void BeginGame()
     {
         canInputToStartTurn=true;
         pieceTakingTurn=pieces[0];
-        textController.SetGameText(GetTurnText(),pieceGenerator.GetMaterials()[0].color);
+        gameTextController.SetGameText(GetTurnText(),GetPieceColor(0));
     }
 
     private void CompleteGame()
     {
-        textController.SetGameText(gameEndMessage,gameTextColor);
+        gameTextController.SetGameText(gameEndMessage,gameTextColor);
         JsonLogger.WriteJson(gameStates); 
     }
 
@@ -107,7 +122,7 @@ public class GameManager : MonoBehaviour
                     pieceTakingTurn=pieces[pieceIndex+1];
             }
             else
-                throw new System.ArgumentNullException(nameof(pieceTakingTurn));
+                throw new ArgumentNullException(nameof(pieceTakingTurn));
         }
     }
 
@@ -116,15 +131,18 @@ public class GameManager : MonoBehaviour
         canInputToStartTurn=false;
         yield return new WaitForSeconds(waitTime);
         canInputToStartTurn=true;
-        int pNum = pieceTakingTurn.GetPlayerData().playerIndex;
-        textController.SetGameText(GetTurnText(),pieceGenerator.GetMaterials()[pNum].color);
+        int pieceNum = pieceTakingTurn.GetPlayerData().playerIndex;
+        gameTextController.SetGameText(GetTurnText(),GetPieceColor(pieceNum));
     }
 
     private void PlayerTurn(Piece piece)
     {
-        textController.SetGameText(string.Empty,gameTextColor);
+        gameTextController.SetGameText(string.Empty,gameTextColor);
         int roll = diceFaceLogic.RollDice(piece);
         pieceMover.Move(piece,roll);
+        int pieceNum=piece.GetPlayerData().playerIndex;
+        int money = piece.GetPlayerData().money;
+        playerTextControllers[pieceNum].SetGameText(money+"",GetPieceColor(piece));
     }
 
     private GameState GetGameState()
@@ -146,7 +164,18 @@ public class GameManager : MonoBehaviour
     {
         int loc = turnMessage.IndexOf(escapeCharacter);
         if(loc==-1)
-            throw new System.ArgumentOutOfRangeException(nameof(loc));
+            throw new ArgumentOutOfRangeException(nameof(loc));
         return turnMessage[..loc]+playerNumberToDisplay+turnMessage[(loc+1)..];
+    }
+    
+    private Color GetPieceColor(Piece piece)
+    {
+        int pieceNum = piece.GetPlayerData().playerIndex;
+        return GetPieceColor(pieceNum);
+    }
+
+    private Color GetPieceColor(int pieceNum)
+    {
+        return pieceGenerator.GetMaterials()[pieceNum].color;
     }
 }

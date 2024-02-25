@@ -18,100 +18,13 @@
                 {
                     "playerIndex": 2,
                     "money": 43,
-                    "spaceNumber": 5,
-                    "experimentalCondition": 2
-                },
-                {
-                    "playerIndex": 3,
-                    "money": 40,
-                    "spaceNumber": 1,
-                    "experimentalCondition": 3
-                }
-            ]
-        },
-        {
-            "turnNumber": 1,
-            "playerDatas": [
-                {
-                    "playerIndex": 0,
-                    "money": 49,
-                    "spaceNumber": 0,
-                    "experimentalCondition": 0
-                },
-                {
-                    "playerIndex": 1,
-                    "money": 37,
-                    "spaceNumber": 7,
-                    "experimentalCondition": 1
-                },
-                {
-                    "playerIndex": 2,
-                    "money": 43,
-                    "spaceNumber": 11,
-                    "experimentalCondition": 2
-                },
-                {
-                    "playerIndex": 3,
-                    "money": 43,
-                    "spaceNumber": 3,
-                    "experimentalCondition": 3
-                }
-            ]
-        },
-        {
-            "turnNumber": 2,
-            "playerDatas": [
-                {
-                    "playerIndex": 0,
-                    "money": 52,
-                    "spaceNumber": 3,
-                    "experimentalCondition": 0
-                },
-                {
-                    "playerIndex": 1,
-                    "money": 34,
-                    "spaceNumber": 1,
-                    "experimentalCondition": 1
-                },
-                {
-                    "playerIndex": 2,
-                    "money": 43,
-                    "spaceNumber": 5,
+                    "spaceNumber": 2,
                     "experimentalCondition": 2
                 },
                 {
                     "playerIndex": 3,
                     "money": 46,
-                    "spaceNumber": 6,
-                    "experimentalCondition": 3
-                }
-            ]
-        },
-        {
-            "turnNumber": 3,
-            "playerDatas": [
-                {
-                    "playerIndex": 0,
-                    "money": 55,
-                    "spaceNumber": 6,
-                    "experimentalCondition": 0
-                },
-                {
-                    "playerIndex": 1,
-                    "money": 31,
-                    "spaceNumber": 7,
-                    "experimentalCondition": 1
-                },
-                {
-                    "playerIndex": 2,
-                    "money": 43,
-                    "spaceNumber": 8,
-                    "experimentalCondition": 2
-                },
-                {
-                    "playerIndex": 3,
-                    "money": 49,
-                    "spaceNumber": 0,
+                    "spaceNumber": 3,
                     "experimentalCondition": 3
                 }
             ]
