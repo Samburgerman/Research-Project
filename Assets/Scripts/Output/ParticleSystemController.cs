@@ -6,9 +6,9 @@ public class ParticleSystemController : MonoBehaviour
 {
     [SerializeField] private ParticleSystem system;
 
-    public void RunParticles(Vector3 moveTo, float duration, Color color)
+    public void RunParticles(Vector3 moveTo,float duration,Color color)
     {
-        transform.position = moveTo;
+        transform.position=moveTo;
         StartCoroutine(RunParticlesFor(duration,color));
     }
 

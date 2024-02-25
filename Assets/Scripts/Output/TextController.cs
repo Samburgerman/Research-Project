@@ -7,9 +7,9 @@ public class TextController : MonoBehaviour
 {
     [SerializeField] TextMesh text;
 
-    public void SetGameText(string str, Color color)
+    public void SetGameText(string str,Color color)
     {
-        text.text = str;
-        text.color= color;
+        text.text=str;
+        text.color=color;
     }
 }

@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float waitBetweenTurns = 1.0f;
     [SerializeField] private float waitBetweenRounds = 4.0f;
     [SerializeField] private float particleSystemRunLength = 0.5f;
+    public static readonly float pieceMoveTime = 3.0f;
 
     [Space]
     [Header("FX")]
@@ -97,7 +98,7 @@ public class GameManager : MonoBehaviour
     {
         gameTextController.SetGameText(gameEndMessage,gameTextColor);
         sfxController.PlaySound(gameOverSound);
-        JsonLogger.WriteJson(gameStates); 
+        JsonLogger.WriteJson(gameStates);
     }
 
     private void EndRound()
@@ -155,7 +156,7 @@ public class GameManager : MonoBehaviour
         gameTextController.SetGameText(string.Empty,gameTextColor);
         int roll = diceFaceLogic.RollDice(piece);
         pieceMover.Move(piece,roll);
-        int pieceNum=piece.GetPlayerData().playerIndex;
+        int pieceNum = piece.GetPlayerData().playerIndex;
         int money = piece.GetPlayerData().money;
         playerTextControllers[pieceNum].SetGameText(money+"",GetPieceColor(piece));
         Vector3 pos = piece.transform.position;
@@ -178,14 +179,14 @@ public class GameManager : MonoBehaviour
         return GetTurnTextFromPlayerIndexAndEscapeChar(pieceTakingTurn.GetPlayerData().playerIndex+1,escapeCharacterForTurnMessage);
     }
 
-    private string GetTurnTextFromPlayerIndexAndEscapeChar(int playerNumberToDisplay, char escapeCharacter)
+    private string GetTurnTextFromPlayerIndexAndEscapeChar(int playerNumberToDisplay,char escapeCharacter)
     {
         int loc = turnMessage.IndexOf(escapeCharacter);
         if(loc==-1)
             throw new ArgumentOutOfRangeException(nameof(loc));
         return turnMessage[..loc]+playerNumberToDisplay+turnMessage[(loc+1)..];
     }
-    
+
     private Color GetPieceColor(Piece piece)
     {
         int pieceNum = piece.GetPlayerData().playerIndex;

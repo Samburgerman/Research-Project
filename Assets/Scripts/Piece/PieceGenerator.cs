@@ -30,6 +30,7 @@ public class PieceGenerator : MonoBehaviour
         GameObject pieceGameObject = Instantiate(piecePrefab);
         Piece piece = InitializePiece(playerIndex,startSpaceNumber,startMoney,material,pieceGameObject);
         pieceMover.Move(piece,0);//this initializes the piece to the correct starting position
+        pieceMover.OffsetPiecePositionForSharing(piece);
         return pieceGameObject;
     }
 

@@ -8,7 +8,7 @@ public class SFXController : MonoBehaviour
 
     public void PlaySound(AudioClip audioClip)
     {
-        source.clip = audioClip;
+        source.clip=audioClip;
         source.Play();
     }
 }
