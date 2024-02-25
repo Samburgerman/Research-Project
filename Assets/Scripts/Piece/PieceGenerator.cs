@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static PlayerData;
 
@@ -50,4 +51,6 @@ public class PieceGenerator : MonoBehaviour
         piece.InitializePieceFields(playerData,references);
         return piece;
     }
+
+    public List<Material> GetMaterials() => materials;
 }

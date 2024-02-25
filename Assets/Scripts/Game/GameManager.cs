@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string turnMessage = "Player #, press spacebar to make your move";
     [SerializeField] private char escapeCharacterForTurnMessage = '#';
     [SerializeField] private string gameEndMessage = "Game over. Please call experimenter";
+    [SerializeField] private Color gameTextColor = Color.black;
 
     public int TurnNumber { private set; get; } = 0;
     public static int NumSpaces { get; private set; } = 12;
@@ -63,12 +64,12 @@ public class GameManager : MonoBehaviour
     {
         canInputToStartTurn=true;
         pieceTakingTurn=pieces[0];
-        textController.SetGameText(GetTurnText());
+        textController.SetGameText(GetTurnText(),pieceGenerator.GetMaterials()[0].color);
     }
 
     private void CompleteGame()
     {
-        textController.SetGameText(gameEndMessage);
+        textController.SetGameText(gameEndMessage,gameTextColor);
         JsonLogger.WriteJson(gameStates); 
     }
 
@@ -115,12 +116,13 @@ public class GameManager : MonoBehaviour
         canInputToStartTurn=false;
         yield return new WaitForSeconds(waitTime);
         canInputToStartTurn=true;
-        textController.SetGameText(GetTurnText());
+        int pNum = pieceTakingTurn.GetPlayerData().playerIndex;
+        textController.SetGameText(GetTurnText(),pieceGenerator.GetMaterials()[pNum].color);
     }
 
     private void PlayerTurn(Piece piece)
     {
-        textController.SetGameText(string.Empty);
+        textController.SetGameText(string.Empty,gameTextColor);
         int roll = diceFaceLogic.RollDice(piece);
         pieceMover.Move(piece,roll);
     }
