@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,9 +26,10 @@ public class GameManager : MonoBehaviour
     public int TurnNumber { private set; get; } = 0;
     public static int NumSpaces { get; private set; } = 12;
     public static int numStepsInSimulation = 500;
-    public static float waitAfterDiceDisplay = 1.5f;
 
     private List<Piece> pieces = new();
+    private Piece pieceTakingTurn = null;
+    private bool canInputToStartTurn = false;
     private GameStates gameStates = new(new());
 
     private void Start()
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
         InitializeGame();
         InitializeJsonLog();
         Time.timeScale=timeScale;
-        GameRecursiveSequence();
+        BeginGame();
     }
 
     private void InitializeJsonLog()
@@ -50,31 +52,13 @@ public class GameManager : MonoBehaviour
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
     }
 
-    private void GameRecursiveSequence()
+    private void BeginGame()
     {
-        if(!IsGameOver())
-        {
-            TurnNumber++;
-            //each player takes a turn moving around the board
-            StartCoroutine(RecursiveTurns(0));
-        }
-        else
-            CompleteGame();
+        canInputToStartTurn=true;
+        pieceTakingTurn=pieces[0];
     }
 
     private void CompleteGame() => JsonLogger.WriteJson(gameStates);
-
-    private IEnumerator RecursiveTurns(int i)
-    {
-        if(i<pieces.Count)
-        {
-            yield return new WaitForSeconds(waitBetweenTurns);
-            PlayerTurn(pieces[i]);
-            StartCoroutine(RecursiveTurns(i+1));
-        }
-        else
-            EndRound();
-    }
 
     private void EndRound()
     {
@@ -86,12 +70,39 @@ public class GameManager : MonoBehaviour
     private IEnumerator CallGameSequenceFunctionAfterWait()
     {
         yield return new WaitForSeconds(waitBetweenRounds);
-        GameRecursiveSequence();
+        BeginGame();
     }
 
     public void Select()
     {
-        //roll
+        if(canInputToStartTurn&&!IsGameOver())
+        {
+            if(pieceTakingTurn!=null)
+            {
+                PlayerTurn(pieceTakingTurn);
+                StartCoroutine(NoInputsFor(waitBetweenTurns));
+                int pieceIndex = pieces.IndexOf(pieceTakingTurn);
+                if(pieceIndex>=pieces.Count-1)
+                {
+                    pieceTakingTurn=pieces[0];
+                    EndRound();
+                    TurnNumber++;
+                    if(IsGameOver())
+                        CompleteGame();
+                }
+                else
+                    pieceTakingTurn=pieces[pieceIndex+1];
+            }
+            else
+                throw new System.ArgumentNullException(nameof(pieceTakingTurn));
+        }
+    }
+
+    private IEnumerator NoInputsFor(float waitTime)
+    {
+        canInputToStartTurn=false;
+        yield return new WaitForSeconds(waitTime);
+        canInputToStartTurn=true;
     }
 
     private void PlayerTurn(Piece piece)

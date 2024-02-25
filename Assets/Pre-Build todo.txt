@@ -1,1 +1,2 @@
-Change the value for boosted on movementprobabilities to be a resonable value
+Change the value for boosted on movementprobabilities to be a resonable value like a 0.5-0.7 chance
+Set the serialize fields of game manager that control time between turns to be something like 1 second

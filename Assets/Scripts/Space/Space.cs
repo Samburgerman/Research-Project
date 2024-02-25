@@ -8,9 +8,9 @@ public class Space : object
     private Material material;
     public SpaceType SpaceType { get; private set; }
 
-    public Space(int baseSpaceIndex, int money,GameObject gameObject,Material material)
+    public Space(int baseSpaceIndex,int money,GameObject gameObject,Material material)
     {
-        this.baseSpaceIndex= baseSpaceIndex;
+        this.baseSpaceIndex=baseSpaceIndex;
         this.money=money;
         this.material=material;
         SpaceGameObject=gameObject;

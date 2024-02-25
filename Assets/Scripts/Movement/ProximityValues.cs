@@ -19,12 +19,12 @@ public class ProximityValues : object
     {
         List<int> proximityInts = new() { -1,-1,-1 };
         int fromIndex = SpaceDefinitions.ConvertSpaceTypeToIndex(from.SpaceType);
-        for(int i=0;i<3;i++)
+        for(int i = 0; i<3; i++)
         {
             int toIndex = i;
             if(toIndex<=fromIndex)
                 toIndex+=3;
-            proximityInts[i] = toIndex-fromIndex;
+            proximityInts[i]=toIndex-fromIndex;
         }
         CleanProximityInts(proximityInts);
         return proximityInts;

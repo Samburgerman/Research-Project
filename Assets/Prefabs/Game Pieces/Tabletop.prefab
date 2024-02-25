@@ -404,8 +404,8 @@ MonoBehaviour:
   startSpace: 0
   startMoney: 40
   timeScale: 1
-  waitBetweenTurns: 1
-  waitBetweenRounds: 2
+  waitBetweenTurns: 0
+  waitBetweenRounds: 0
 --- !u!114 &1290712712295377582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d62488ac329ee94eaf220aa55c7e5e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 7377672674143844894}
   roll: 32
 --- !u!1 &5600205967193475876
 GameObject:
