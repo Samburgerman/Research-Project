@@ -7,7 +7,14 @@ public class PieceMover : MonoBehaviour
     [SerializeField] private float moveUpBy = 0.5f;//we will need to shift pawn up to avoid clipping thru spaces
     [SerializeField] private Vector3 shareSpaceOffset = Vector3.zero;//shift pieces in x and z to avoid clipping
 
-    public void TranslateToSpace(Piece piece,int currentPlayerSpaceNum)
+    public void Move(Piece piece,int spaces)
+    {
+        piece.AdjustSpaces(spaces);//the player data will store the space number
+        TranslateToSpace(piece,piece.GetPlayerData().spaceNumber);//the piece will physically move
+        TriggerSpaceEffects(piece);//the player data will now gain or lose money
+    }
+
+    private void TranslateToSpace(Piece piece,int currentPlayerSpaceNum)
     {
         Vector3 spacePosition = boardCreator.GetSpaceTransformPosition(currentPlayerSpaceNum);
         Vector3 piecePosition = ShiftUpwardsToStandOnSpacesOnBoard(spacePosition);
@@ -41,13 +48,6 @@ public class PieceMover : MonoBehaviour
     {
         old.y+=moveUpBy;
         return old;
-    }
-
-    public void Move(Piece piece,int spaces)
-    {
-        piece.AdjustSpaces(spaces);//the player data will store the space number
-        TranslateToSpace(piece,piece.GetPlayerData().spaceNumber);//the piece will physically move
-        TriggerSpaceEffects(piece);//the player data will now gain or lose money
     }
 
     private void TriggerSpaceEffects(Piece piece)

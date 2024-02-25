@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string gameEndMessage = "Game over. Please call experimenter";
     [SerializeField] private Color gameTextColor = Color.black;
     [SerializeField] private List<AudioClip> spaceSounds;
+    [SerializeField] private AudioClip moveSound;
     [SerializeField] private AudioClip gameOverSound;
 
     public int TurnNumber { private set; get; } = 0;
