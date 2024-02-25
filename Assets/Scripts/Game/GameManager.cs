@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DiceFaceLogic diceFaceLogic;
     [SerializeField] private PieceGenerator pieceGenerator;
     [SerializeField] private PieceMover pieceMover;
+    [SerializeField] private TextController textController;
 
     [Space]
     [Header("GameRules")]
@@ -22,6 +23,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeScale = 1.0f;
     [SerializeField] private float waitBetweenTurns = 1.0f;
     [SerializeField] private float waitBetweenRounds = 4.0f;
+
+    [Space]
+    [Header("Misc")]
+    [SerializeField] private string turnMessage = "Player #, press spacebar to make your move";
+    [SerializeField] private char escapeCharacterForTurnMessage = '#';
+    [SerializeField] private string gameEndMessage = "Game over. Please call experimenter";
 
     public int TurnNumber { private set; get; } = 0;
     public static int NumSpaces { get; private set; } = 12;
@@ -56,9 +63,14 @@ public class GameManager : MonoBehaviour
     {
         canInputToStartTurn=true;
         pieceTakingTurn=pieces[0];
+        textController.SetText(GetTurnText());
     }
 
-    private void CompleteGame() => JsonLogger.WriteJson(gameStates);
+    private void CompleteGame()
+    {
+        textController.SetText(string.Empty);
+        JsonLogger.WriteJson(gameStates); 
+    }
 
     private void EndRound()
     {
@@ -103,10 +115,12 @@ public class GameManager : MonoBehaviour
         canInputToStartTurn=false;
         yield return new WaitForSeconds(waitTime);
         canInputToStartTurn=true;
+        textController.SetText(GetTurnText());
     }
 
     private void PlayerTurn(Piece piece)
     {
+        textController.SetText(string.Empty);
         int roll = diceFaceLogic.RollDice(piece);
         pieceMover.Move(piece,roll);
     }
@@ -120,4 +134,17 @@ public class GameManager : MonoBehaviour
     }
 
     private bool IsGameOver() => TurnNumber>=totalTurnsInGame;
+
+    private string GetTurnText()
+    {
+        return GetTurnTextFromPlayerIndexAndEscapeChar(pieceTakingTurn.GetPlayerData().playerIndex+1,escapeCharacterForTurnMessage);
+    }
+
+    private string GetTurnTextFromPlayerIndexAndEscapeChar(int playerNumberToDisplay, char escapeCharacter)
+    {
+        int loc = turnMessage.IndexOf(escapeCharacter);
+        if(loc==-1)
+            throw new System.ArgumentOutOfRangeException(nameof(loc));
+        return turnMessage[..loc]+playerNumberToDisplay+turnMessage[(loc+1)..];
+    }
 }
