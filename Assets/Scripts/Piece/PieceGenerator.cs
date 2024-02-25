@@ -11,7 +11,7 @@ public class PieceGenerator : MonoBehaviour
     [SerializeField] PieceMover pieceMover;
     [SerializeField] GameObject piecePrefab;
     [SerializeField] List<Material> materials = new();
-    [SerializeField] Vector3 pieceDisplacement;//todo make it so that pieces can share a space
+    [SerializeField] Vector3 pieceDisplacement;
 
     public List<Piece> GeneratePieces(int startPosition,int startMoney)
     {

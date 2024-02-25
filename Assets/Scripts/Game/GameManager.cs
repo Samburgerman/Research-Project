@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PieceMover pieceMover;
     [SerializeField] private TextController gameTextController;
     [SerializeField] private List<TextController> playerTextControllers;
-    [SerializeField] private ParticleSystem spaceLandParticleSystem;
+    [SerializeField] private ParticleSystemController spaceLandParticleSystemController;
 
     [Space]
     [Header("GameRules")]
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeScale = 1.0f;
     [SerializeField] private float waitBetweenTurns = 1.0f;
     [SerializeField] private float waitBetweenRounds = 4.0f;
+    [SerializeField] private float particleSystemRunLength = 0.5f;
 
     [Space]
     [Header("Misc")]
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
     }
     private void InitializeParticleSystem()
     {
-        spaceLandParticleSystem.Stop();
+        spaceLandParticleSystemController.RunParticles(new Vector3(0,1000,0),0.0f,Color.white);
     }
 
     private void InitializeJsonLog()
@@ -149,6 +150,8 @@ public class GameManager : MonoBehaviour
         int pieceNum=piece.GetPlayerData().playerIndex;
         int money = piece.GetPlayerData().money;
         playerTextControllers[pieceNum].SetGameText(money+"",GetPieceColor(piece));
+        Vector3 pos = piece.transform.position;
+        spaceLandParticleSystemController.RunParticles(pos,particleSystemRunLength,GetSpaceColor(piece.GetSpaceOn()));
     }
 
     private GameState GetGameState()
@@ -183,5 +186,10 @@ public class GameManager : MonoBehaviour
     private Color GetPieceColor(int pieceNum)
     {
         return pieceGenerator.GetMaterials()[pieceNum].color;
+    }
+
+    private Color GetSpaceColor(Space space)
+    {
+        return space.GetMaterial().color;
     }
 }

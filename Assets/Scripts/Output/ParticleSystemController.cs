@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class ParticleSystemController : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private ParticleSystem system;
 
-    private IEnumerator RunParticles(float duration,Color color)
+    public void RunParticles(Vector3 moveTo, float duration, Color color)
     {
-        particleSystem.startColor=color;
-        particleSystem.Play();
+        transform.position = moveTo;
+        StartCoroutine(RunParticlesFor(duration,color));
+    }
+
+    private IEnumerator RunParticlesFor(float duration,Color color)//add vector3 postion to input
+    {
+        system.startColor=color;
+        system.Play();
         yield return new WaitForSeconds(duration);
-        particleSystem.Stop();
+        system.Stop();
     }
 }

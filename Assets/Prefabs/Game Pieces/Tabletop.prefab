@@ -263,7 +263,7 @@ Transform:
   m_GameObject: {fileID: 1347764937856205443}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.41, y: 9.15, z: 10.51}
+  m_LocalPosition: {x: 19.41, y: 5.34, z: 10.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -739,13 +739,14 @@ MonoBehaviour:
   - {fileID: 3632979784213610495}
   - {fileID: 2287302677919269648}
   - {fileID: 8516448550628252431}
-  spaceLandParticleSystem: {fileID: 4881207471372314321}
+  spaceLandParticleSystemController: {fileID: 5864574450319725623}
   totalTurnsInGame: 10
   startSpace: 0
   startMoney: 40
   timeScale: 1
   waitBetweenTurns: 1
   waitBetweenRounds: 0
+  particleSystemRunLength: 0.5
   turnMessage: Player #, press spacebar to make your move
   escapeCharacterForTurnMessage: 35
   gameEndMessage: Game over. Please call experimenter
@@ -5993,7 +5994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11066da18c8a0a4082b5a7f87ee76ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystem: {fileID: 0}
+  system: {fileID: 4881207471372314321}
 --- !u!1 &7398410796450157044
 GameObject:
   m_ObjectHideFlags: 0
@@ -6225,7 +6226,7 @@ Transform:
   m_GameObject: {fileID: 8178823158244185917}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.41, y: 9.15, z: 10.51}
+  m_LocalPosition: {x: -19.41, y: 5.34, z: 10.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -23,8 +23,8 @@
                 },
                 {
                     "playerIndex": 3,
-                    "money": 46,
-                    "spaceNumber": 3,
+                    "money": 43,
+                    "spaceNumber": 5,
                     "experimentalCondition": 3
                 }
             ]
