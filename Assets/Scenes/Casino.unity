@@ -341,6 +341,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5355556269115770187, guid: 68f302b145048c04bacc147cc7fd3b4a,
+        type: 3}
+      propertyPath: select.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355556269115770187, guid: 68f302b145048c04bacc147cc7fd3b4a,
+        type: 3}
+      propertyPath: select.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 8136192379624320504, guid: 68f302b145048c04bacc147cc7fd3b4a,
         type: 3}
       propertyPath: m_LocalPosition.x

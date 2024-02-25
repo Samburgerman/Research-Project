@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] KeyCode roll = KeyCode.Space;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private KeyCode roll = KeyCode.Space;
 
     void Update()
     {
-        Debug.Log(Input.GetKeyDown(roll));
+        if(Input.GetKeyDown(roll))
+            gameManager.Select();
     }
 }

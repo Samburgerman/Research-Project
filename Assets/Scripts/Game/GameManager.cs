@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float waitBetweenTurns = 1.0f;
     [SerializeField] private float waitBetweenRounds = 4.0f;
 
-
     public int TurnNumber { private set; get; } = 0;
     public static int NumSpaces { get; private set; } = 12;
     public static int numStepsInSimulation = 500;
@@ -88,6 +87,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitBetweenRounds);
         GameRecursiveSequence();
+    }
+
+    public void Select()
+    {
+        //roll
     }
 
     private void PlayerTurn(Piece piece)
