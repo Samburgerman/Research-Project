@@ -886,13 +886,13 @@ MonoBehaviour:
   totalTurnsInGame: 10
   startSpace: 0
   startMoney: 40
-  timeScale: 1
+  timeScale: 100
   waitBetweenTurns: 1
   waitBetweenRounds: 0
   particleSystemRunLength: 0.5
   turnMessage: Player #, press spacebar to make your move
   escapeCharacterForTurnMessage: 35
-  gameEndMessage: Game over. Please call experimenter
+  gameEndMessage: Game over. Please call experimenter.
   gameTextColor: {r: 0, g: 0, b: 0, a: 1}
   spaceSounds:
   - {fileID: 8300000, guid: 58ebd4cc02945484b93bb712037747c6, type: 3}

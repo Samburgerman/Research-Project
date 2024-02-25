@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
     private void CompleteGame()
     {
         gameTextController.SetGameText(gameEndMessage,gameTextColor);
+        sfxController.PlaySound(gameOverSound);
         JsonLogger.WriteJson(gameStates); 
     }
 
@@ -142,7 +143,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         canInputToStartTurn=true;
         int pieceNum = pieceTakingTurn.GetPlayerData().playerIndex;
-        gameTextController.SetGameText(GetTurnText(),GetPieceColor(pieceNum));
+        if(!IsGameOver())
+            gameTextController.SetGameText(GetTurnText(),GetPieceColor(pieceNum));
+        else
+            gameTextController.SetGameText(gameEndMessage,gameTextColor);
     }
 
     private void PlayerTurn(Piece piece)
