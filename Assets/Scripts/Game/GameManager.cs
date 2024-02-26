@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [Space]
     [Header("GameRules")]
     [SerializeField] private int totalTurnsInGame = 10;
-    [SerializeField] private int startSpace = 0;
+    public int startSpace = 0;
     [SerializeField] private int startMoney = 10;
 
     [Space]

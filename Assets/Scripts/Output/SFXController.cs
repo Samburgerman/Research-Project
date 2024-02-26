@@ -6,7 +6,7 @@ public class SFXController : MonoBehaviour
 {
     [SerializeField] AudioSource source;
 
-    public void PlaySound(AudioClip audioClip, float duration)
+    public void PlaySound(AudioClip audioClip,float duration)
     {
         source.clip=audioClip;
         source.Play();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.VersionControl.Asset;
 
@@ -24,7 +25,13 @@ public class PieceMover : MonoBehaviour
         StartCoroutine(MoveSpaces(pieceGameObject,fromIndex,spaces));
     }
 
-    private IEnumerator MoveSpaces(GameObject pieceGameObject, int fromIndex, int spaces)
+    public void InitializePiecePostion(Piece piece)
+    {
+        Vector3 toV = boardCreator.SpaceGameObjects[gameManager.startSpace].transform.position;
+        piece.transform.position=toV;
+    }
+
+    private IEnumerator MoveSpaces(GameObject pieceGameObject,int fromIndex,int spaces)
     {
         for(int i = 0; i<spaces; i++)
         {
@@ -40,20 +47,20 @@ public class PieceMover : MonoBehaviour
         sfxController.PlaySound(gameManager.moveSound,gameManager.moveSoundDuration);
     }
 
-    private IEnumerator OneSpaceMove(GameObject pieceGameObject, int spaceWasOn)
+    private IEnumerator OneSpaceMove(GameObject pieceGameObject,int spaceWasOn)
     {
         yield return StartCoroutine(UpAnimation(pieceGameObject));
         yield return StartCoroutine(MoveForwardOneSpace(pieceGameObject,spaceWasOn));//todo replace transfrom with space trans
         yield return StartCoroutine(DownAnimation(pieceGameObject));
     }
 
-    private IEnumerator MoveForwardOneSpace(GameObject pieceGameObject, int spaceWasOn)
+    private IEnumerator MoveForwardOneSpace(GameObject pieceGameObject,int spaceWasOn)
     {
         Vector3 fromV = pieceGameObject.transform.position;
         int spaceMovedTo = (spaceWasOn+1)%GameManager.NumSpaces;
         Vector3 toV = boardCreator.SpaceGameObjects[spaceMovedTo].transform.position;
         toV.y+=moveUpByToSitOnSpace;
-        Debug.Log("spaceWasOn:"+spaceWasOn+" spaceMovedTo:"+spaceMovedTo+" fromV:"+fromV+" toV:"+toV);
+        //Debug.Log("spaceWasOn:"+spaceWasOn+" spaceMovedTo:"+spaceMovedTo+" fromV:"+fromV+" toV:"+toV);
         yield return StartCoroutine(MoveThrough(pieceGameObject.transform,fromV,toV));
     }
 
@@ -71,11 +78,11 @@ public class PieceMover : MonoBehaviour
         yield return StartCoroutine(MoveThrough(pieceGameObject.transform,current,above));
     }
 
-    private IEnumerator MoveThrough(Transform t, Vector3 from, Vector3 to)
+    private IEnumerator MoveThrough(Transform t,Vector3 from,Vector3 to)
     {
         float totalWait = GameManager.pieceMoveTime;
         float wait = totalWait/steps;
-        for(int i=0;i<steps;i++)
+        for(int i = 0; i<steps; i++)
         {
             yield return new WaitForSeconds(wait);
             t.position=Vector3.Lerp(from,to,(i+1.0f)/steps);
