@@ -1,33 +1,3 @@
 {
-    "gameStatesList": [
-        {
-            "turnNumber": 0,
-            "playerDatas": [
-                {
-                    "playerIndex": 0,
-                    "money": 40,
-                    "spaceNumber": 6,
-                    "experimentalCondition": 0
-                },
-                {
-                    "playerIndex": 1,
-                    "money": 40,
-                    "spaceNumber": 1,
-                    "experimentalCondition": 1
-                },
-                {
-                    "playerIndex": 2,
-                    "money": 40,
-                    "spaceNumber": 5,
-                    "experimentalCondition": 2
-                },
-                {
-                    "playerIndex": 3,
-                    "money": 40,
-                    "spaceNumber": 4,
-                    "experimentalCondition": 3
-                }
-            ]
-        }
-    ]
+    "gameStatesList": []
 }

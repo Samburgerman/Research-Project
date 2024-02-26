@@ -851,7 +851,7 @@ MonoBehaviour:
   totalTurnsInGame: 10
   startSpace: 0
   startMoney: 40
-  timeScale: 100
+  timeScale: 1
   waitBetweenTurns: 1
   waitBetweenRounds: 0
   particleSystemRunLength: 0.5
@@ -863,8 +863,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 58ebd4cc02945484b93bb712037747c6, type: 3}
   - {fileID: 8300000, guid: 7b07d017da62c274f96a787b10bdf2b9, type: 3}
   - {fileID: 0}
+  spaceSoundDurations:
+  - 0.3
+  - 1
+  - 0
   moveSound: {fileID: 8300000, guid: 3a57e1017309b4b4d9470fc26e596cc4, type: 3}
+  moveSoundDuration: 0.2
   gameOverSound: {fileID: 8300000, guid: 931889739425a094190e8763553db984, type: 3}
+  gameOverSoundDuration: 1
 --- !u!114 &1290712712295377582
 MonoBehaviour:
   m_ObjectHideFlags: 0

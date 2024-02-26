@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float waitBetweenTurns = 1.0f;
     [SerializeField] private float waitBetweenRounds = 4.0f;
     [SerializeField] private float particleSystemRunLength = 0.5f;
-    public static readonly float pieceMoveTime = 3.0f;
+    public static readonly float pieceMoveTime = 0.11f;
 
     [Space]
     [Header("FX")]
@@ -38,8 +38,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string gameEndMessage = "Game over. Please call experimenter";
     [SerializeField] private Color gameTextColor = Color.black;
     [SerializeField] private List<AudioClip> spaceSounds;
+    [SerializeField] private List<float> spaceSoundDurations;
     public AudioClip moveSound;
+    public float moveSoundDuration;
     [SerializeField] private AudioClip gameOverSound;
+    [SerializeField] private float gameOverSoundDuration;
 
     public int TurnNumber { private set; get; } = 0;
     public static int NumSpaces { get; private set; } = 12;
@@ -98,7 +101,7 @@ public class GameManager : MonoBehaviour
     private void CompleteGame()
     {
         gameTextController.SetGameText(gameEndMessage,gameTextColor);
-        sfxController.PlaySound(gameOverSound);
+        sfxController.PlaySound(gameOverSound,gameOverSoundDuration);
         JsonLogger.WriteJson(gameStates);
     }
 
@@ -157,12 +160,18 @@ public class GameManager : MonoBehaviour
         gameTextController.SetGameText(string.Empty,gameTextColor);
         int roll = diceFaceLogic.RollDice(piece);
         pieceMover.Move(piece,roll);
+    }
+
+    public void OnLand(Piece piece)
+    {
         int pieceNum = piece.GetPlayerData().playerIndex;
         int money = piece.GetPlayerData().money;
         playerTextControllers[pieceNum].SetGameText(money+"",GetPieceColor(piece));
         Vector3 pos = piece.transform.position;
         spaceLandParticleSystemController.RunParticles(pos,particleSystemRunLength,GetSpaceColor(piece.GetSpaceOn()));
-        sfxController.PlaySound(spaceSounds[SpaceDefinitions.ConvertSpaceTypeToIndex(piece.GetSpaceOn().SpaceType)]);
+        int soundIndex = SpaceDefinitions.ConvertSpaceTypeToIndex(piece.GetSpaceOn().SpaceType);
+        sfxController.PlaySound(spaceSounds[soundIndex],spaceSoundDurations[soundIndex]);
+        pieceMover.TriggerSpaceEffects(piece);
     }
 
     private GameState GetGameState()

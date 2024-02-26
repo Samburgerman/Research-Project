@@ -6,12 +6,16 @@ public class SFXController : MonoBehaviour
 {
     [SerializeField] AudioSource source;
 
-    public void PlaySound(AudioClip audioClip)
+    public void PlaySound(AudioClip audioClip, float duration)
     {
         source.clip=audioClip;
         source.Play();
+        StopSoundAfter(duration);
     }
 
-    public void StopSound()
-    { source.Stop(); }
+    private IEnumerator StopSoundAfter(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        source.Stop();
+    }
 }

@@ -11,7 +11,7 @@ public class PieceMover : MonoBehaviour
     [SerializeField] private float moveUpByToSitOnSpace = 0.5f;
     [SerializeField] private float moveUpByForSpaceAnim = 1.5f;
     [SerializeField] private Vector3 shareSpaceOffset = Vector3.zero;
-    private static int steps = 20;
+    private static readonly int steps = 20;
 
     public void Move(Piece piece,int spaces)
     {
@@ -30,16 +30,15 @@ public class PieceMover : MonoBehaviour
         for(int i = 0; i<spaces; i++)
         {
             yield return StartCoroutine(OneSpaceMove(pieceGameObject,fromIndex+i));
+            PlayMoveSound();
         }
-        StartCoroutine(PlayMoveSound());
+        gameManager.OnLand(pieceGameObject.GetComponent<Piece>());
     }
 
-    private IEnumerator PlayMoveSound()
+    private void PlayMoveSound()
     {
         SFXController sfxController = gameManager.sfxController;
-        sfxController.PlaySound(gameManager.moveSound);
-        yield return new WaitForSeconds(0.1f);
-        sfxController.StopSound();
+        sfxController.PlaySound(gameManager.moveSound,gameManager.moveSoundDuration);
     }
 
     private IEnumerator OneSpaceMove(GameObject pieceGameObject, int spaceWasOn)
@@ -55,7 +54,7 @@ public class PieceMover : MonoBehaviour
         Vector3 fromV = pieceGameObject.transform.position;
         int spaceMovedTo = (spaceWasOn+1)%GameManager.NumSpaces;
         Vector3 toV = boardCreator.SpaceGameObjects[spaceMovedTo].transform.position;
-        toV.y+=moveUpByForSpaceAnim;
+        toV.y+=moveUpByToSitOnSpace;
         Debug.Log("spaceWasOn:"+spaceWasOn+" spaceMovedTo:"+spaceMovedTo+" fromV:"+fromV+" toV:"+toV);
         yield return StartCoroutine(MoveThrough(pieceGameObject.transform,fromV,toV));
     }
@@ -63,14 +62,14 @@ public class PieceMover : MonoBehaviour
     private IEnumerator UpAnimation(GameObject pieceGameObject)
     {
         Vector3 current = pieceGameObject.transform.position;
-        Vector3 above = new Vector3(current.x,current.y+moveUpByForSpaceAnim,current.z);
+        Vector3 above = new(current.x,current.y+moveUpByForSpaceAnim,current.z);
         yield return StartCoroutine(MoveThrough(pieceGameObject.transform,current,above));
     }
 
     private IEnumerator DownAnimation(GameObject pieceGameObject)
     {
         Vector3 current = pieceGameObject.transform.position;
-        Vector3 above = new Vector3(current.x,current.y-moveUpByForSpaceAnim,current.z);
+        Vector3 above = new(current.x,current.y-moveUpByForSpaceAnim,current.z);
         yield return StartCoroutine(MoveThrough(pieceGameObject.transform,current,above));
     }
 
@@ -120,7 +119,7 @@ public class PieceMover : MonoBehaviour
         return old;
     }
 
-    private void TriggerSpaceEffects(Piece piece)
+    public void TriggerSpaceEffects(Piece piece)
     {
         Space spaceLandedOn = spaceDefinitions.GetSpaceFromIndex(piece.GetPlayerData().spaceNumber);
         int money = spaceLandedOn.GetMoney();
