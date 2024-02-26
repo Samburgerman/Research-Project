@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextController gameTextController;
     [SerializeField] private List<TextController> playerTextControllers;
     [SerializeField] private ParticleSystemController spaceLandParticleSystemController;
-    [SerializeField] private SFXController sfxController;
+    public SFXController sfxController;
 
     [Space]
     [Header("GameRules")]
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string gameEndMessage = "Game over. Please call experimenter";
     [SerializeField] private Color gameTextColor = Color.black;
     [SerializeField] private List<AudioClip> spaceSounds;
-    [SerializeField] private AudioClip moveSound;
+    public AudioClip moveSound;
     [SerializeField] private AudioClip gameOverSound;
 
     public int TurnNumber { private set; get; } = 0;
@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
             i++;
         }
     }
+
     private void InitializeParticleSystem()
     {
         spaceLandParticleSystemController.RunParticles(new Vector3(0,1000,0),0.0f,Color.white);

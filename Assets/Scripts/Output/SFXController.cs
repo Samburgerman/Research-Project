@@ -11,4 +11,7 @@ public class SFXController : MonoBehaviour
         source.clip=audioClip;
         source.Play();
     }
+
+    public void StopSound()
+    { source.Stop(); }
 }

@@ -29,8 +29,6 @@ public class PieceGenerator : MonoBehaviour
         Material material = materials[playerIndex];
         GameObject pieceGameObject = Instantiate(piecePrefab);
         Piece piece = InitializePiece(playerIndex,startSpaceNumber,startMoney,material,pieceGameObject);
-        pieceMover.Move(piece,0);//this initializes the piece to the correct starting position
-        pieceMover.OffsetPiecePositionForSharing(piece);
         return pieceGameObject;
     }
 
@@ -47,9 +45,10 @@ public class PieceGenerator : MonoBehaviour
                                     startSpaceNumber,
                                     startMoney,
                                     GetExperimentalConditionFromIndex(playerIndex));
-        //eventually will use PlayerData.GetExperimentalConditionFromIndex(playerIndex) as the last argument
-        //once deguggind is complete
         piece.InitializePieceFields(playerData,references);
+        pieceMover.Move(piece,0);//this initializes the piece to the correct starting position
+        pieceMover.OffsetPiecePositionForSharing(piece);
+        pieceMover.ShiftUpwardsToStandOnSpacesOnBoard(piece.transform.position);
         return piece;
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 public class BoardCreator : MonoBehaviour
 {
     [SerializeField] private SpaceDefinitions spaceDefinitions;
-    [SerializeField] private float spaceRadius = 5;
+    public float spaceRadius = 7.2f;
     [SerializeField] Vector3 spaceScale = Vector3.one;
     private static readonly float startingAngularPosition = 0;
     private static float GetDistanceBetweenSpaces(int spacesTotal) => 2*Mathf.PI/spacesTotal;
