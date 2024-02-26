@@ -46,7 +46,7 @@ public class PieceGenerator : MonoBehaviour
                                     startMoney,
                                     GetExperimentalConditionFromIndex(playerIndex));
         piece.InitializePieceFields(playerData,references);
-        pieceMover.Move(piece,0);//this initializes the piece to the correct starting position
+        //pieceMover.Move(piece,0);//this initializes the piece to the correct starting position
         pieceMover.InitializePiecePostion(piece);
         piece.transform.position+=pieceMover.OffsetPiecePositionForSharing(piece);
         pieceMover.ShiftUpwardsToStandOnSpacesOnBoard(piece.transform.position);

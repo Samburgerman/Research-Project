@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float waitBetweenTurns = 1.0f;
     [SerializeField] private float waitBetweenRounds = 4.0f;
     [SerializeField] private float particleSystemRunLength = 0.5f;
-    public static readonly float pieceMoveTime = 0.11f;
+    public static readonly float pieceMoveTime = 0.05f;
 
     [Space]
     [Header("FX")]
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeGame();
-        InitializeTexts();
+        UpdatePlayerTexts();
         InitializeParticleSystem();
         InitializeJsonLog();
         Time.timeScale=timeScale;
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         pieces=pieceGenerator.GeneratePieces(startSpace,startMoney);
     }
 
-    private void InitializeTexts()
+    public void UpdatePlayerTexts()
     {
         int i = 0;
         foreach(TextController textController in playerTextControllers)

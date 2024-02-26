@@ -82,7 +82,7 @@ public class PieceMover : MonoBehaviour
 
     private IEnumerator MoveThrough(Transform t,Vector3 from,Vector3 to)
     {
-        float totalWait = GameManager.pieceMoveTime;
+        float totalWait = GameManager.pieceMoveTime/3;
         float wait = totalWait/steps;
         for(int i = 0; i<steps; i++)
         {
@@ -122,5 +122,6 @@ public class PieceMover : MonoBehaviour
         Space spaceLandedOn = spaceDefinitions.GetSpaceFromIndex(piece.GetPlayerData().spaceNumber);
         int money = spaceLandedOn.GetMoney();
         piece.AdjustMoney(money);
+        gameManager.UpdatePlayerTexts();
     }
 }

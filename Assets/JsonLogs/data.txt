@@ -1,3 +1,294 @@
 {
-    "gameStatesList": []
+    "gameStatesList": [
+        {
+            "turnNumber": 0,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 43,
+                    "spaceNumber": 6,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 37,
+                    "spaceNumber": 1,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 2,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 40,
+                    "spaceNumber": 3,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 1,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 46,
+                    "spaceNumber": 9,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 34,
+                    "spaceNumber": 4,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 8,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 43,
+                    "spaceNumber": 5,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 2,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 49,
+                    "spaceNumber": 0,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 34,
+                    "spaceNumber": 10,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 2,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 43,
+                    "spaceNumber": 7,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 3,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 52,
+                    "spaceNumber": 3,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 31,
+                    "spaceNumber": 4,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 8,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 40,
+                    "spaceNumber": 11,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 4,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 55,
+                    "spaceNumber": 9,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 25,
+                    "spaceNumber": 7,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 11,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 40,
+                    "spaceNumber": 3,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 5,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 58,
+                    "spaceNumber": 0,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 25,
+                    "spaceNumber": 1,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 5,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 43,
+                    "spaceNumber": 7,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 6,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 58,
+                    "spaceNumber": 6,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 25,
+                    "spaceNumber": 4,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 11,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 43,
+                    "spaceNumber": 0,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 7,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 58,
+                    "spaceNumber": 9,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 19,
+                    "spaceNumber": 10,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 5,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 46,
+                    "spaceNumber": 6,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 8,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 64,
+                    "spaceNumber": 3,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 19,
+                    "spaceNumber": 4,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 8,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 49,
+                    "spaceNumber": 0,
+                    "experimentalCondition": 3
+                }
+            ]
+        },
+        {
+            "turnNumber": 9,
+            "playerDatas": [
+                {
+                    "playerIndex": 0,
+                    "money": 64,
+                    "spaceNumber": 9,
+                    "experimentalCondition": 0
+                },
+                {
+                    "playerIndex": 1,
+                    "money": 19,
+                    "spaceNumber": 10,
+                    "experimentalCondition": 1
+                },
+                {
+                    "playerIndex": 2,
+                    "money": 40,
+                    "spaceNumber": 11,
+                    "experimentalCondition": 2
+                },
+                {
+                    "playerIndex": 3,
+                    "money": 49,
+                    "spaceNumber": 1,
+                    "experimentalCondition": 3
+                }
+            ]
+        }
+    ]
 }

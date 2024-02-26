@@ -852,7 +852,7 @@ MonoBehaviour:
   startSpace: 0
   startMoney: 40
   timeScale: 1
-  waitBetweenTurns: 1
+  waitBetweenTurns: 2
   waitBetweenRounds: 0
   particleSystemRunLength: 0.5
   turnMessage: Player #, press spacebar to make your move
@@ -868,7 +868,7 @@ MonoBehaviour:
   - 1
   - 0
   moveSound: {fileID: 8300000, guid: 3a57e1017309b4b4d9470fc26e596cc4, type: 3}
-  moveSoundDuration: 0.2
+  moveSoundDuration: 0.01
   gameOverSound: {fileID: 8300000, guid: 931889739425a094190e8763553db984, type: 3}
   gameOverSoundDuration: 1
 --- !u!114 &1290712712295377582
@@ -6234,7 +6234,7 @@ MonoBehaviour:
   boardCreator: {fileID: 2934944433372932956}
   spaceDefinitions: {fileID: 1290712712295377582}
   gameManager: {fileID: 7377672674143844894}
-  moveUpByToSitOnSpace: 0.9
+  moveUpByToSitOnSpace: 2.9
   moveUpByForSpaceAnim: 1.5
   shareSpaceOffset: {x: 0.9, y: 0, z: 0.9}
 --- !u!1 &7806376048034714971
