@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
     {
         gameTextController.SetGameText(gameEndMessage,gameTextColor);
         sfxController.PlaySound(gameOverSound,gameOverSoundDuration);
-        JsonLogger.WriteJson(gameStates);
+        JsonLogger.WriteJson(jsonLogData);
     }
 
     private void EndRound()
