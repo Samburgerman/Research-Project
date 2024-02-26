@@ -7,7 +7,8 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetAxis(axisName)>0.1f||Input.GetKey(KeyCode.Space))
+        print(Input.GetAxis(axisName));
+        if(Input.GetAxis(axisName)>0.1f)
             gameManager.Select();
     }
 }
