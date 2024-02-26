@@ -851,7 +851,7 @@ MonoBehaviour:
   totalTurnsInGame: 10
   startSpace: 0
   startMoney: 40
-  timeScale: 100
+  timeScale: 1
   waitBetweenTurns: 2
   waitBetweenRounds: 0
   particleSystemRunLength: 0.5
