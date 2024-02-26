@@ -3,11 +3,12 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private KeyCode roll = KeyCode.Space;
+    [SerializeField] private string axisName;
 
     void Update()
     {
-        if(Input.GetKeyDown(roll))
+        print(Input.GetAxis(axisName));
+        if(Input.GetAxis(axisName)>0.1f)
             gameManager.Select();
     }
 }

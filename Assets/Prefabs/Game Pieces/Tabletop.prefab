@@ -903,7 +903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 7377672674143844894}
-  roll: 32
+  axisName: roll
 --- !u!1 &5600205967193475876
 GameObject:
   m_ObjectHideFlags: 0
