@@ -3,7 +3,7 @@ using UnityEngine;
 
 internal static class MovementProbabilities
 {
-    private static readonly float probabilityForBoosted = 1.0f;//todo change to 0.5-0.7 when prox value are correct
+    private static readonly float probabilityForBoosted = 0.5f;
     private static readonly float probabilityForDeboosted = (1.0f-probabilityForBoosted)/2;
     private static List<List<float>> probabilities;
 
