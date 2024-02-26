@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 using static UnityEditor.VersionControl.Asset;
 
 public class PieceMover : MonoBehaviour
@@ -60,6 +61,7 @@ public class PieceMover : MonoBehaviour
         int spaceMovedTo = (spaceWasOn+1)%GameManager.NumSpaces;
         Vector3 toV = boardCreator.SpaceGameObjects[spaceMovedTo].transform.position;
         toV.y+=moveUpByToSitOnSpace;
+        toV+=OffsetPiecePositionForSharing(pieceGameObject.GetComponent<Piece>());
         //Debug.Log("spaceWasOn:"+spaceWasOn+" spaceMovedTo:"+spaceMovedTo+" fromV:"+fromV+" toV:"+toV);
         yield return StartCoroutine(MoveThrough(pieceGameObject.transform,fromV,toV));
     }
@@ -89,16 +91,15 @@ public class PieceMover : MonoBehaviour
         }
     }
 
-    public void OffsetPiecePositionForSharing(Piece piece)
+    public Vector3 OffsetPiecePositionForSharing(Piece piece)
     {
-        Vector3 position = piece.transform.position;
         int pieceNumber = piece.GetPlayerData().playerIndex;
-        position=CalculateOffsetPosition(position,pieceNumber);
-        piece.gameObject.transform.position=position;
+        return CalculateOffsetPosition(pieceNumber);
     }
 
-    private Vector3 CalculateOffsetPosition(Vector3 position,int pieceNumber)
+    private Vector3 CalculateOffsetPosition(int pieceNumber)
     {
+        Vector3 position = Vector3.zero;
         if(pieceNumber%4 is 2 or 3)
             position.x+=shareSpaceOffset.x;
         else

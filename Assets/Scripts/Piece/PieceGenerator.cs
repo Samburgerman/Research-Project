@@ -48,7 +48,7 @@ public class PieceGenerator : MonoBehaviour
         piece.InitializePieceFields(playerData,references);
         pieceMover.Move(piece,0);//this initializes the piece to the correct starting position
         pieceMover.InitializePiecePostion(piece);
-        pieceMover.OffsetPiecePositionForSharing(piece);
+        piece.transform.position+=pieceMover.OffsetPiecePositionForSharing(piece);
         pieceMover.ShiftUpwardsToStandOnSpacesOnBoard(piece.transform.position);
         return piece;
     }
