@@ -1,9 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
-using static UnityEditor.VersionControl.Asset;
 
 public class PieceMover : MonoBehaviour
 {
