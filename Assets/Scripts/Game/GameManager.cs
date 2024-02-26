@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     private Piece pieceTakingTurn = null;
     private bool canInputToStartTurn = false;
     private GameStates gameStates = new(new());
+    private JsonLogData jsonLogData = new();
+    private DateTime startTime;
 
     private void Start()
     {
@@ -85,8 +87,10 @@ public class GameManager : MonoBehaviour
 
     private void InitializeJsonLog()
     {
+        startTime = DateTime.Now;
         JsonLogger.ClearJson();
-        JsonLogger.WriteJson(gameStates);
+        jsonLogData.beginDateTime= startTime+"";
+        JsonLogger.WriteJson(jsonLogData);
     }
 
     private void BeginGame()
@@ -106,7 +110,9 @@ public class GameManager : MonoBehaviour
     private void EndRound()
     {
         gameStates.Add(GetGameState());
-        JsonLogger.WriteJson(gameStates);
+        jsonLogData.gameStates=gameStates;
+        jsonLogData.endDateTime= DateTime.Now+"";
+        JsonLogger.WriteJson(jsonLogData);
         StartCoroutine(CallGameSequenceFunctionAfterWait());
     }
 

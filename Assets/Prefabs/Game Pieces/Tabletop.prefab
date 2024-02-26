@@ -851,7 +851,7 @@ MonoBehaviour:
   totalTurnsInGame: 10
   startSpace: 0
   startMoney: 40
-  timeScale: 1
+  timeScale: 100
   waitBetweenTurns: 2
   waitBetweenRounds: 0
   particleSystemRunLength: 0.5
@@ -903,7 +903,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 7377672674143844894}
-  axisName: roll
 --- !u!1 &5600205967193475876
 GameObject:
   m_ObjectHideFlags: 0
