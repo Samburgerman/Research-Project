@@ -13,12 +13,11 @@ public class PieceMover : MonoBehaviour
     [SerializeField] private Vector3 shareSpaceOffset = Vector3.zero;
     private static readonly int steps = 20;
 
+    //first we update player data for the correct space number
+    //then we jump from space to space until we get to the final space
+    //to do that, we raise the piece slowly, move it, and then drop it
     public void Move(Piece piece,int spaces)
     {
-        //first we update player data for the correct space number
-        //then we jump from space to space until we get to the final space
-        //to do that, we raise the piece slowly, move it, and then drop it
-        //after the final piece drop, call TriggerSpaceEffects(piece)
         int fromIndex = piece.GetPlayerData().spaceNumber;
         piece.AdjustSpaces(spaces);
         GameObject pieceGameObject = piece.gameObject;
@@ -46,7 +45,6 @@ public class PieceMover : MonoBehaviour
         yield return StartCoroutine(UpAnimation(pieceGameObject));
         yield return StartCoroutine(MoveForwardOneSpace(pieceGameObject,spaceWasOn));//todo replace transfrom with space trans
         yield return StartCoroutine(DownAnimation(pieceGameObject));
-        //call gamemanager.start sound for clink
     }
 
     private IEnumerator MoveForwardOneSpace(GameObject pieceGameObject, int spaceWasOn)
@@ -83,14 +81,6 @@ public class PieceMover : MonoBehaviour
             t.position=Vector3.Lerp(from,to,(i+1.0f)/steps);
         }
     }
-
-    //private void LerpToSpace(Piece piece,int currentPlayerSpaceNum,float t)
-    //{
-    //    Vector3 piecePosition = ShiftUpwardsToStandOnSpacesOnBoard(spacePosition);
-    //    piece.gameObject.transform.position=Vector3.Lerp(spacePosition,piecePosition,t);
-    //    piece.gameObject.transform.SetParent(transform,true);
-    //    OffsetPiecePositionForSharing(piece);
-    //}
 
     public void OffsetPiecePositionForSharing(Piece piece)
     {
